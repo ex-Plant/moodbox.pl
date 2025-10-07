@@ -1,7 +1,10 @@
+import { cn } from '@/app/utils/helpers/cn';
+import Footer from '@/components/footer/Footer';
+import Hero from '@/components/Hero';
+import Nav from '@/components/nav/Nav';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -25,12 +28,18 @@ export default function RootLayout({
 	return (
 		<html lang='pl'>
 			<body
-				className={
-					`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`
+				className={cn(
+					`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`,
+					`bg-[var(--test)]`
+					// `bg-test1`
+					// `bg-red-200`
 					// `[&_*]:outline [&_*]:outline-[0.5px] [&_*]:outline-pink-40`
-				}
+				)}
 			>
+				<Hero />
+				<div className={`h-[120vh]`}> </div>
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);
