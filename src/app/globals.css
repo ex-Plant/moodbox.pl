@@ -41,7 +41,7 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
-	--color-test1: var(--test);
+	/*--color-test1: var(--test);*/
 
 
 }
@@ -79,7 +79,12 @@
 	--sidebar-accent-foreground: oklch(0.216 0.006 56.043);
 	--sidebar-border: oklch(0.923 0.003 48.717);
 	--sidebar-ring: oklch(0.709 0.01 56.259);
-	--test: #f4ece5
+	--test: #f4ece5;
+	--mood-brown: #7b4a38;
+	--mood-dark-brown: #472F27;
+	--mood-red: red;
+
+
 }
 
 .dark {

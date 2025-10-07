@@ -1,10 +1,14 @@
-import { cn } from '@/app/utils/helpers/cn';
+import Delimiter from '@/components/Delimiter';
 import Footer from '@/components/footer/Footer';
 import Hero from '@/components/Hero';
-import Nav from '@/components/nav/Nav';
+import LogoSquares from '@/components/LogoSquares';
+import { cn } from '@/lib/utils';
+import { tr } from '@/translations/pl';
+import { ClipboardList, Cuboid, SquareCheckBig, Truck } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+
 const geistSans = Geist({
 	variable: '--font-geist-sans',
 	subsets: ['latin'],
@@ -37,10 +41,41 @@ export default function RootLayout({
 				)}
 			>
 				<Hero />
-				<div className={`h-[120vh]`}> </div>
+				<Delimiter className={`flex justify-center`}>
+					<LogoSquares />
+				</Delimiter>
+				<div className={`flex bg-[var(--mood-dark-brown)] text-white`}>
+					<p className={`mx-auto py-4`}>Od wyboru do dostawy - prościej się nie da</p>
+				</div>
+				<div>
+					<div className={`flex justify-center gap-4 p-4 outline`}>
+						<IconItem
+							text={tr.icons.chooseSamples}
+							icon={<SquareCheckBig className={`stroke-[var(--mood-dark-brown)]`} />}
+						/>
+						<IconItem text={tr.icons.fillForm} icon={<ClipboardList className={`stroke-[var(--mood-dark-brown)]`} />} />
+						<IconItem text={tr.icons.payBox} icon={<Cuboid className={`stroke-[var(--mood-dark-brown)]`} />} />
+						<IconItem text={tr.icons.receive} icon={<Truck className={`stroke-[var(--mood-dark-brown)]`} />} />
+					</div>
+				</div>
+				<Delimiter className={`flex justify-center`}>Partnerzy</Delimiter>
+				<div className={`h-[60vh] bg-[var(--mood-dark-brown)] text-white`}>Loga partnerów</div>
+				<Delimiter className={``}>Katalog próbek</Delimiter>
+
 				{children}
 				<Footer />
 			</body>
 		</html>
+	);
+}
+
+function IconItem({ icon, text }: { icon: React.ReactNode; text: string }) {
+	return (
+		<>
+			<div className={`flex flex-col items-center outline`}>
+				<div>{icon}</div>
+				<p className={`text-balance`}>{text}</p>
+			</div>
+		</>
 	);
 }
