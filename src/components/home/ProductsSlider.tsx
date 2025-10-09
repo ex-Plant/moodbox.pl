@@ -35,7 +35,7 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 
 	if (slides.length < 0) return;
 	return (
-		<div className={`xPaddings`}>
+		<div className={`xPaddings mx-auto max-w-[1440px]`}>
 			<div className={`text-mood-dark-gray pb-6 pl-4 text-[24px] font-bold`}>{title}</div>{' '}
 			<div className={`flex items-center`}>
 				<button className={`translate-y-[-25px] pr-8`} onClick={() => swiper?.slidePrev()}>
