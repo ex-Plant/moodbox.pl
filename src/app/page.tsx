@@ -18,9 +18,11 @@ export default function Home() {
 
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />
-			{mockProducts.map((el) => (
-				<ProductsSlider key={el.title} slides={el.items} title={el.title} />
-			))}
+			<section className={`space-y-4 pb-20`}>
+				{mockProducts.map((el) => (
+					<ProductsSlider key={el.title} slides={el.items} title={el.title} />
+				))}
+			</section>
 
 			<Delimiter className={``} title={'Formularz'} />
 		</div>
