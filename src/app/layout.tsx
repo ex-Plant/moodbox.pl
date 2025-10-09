@@ -1,10 +1,7 @@
-import Delimiter from '@/components/Delimiter';
 import Footer from '@/components/footer/Footer';
-import Hero from '@/components/Hero';
-import LogoSquares from '@/components/LogoSquares';
+import Hero from '@/components/home/Hero';
+import Nav from '@/components/nav/Nav';
 import { cn } from '@/lib/utils';
-import { tr } from '@/translations/pl';
-import { ClipboardList, Cuboid, SquareCheckBig, Truck } from 'lucide-react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
@@ -34,48 +31,16 @@ export default function RootLayout({
 			<body
 				className={cn(
 					`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`,
-					`bg-[var(--test)]`
+					`bg-background relative`
 					// `bg-test1`
 					// `bg-red-200`
-					// `[&_*]:outline [&_*]:outline-[0.5px] [&_*]:outline-pink-40`
+					// `[&_*]:outline [&_*]:outline-[1px] [&_*]:outline-pink-400`
 				)}
 			>
-				<Hero />
-				<Delimiter className={`flex justify-center`}>
-					<LogoSquares />
-				</Delimiter>
-				<div className={`flex bg-[var(--mood-dark-brown)] text-white`}>
-					<p className={`mx-auto py-4`}>Od wyboru do dostawy - prościej się nie da</p>
-				</div>
-				<div>
-					<div className={`flex justify-center gap-4 p-4 outline`}>
-						<IconItem
-							text={tr.icons.chooseSamples}
-							icon={<SquareCheckBig className={`stroke-[var(--mood-dark-brown)]`} />}
-						/>
-						<IconItem text={tr.icons.fillForm} icon={<ClipboardList className={`stroke-[var(--mood-dark-brown)]`} />} />
-						<IconItem text={tr.icons.payBox} icon={<Cuboid className={`stroke-[var(--mood-dark-brown)]`} />} />
-						<IconItem text={tr.icons.receive} icon={<Truck className={`stroke-[var(--mood-dark-brown)]`} />} />
-					</div>
-				</div>
-				<Delimiter className={`flex justify-center`}>Partnerzy</Delimiter>
-				<div className={`h-[60vh] bg-[var(--mood-dark-brown)] text-white`}>Loga partnerów</div>
-				<Delimiter className={``}>Katalog próbek</Delimiter>
-
+				<Nav />
 				{children}
 				<Footer />
 			</body>
 		</html>
-	);
-}
-
-function IconItem({ icon, text }: { icon: React.ReactNode; text: string }) {
-	return (
-		<>
-			<div className={`flex flex-col items-center outline`}>
-				<div>{icon}</div>
-				<p className={`text-balance`}>{text}</p>
-			</div>
-		</>
 	);
 }

@@ -1,17 +1,23 @@
 import Link from 'next/link';
 
-type PropsT = {};
-
-export default function Nav({}: PropsT) {
+export default function Nav() {
 	return (
-		<>
-			<nav className={`flex justify-between p-4 outline`}>
-				<div className={`text-white`}>moodbox</div>
-				<div className={`flex gap-4 text-white`}>
-					<Link href={'/faq'}>FAQ</Link>
-					<Link href={'/contact'}>Kontakt</Link>
-				</div>
-			</nav>
-		</>
+		<nav className={`xPaddings fixed top-0 right-0 left-0 z-10 mx-auto max-w-[1440px]`}>
+			<div className={`border-background grid h-20 grid-cols-12 items-center justify-between border-b`}>
+				<div className={`col-span-3 text-[48px] text-white`}>moodbox</div>
+				<Link
+					className={`col-start-11 border-b border-transparent text-right text-white delay-100 duration-500 hover:border-white`}
+					href={'/faq'}
+				>
+					FAQ
+				</Link>
+				<Link
+					className={`col-span-1 col-start-12 border-b border-transparent text-right text-white delay-100 duration-500 hover:border-white`}
+					href={'/contact'}
+				>
+					Kontakt
+				</Link>
+			</div>
+		</nav>
 	);
 }

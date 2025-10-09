@@ -1,9 +1,8 @@
 import { cn } from '@/lib/utils';
 
-// type PropsT = {};
-
 export default function LogoSquares({ className }: { className?: string }) {
-	const height = 'h-[max(2vw,60px)]';
+	// const height = 'h-[max(2vw,60px)]';
+	const height = 'h-5';
 
 	return (
 		<div className={`grid aspect-square w-fit`}>
@@ -26,5 +25,5 @@ export default function LogoSquares({ className }: { className?: string }) {
 }
 
 function Square({ className }: { className?: string }) {
-	return <div className={cn(`rounded bg-[var(--mood-dark-brown)]`, className)}></div>;
+	return <div className={cn(`bg-mood-dark-brown rounded`, className)}></div>;
 }
