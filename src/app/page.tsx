@@ -1,5 +1,5 @@
 import Delimiter from '@/components/common/Delimiter';
-import Form from '@/components/Form';
+import Form from '@/components/home/form/Form';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/Icons';
 import ProductsSlider from '@/components/home/ProductsSlider';

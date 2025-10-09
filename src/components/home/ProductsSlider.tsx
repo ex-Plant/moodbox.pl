@@ -1,6 +1,7 @@
 'use client';
 
 import SliderSlide from '@/components/home/SliderSlide';
+import { ProductItemT } from '@/lib/mock-data';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -11,7 +12,7 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 type PropsT = {
-	slides: any;
+	slides: ProductItemT[];
 	title: string;
 };
 
