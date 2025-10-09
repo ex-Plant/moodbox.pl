@@ -1,8 +1,9 @@
 import Delimiter from '@/components/common/Delimiter';
+import Form from '@/components/Form';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/Icons';
-import Partners from '@/components/home/Partners';
 import ProductsSlider from '@/components/home/ProductsSlider';
+import CartCtxProvider from '@/context/CartCtx';
 import { mockProducts } from '@/lib/mock-data';
 
 export default function Home() {
@@ -18,13 +19,14 @@ export default function Home() {
 
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />
-			<section className={`space-y-4 pb-20`}>
-				{mockProducts.map((el) => (
-					<ProductsSlider key={el.title} slides={el.items} title={el.title} />
-				))}
-			</section>
-
-			<Delimiter className={``} title={'Formularz'} />
+			<CartCtxProvider>
+				<section className={`space-y-4 pb-20`}>
+					{mockProducts.map((el) => (
+						<ProductsSlider key={el.title} slides={el.items} title={el.title} />
+					))}
+				</section>
+				<Form />
+			</CartCtxProvider>
 		</div>
 	);
 }

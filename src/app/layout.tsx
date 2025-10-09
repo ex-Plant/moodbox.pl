@@ -1,9 +1,9 @@
 import Footer from '@/components/footer/Footer';
-import Hero from '@/components/home/Hero';
 import Nav from '@/components/nav/Nav';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ReactNode } from 'react';
 import './globals.css';
 
 const geistSans = Geist({
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 }: Readonly<{
-	children: React.ReactNode;
+	children: ReactNode;
 }>) {
 	return (
 		<html lang='pl'>
 			<body
 				className={cn(
 					`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`,
-					`bg-background relative`
+					`bg-background relative hidden xl:block`
 					// `bg-test1`
 					// `bg-red-200`
 					// `[&_*]:outline [&_*]:outline-[1px] [&_*]:outline-pink-400`

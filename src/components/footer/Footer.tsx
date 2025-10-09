@@ -8,10 +8,10 @@ export default function Footer({}: PropsT) {
 	return (
 		<>
 			<footer className={`xPaddings relative mx-auto w-full max-w-[1440px] pb-12`}>
-				<div className={`absolute top-4 right-0 left-0 flex items-center justify-center`}>
+				<div className={`absolute top-12 right-0 left-0 flex items-center justify-center`}>
 					<LogoSquares />
 				</div>
-				<div className={`border-background text-mood-dark-brown grid grid-cols-12 border-b pl-4`}>
+				<div className={`border-mood-brown text-mood-dark-brown grid grid-cols-12 border-t pt-4 pl-4`}>
 					<FooterCat title={'Obsługa klienta'}>
 						<div className={`grid gap-1`}>
 							<Link className={`font-normal`} href={'/faq'}>
