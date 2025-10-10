@@ -16,7 +16,7 @@ export default function Home() {
 			<Icons />
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
 			{/*<Partners />*/}
-			<Delimiter className={``} title={'Katalog próbek'} />e
+			<Delimiter className={``} title={'Katalog próbek'} />
 			<section id={'products'} className={`space-y-4 pb-20`}>
 				{mockData.map((el) => (
 					<ProductsSlider key={el.title} slides={el.items} title={el.title} />
