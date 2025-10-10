@@ -7,12 +7,12 @@ type PropsT = {};
 export default function Footer({}: PropsT) {
 	return (
 		<>
-			<footer className={`xPaddings relative mx-auto w-full max-w-[1440px] pb-12`}>
+			<footer className={`relative mx-auto w-full max-w-[1440px] pb-12`}>
 				<div className={`absolute top-12 right-0 left-0 flex items-center justify-center`}>
 					<LogoSquares />
 				</div>
-				<div className={`border-mood-brown text-mood-dark-brown grid grid-cols-12 border-t pt-4 pl-4`}>
-					<FooterCat title={'Obsługa klienta'}>
+				<div className={`xPaddings border-mood-brown text-mood-dark-brown grid grid-cols-12 border-t pt-4`}>
+					<FooterCat className={`pl-4`} title={'Obsługa klienta'}>
 						<div className={`grid gap-1`}>
 							<Link className={`font-normal`} href={'/faq'}>
 								FAQ

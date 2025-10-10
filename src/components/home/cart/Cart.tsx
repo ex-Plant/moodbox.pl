@@ -12,10 +12,14 @@ export default function Cart() {
 
 	return (
 		<section className={`pb-20`}>
-			<Delimiter className={``} title={'Formularz'} />
-			<div className={`xPaddings mx-auto grid max-w-[1440px] grid-cols-[2fr_5fr] gap-16`}>
-				<SelectedProducts />
-				<CartForm />
+			<Delimiter title={'Formularz'} />
+			<div className={`xPaddings mx-auto grid max-w-[1440px] grid-cols-12`}>
+				<aside className={`col-span-3 pl-4`}>
+					<SelectedProducts />
+				</aside>
+				<div className={`col-span-9 col-start-5`}>
+					<CartForm />
+				</div>
 			</div>
 		</section>
 	);

@@ -6,10 +6,10 @@ type PropsT = {};
 
 export default function CartForm({}: PropsT) {
 	return (
-		<section className={`mr-4 grid gap-4`}>
+		<section className={`grid gap-4`}>
 			<div>
 				<h4 className={`text-[18px] font-bold`}>Dane firmowe</h4>
-				<div className={`grid grid-cols-2 gap-4 pt-2`}>
+				<div className={`mr-4 grid grid-cols-2 gap-4 pt-2`}>
 					<Input placeholder={'Nazwa firmy / pracowni'} />
 					<Input placeholder={'Nazwa firmy / pracowni'} />
 					<Input placeholder={'Nazwa firmy / pracowni'} />
@@ -19,7 +19,7 @@ export default function CartForm({}: PropsT) {
 			</div>
 			<div>
 				<h4 className={`text-[18px] font-bold`}>Informacje dodatkowe o Twoim projekcie </h4>
-				<div className={`grid grid-cols-2 gap-4 pt-2`}>
+				<div className={`mr-4 grid grid-cols-2 gap-4 pt-2`}>
 					<Input placeholder={'Miejscowość'} />
 					<Select>
 						<SelectTrigger className='w'>
