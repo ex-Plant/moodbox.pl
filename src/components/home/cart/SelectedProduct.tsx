@@ -1,8 +1,9 @@
 import { Tip } from '@/components/common/Tip';
 import useCart from '@/lib/hooks/useCart';
 import { ProductItemT } from '@/lib/mock-data';
-import { Trash, Trash2, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import Image from 'next/image';
+
 type PropsT = {
 	selected: ProductItemT;
 };

@@ -1,11 +1,9 @@
 import Delimiter from '@/components/common/Delimiter';
-import Cart from '@/components/home/cart/Cart';
+import Home from '@/components/Home';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/Icons';
-import ProductsSlider from '@/components/home/ProductsSlider';
-import { mockData } from '@/lib/mock-data';
 
-export default function Home() {
+export default function Page() {
 	return (
 		<div className=''>
 			<Hero />
@@ -17,12 +15,7 @@ export default function Home() {
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />
-			<section id={'products'} className={`space-y-4 pb-20`}>
-				{mockData.map((el) => (
-					<ProductsSlider key={el.title} slides={el.items} title={el.title} />
-				))}
-			</section>
-			<Cart />
+			<Home />
 		</div>
 	);
 }

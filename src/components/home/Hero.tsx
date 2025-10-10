@@ -1,11 +1,8 @@
-import Nav from '@/components/nav/Nav';
 import { Button } from '@/components/ui/button';
 import { tr } from '@/utils/translations/pl';
 import Link from 'next/link';
 
-type PropsT = {};
-
-export default function Hero({}: PropsT) {
+export default function Hero() {
 	return (
 		<>
 			<div className={`relative`}>

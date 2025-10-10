@@ -34,7 +34,8 @@ export const Tip = ({
 	const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
 	function handleMouseEvent(event: 'mouseenter' | 'mouseleave', e: React.MouseEvent) {
-		// e.stopPropagation();
+		e.stopPropagation();
+
 		if (timeoutId.current) clearTimeout(timeoutId.current);
 
 		if (event === 'mouseenter') {

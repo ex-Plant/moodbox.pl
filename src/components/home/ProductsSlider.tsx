@@ -43,8 +43,6 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 		},
 	};
 
-	if (slides.length < 0) return;
-
 	return (
 		<div
 			className={cn(`xPaddings mx-auto max-w-[1440px]`, swiperIsReady ? 'opacity-100' + ' duration-500' : 'opacity-0')}

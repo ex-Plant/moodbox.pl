@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 
-export default function LogoSquares({ className }: { className?: string }) {
+export default function LogoSquares() {
 	// const height = 'h-[max(2vw,60px)]';
 	const height = 'h-5';
 
