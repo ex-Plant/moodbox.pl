@@ -1,5 +1,5 @@
 import Delimiter from '@/components/common/Delimiter';
-import Form from '@/components/home/form/Form';
+import Cart from '@/components/home/cart/Cart';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/Icons';
 import ProductsSlider from '@/components/home/ProductsSlider';
@@ -25,7 +25,7 @@ export default function Home() {
 						<ProductsSlider key={el.title} slides={el.items} title={el.title} />
 					))}
 				</section>
-				<Form />
+				<Cart />
 			</CartCtxProvider>
 		</div>
 	);

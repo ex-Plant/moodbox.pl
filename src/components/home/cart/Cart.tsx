@@ -1,0 +1,22 @@
+'use client';
+
+import Delimiter from '@/components/common/Delimiter';
+import CartForm from '@/components/home/cart/CartForm';
+import SelectedProducts from '@/components/home/cart/SelectedProducts';
+import { useCartCtx } from '@/context/CartCtx';
+
+export default function Cart() {
+	const { selected } = useCartCtx();
+
+	if (selected.length < 1) return <></>;
+
+	return (
+		<section className={`pb-20`}>
+			<Delimiter className={``} title={'Formularz'} />
+			<div className={`xPaddings mx-auto grid max-w-[1440px] grid-cols-[1fr_3fr] gap-16`}>
+				<SelectedProducts />
+				<CartForm />
+			</div>
+		</section>
+	);
+}
