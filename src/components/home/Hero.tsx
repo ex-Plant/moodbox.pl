@@ -24,11 +24,11 @@ export default function Hero({}: PropsT) {
 						</div>
 
 						<div className={`pt-28`}>
-							<Link href='#products'>
-								<Button variant={`mood`} size={`sm`}>
+							<Button asChild={true} variant={`mood`} size={`sm`}>
+								<Link href='#products' className={`cursor-pointer`}>
 									{tr.heroButton}
-								</Button>
-							</Link>
+								</Link>
+							</Button>
 						</div>
 					</div>
 				</div>

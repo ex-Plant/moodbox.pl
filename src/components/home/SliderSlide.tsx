@@ -23,7 +23,7 @@ export default function SliderSlide({ slide }: { slide: ProductItemT }) {
 		<article>
 			<div className={`relative aspect-square h-auto w-full`}>
 				<Image className={`rounded`} layout={'fill'} src={`/card2.png`} alt={''} />
-				<Checkbox className={`absolute top-2 left-2`} checked={checked} onCheckedChange={toggle} />
+				<Checkbox className={`absolute top-2 left-2 size-6`} checked={checked} onCheckedChange={toggle} />
 			</div>
 
 			<div>

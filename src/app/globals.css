@@ -1,23 +1,19 @@
-
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-
-
 	/*Custom colors*/
 	--color-mood-brown: #7b4a38;
 	--color-mood-dark-brown: #472f27;
 	--color-mood-dark-gray: #434343;
-	--color-mood-gray: #9D9C9C;
+	--color-mood-gray: #9d9c9c;
 	--color-orange: #eeebe3;
 	--color-orange_sec: #f6f4f0;
 	--color-background: #f4ece5;
 
-
-		/* Breakpoints */
+	/* Breakpoints */
 	/*--breakpoint-sm: 640px;*/
 	/*--breakpoint-md: 768px;*/
 	/*--breakpoint-lg: 1024px;*/
@@ -31,10 +27,6 @@
 	/*--text-xl: 1.25rem;      !* 20px *!*/
 	/*--text-2xl: 1.5rem;      !* 24px *!*/
 	/*--text-3xl: 1.875rem;    !* 30px *!*/
-
-
-
-
 
 	--color-foreground: var(--foreground);
 	/* noinspection CssUnresolvedCustomProperty */
@@ -74,9 +66,6 @@
 	--radius-md: calc(var(--radius) - 2px);
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
-
-
-
 }
 
 :root {
@@ -112,7 +101,6 @@
 	--sidebar-accent-foreground: oklch(0.216 0.006 56.043);
 	--sidebar-border: oklch(0.923 0.003 48.717);
 	--sidebar-ring: oklch(0.709 0.01 56.259);
-
 }
 
 .dark {
@@ -156,38 +144,20 @@
 	body {
 		@apply bg-background text-foreground;
 	}
-
-	/* Color and size via CSS variables (Swiper respects these) */
-	:root {
-		--swiper-navigation-color: var(--color-mood-brown);
-		--swiper-navigation-size: 20px; /* arrow icon size */
-	}
-
-	/* Button container styling and position */
-	.swiper-button-next,
-	.swiper-button-prev {
-		color: var(--color-mood-brown);      /* fallback */
-		width: 36px;
-		height: 36px;
-		background: white;
-		border-radius: 9999px;
-		box-shadow: 0 2px 6px rgba(0,0,0,.12);
-		top: 45%;
-		transform: translateY(-50%);
-	}
-
-	.swiper-button-prev { left: 0.25rem; }
-	.swiper-button-next { right: 0.25rem; }
-
-	/* Adjust the arrow glyph size */
-	.swiper-button-next:after,
-	.swiper-button-prev:after {
-		font-size: 16px;
-	}
-
 }
 @layer utilities {
 	.xPaddings {
 		@apply px-4 md:px-8 xl:px-16;
 	}
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+	display: none; /* for Chrome, Safari, and Opera */
+}
+
+/*Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
 }

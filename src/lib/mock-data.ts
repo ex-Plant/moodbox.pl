@@ -1,3 +1,11 @@
+export type ProductItemT = {
+	id: string;
+	material: string;
+	brand: string;
+	name: string;
+	imageUrl: string;
+};
+
 export const mockData = [
 	{
 		title: 'PODŁOGI',

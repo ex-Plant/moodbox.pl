@@ -26,5 +26,9 @@ export default function useCart() {
 		setQueryParam('cart', JSON.stringify(updated));
 	}
 
-	return { addCartItem, deleteCartItem, cartItems };
+	function removeAllItems() {
+		setQueryParam('cart', JSON.stringify([]));
+	}
+
+	return { addCartItem, deleteCartItem, removeAllItems, cartItems };
 }

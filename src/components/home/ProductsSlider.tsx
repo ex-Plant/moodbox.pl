@@ -2,13 +2,14 @@
 
 import SliderSlide from '@/components/home/SliderSlide';
 import { ProductItemT } from '@/lib/mock-data';
+import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { Pagination } from 'swiper/modules';
+import { Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 type PropsT = {
@@ -21,12 +22,21 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
 	const swiperConfig = {
-		modules: [Pagination],
+		modules: [Pagination, Mousewheel],
 		spaceBetween: 48,
 		slidesPerView: 6,
 		draggable: true,
 		centeredSlides: true,
+		// Swipe feel tuning
+
 		loop: slides.length > 2,
+		speed: 250, // faster animation
+		touchRatio: 1.5, // stronger swipe
+		threshold: 4, // triggers sooner
+		longSwipesMs: 200, // quicker long-swipe window
+		longSwipesRatio: 0.2, // less distance to trigger
+		mousewheel: { forceToAxis: true, releaseOnEdges: true, sensitivity: 3.5 },
+
 		onSwiper: (swiperInstance: SwiperType) => {
 			setSwiper(swiperInstance);
 			setSwiperIsReady(true);
@@ -34,8 +44,11 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 	};
 
 	if (slides.length < 0) return;
+
 	return (
-		<div className={`xPaddings mx-auto max-w-[1440px]`}>
+		<div
+			className={cn(`xPaddings mx-auto max-w-[1440px]`, swiperIsReady ? 'opacity-100' + ' duration-500' : 'opacity-0')}
+		>
 			<div className={`text-mood-dark-gray pb-6 pl-4 text-[24px] font-bold`}>{title}</div>{' '}
 			<div className={`flex items-center`}>
 				<button className={`translate-y-[-25px] pr-8`} onClick={() => swiper?.slidePrev()}>
