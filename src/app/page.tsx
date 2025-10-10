@@ -3,7 +3,7 @@ import Cart from '@/components/home/cart/Cart';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/Icons';
 import ProductsSlider from '@/components/home/ProductsSlider';
-import { mockProducts } from '@/lib/mock-data';
+import { mockData } from '@/lib/mock-data';
 
 export default function Home() {
 	return (
@@ -18,7 +18,7 @@ export default function Home() {
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />e
 			<section className={`space-y-4 pb-20`}>
-				{mockProducts.map((el) => (
+				{mockData.map((el) => (
 					<ProductsSlider key={el.title} slides={el.items} title={el.title} />
 				))}
 			</section>
