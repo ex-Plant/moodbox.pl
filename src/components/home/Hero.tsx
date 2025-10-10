@@ -23,7 +23,7 @@ export default function Hero({}: PropsT) {
 						</div>
 
 						<div className={`pt-28`}>
-							<Button size={`lg`} className={`bg-mood-brown text-[24px] text-[#EEEBE3]`}>
+							<Button variant={`mood`} size={`sm`}>
 								{tr.heroButton}
 							</Button>
 						</div>

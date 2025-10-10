@@ -68,12 +68,14 @@ export default function CartForm({}: PropsT) {
 			<FormConsents />
 			<div className={`mr-4 flex flex-col items-end gap-4 pt-4`}>
 				<div className={`flex items-center`}>
-					<Button size={`lg`} className={`mr-4 text-[20px]`} variant={`secondary`}>
-						Kod rabatowy
-					</Button>
-					<span className={`text-[40px]`}>49 PLN</span>
+					<Input
+						className={`mr-4 h-auto w-fit py-4 text-[20px] placeholder:text-[20px] placeholder:text-black`}
+						placeholder={'Kod rabatowy'}
+					/>
+
+					<span className={`text-[40px] text-nowrap`}>49 PLN</span>
 				</div>
-				<Button className={`bg-mood-brown py-8 text-[28px]`} size={`lg`}>
+				<Button variant={'mood'} size={`lg`} className={``}>
 					Przejdź do płatności
 				</Button>
 			</div>
