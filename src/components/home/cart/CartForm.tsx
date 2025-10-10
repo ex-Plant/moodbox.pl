@@ -1,6 +1,5 @@
 import FormConsents from '@/components/home/cart/FormConsents';
 import { Button } from '@/components/ui/button';
-import { DatePickerDemo } from '@/components/ui/DatePicker';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 

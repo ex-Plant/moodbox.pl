@@ -26,7 +26,7 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 		spaceBetween: 48,
 		slidesPerView: 6,
 		draggable: true,
-		centeredSlides: false,
+		centeredSlides: true,
 		loop: slides.length > 2,
 		onSwiper: (swiperInstance: SwiperType) => {
 			setSwiper(swiperInstance);

@@ -16,9 +16,8 @@ export default function Home() {
 			</div>
 			<Icons />
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
-
 			{/*<Partners />*/}
-			<Delimiter className={``} title={'Katalog próbek'} />
+			<Delimiter className={``} title={'Katalog próbek'} />e
 			<CartCtxProvider>
 				<section className={`space-y-4 pb-20`}>
 					{mockProducts.map((el) => (
