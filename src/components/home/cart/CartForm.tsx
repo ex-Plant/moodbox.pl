@@ -1,3 +1,4 @@
+import { DatePickerDemo } from '@/components/ui/DatePicker';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
@@ -40,7 +41,7 @@ export default function CartForm({}: PropsT) {
 							<SelectItem value='system'>System</SelectItem>
 						</SelectContent>
 					</Select>
-					<Input placeholder={'Nazwa firmy / pracowni'} />
+					<DatePickerDemo />
 
 					<Select>
 						<SelectTrigger className='w'>
