@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+'use client';
+
+import { cn } from '@/lib/utils';
 import { SIDE_OPTIONS } from '@radix-ui/react-popper';
-import { cn } from '@/utils/helpers/cn';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/common/ToolTip';
+import React, { useRef } from 'react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
 
 type TipProps = React.PropsWithChildren<{
 	content: string | React.ReactNode;
@@ -29,7 +31,7 @@ export const Tip = ({
 		setOpen((curr) => !curr);
 	}
 
-	let timeoutId = useRef<NodeJS.Timeout | null>(null);
+	const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
 	function handleMouseEvent(event: 'mouseenter' | 'mouseleave', e: React.MouseEvent) {
 		// e.stopPropagation();
@@ -66,7 +68,7 @@ export const Tip = ({
 				<TooltipContent
 					side={side}
 					className={cn(
-						`center w-fit max-w-[200px] border bg-white text-xsm`,
+						`center text-xsm w-fit max-w-[300px] border bg-white`,
 						contentClassName,
 						!content ? 'hidden' : ''
 					)}

@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
 import { Tip } from '@/components/common/Tip';
-import { cn } from '@/utils/helpers/cn';
+import { cn } from '@/lib/utils';
 import { SIDE_OPTIONS } from '@radix-ui/react-popper';
+import { ReactNode } from 'react';
 
 type PropsT = {
 	children?: ReactNode;
@@ -27,7 +27,7 @@ export default function TipWrapper({
 	if (btnIsActive) return children;
 	return (
 		<Tip
-			className={cn(`w-full cursor-not-allowed `, tipClassName)}
+			className={cn(`w-full cursor-not-allowed`, tipClassName)}
 			contentClassName={tipContentClassName}
 			side={side ?? 'bottom'}
 			defaultContent={!tipContent}
