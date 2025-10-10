@@ -2,6 +2,7 @@
 
 import Delimiter from '@/components/common/Delimiter';
 import CartForm from '@/components/home/cart/CartForm';
+import FormConsents from '@/components/home/cart/FormConsents';
 import SelectedProducts from '@/components/home/cart/SelectedProducts';
 import { useCartCtx } from '@/context/CartCtx';
 
