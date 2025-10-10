@@ -77,17 +77,19 @@ export default function CartForm() {
 			</div>
 			<FormConsents />
 			<div className={`mr-4 flex flex-col items-end gap-4 pt-4`}>
-				<div className={`flex items-center`}>
-					<Input
-						className={`mr-4 h-auto w-fit py-4 pr-0 text-[20px] placeholder:text-[20px] placeholder:text-black`}
-						placeholder={'Kod rabatowy'}
-					/>
+				<div className={`grid gap-2`}>
+					<div className={`flex items-center`}>
+						<Input
+							className={`mr-4 h-auto w-fit py-4 pr-0 text-[20px] placeholder:text-[20px] placeholder:text-black`}
+							placeholder={'Kod rabatowy'}
+						/>
 
-					<span className={`text-[40px] text-nowrap`}>49 PLN</span>
+						<span className={`text-[40px] text-nowrap`}>49 PLN</span>
+					</div>
+					<Button variant={'mood'} size={`lg`} className={`w-full`}>
+						Przejdź do płatności
+					</Button>
 				</div>
-				<Button variant={'mood'} size={`lg`} className={``}>
-					Przejdź do płatności
-				</Button>
 			</div>
 		</section>
 	);

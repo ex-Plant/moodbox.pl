@@ -3,12 +3,12 @@
 import Delimiter from '@/components/common/Delimiter';
 import CartForm from '@/components/home/cart/CartForm';
 import SelectedProducts from '@/components/home/cart/SelectedProducts';
-import { useCartCtx } from '@/context/CartCtx';
+import useCart from '@/lib/hooks/useCart';
 
 export default function Cart() {
-	const { selected } = useCartCtx();
+	const { cartItems } = useCart();
 
-	if (selected.length < 1) return <></>;
+	if (cartItems.length < 1) return <></>;
 
 	return (
 		<section className={`pb-20`}>

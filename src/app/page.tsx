@@ -3,7 +3,6 @@ import Cart from '@/components/home/cart/Cart';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/Icons';
 import ProductsSlider from '@/components/home/ProductsSlider';
-import CartCtxProvider from '@/context/CartCtx';
 import { mockProducts } from '@/lib/mock-data';
 
 export default function Home() {
@@ -18,14 +17,12 @@ export default function Home() {
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />e
-			<CartCtxProvider>
-				<section className={`space-y-4 pb-20`}>
-					{mockProducts.map((el) => (
-						<ProductsSlider key={el.title} slides={el.items} title={el.title} />
-					))}
-				</section>
-				<Cart />
-			</CartCtxProvider>
+			<section className={`space-y-4 pb-20`}>
+				{mockProducts.map((el) => (
+					<ProductsSlider key={el.title} slides={el.items} title={el.title} />
+				))}
+			</section>
+			<Cart />
 		</div>
 	);
 }

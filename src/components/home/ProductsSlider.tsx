@@ -19,7 +19,6 @@ type PropsT = {
 export default function ProductsSlider({ slides, title }: PropsT) {
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
-	console.log(slides);
 
 	const swiperConfig = {
 		modules: [Pagination],

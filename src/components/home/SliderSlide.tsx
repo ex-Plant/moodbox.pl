@@ -1,20 +1,21 @@
+'use client';
+
 import { Checkbox } from '@/components/ui/checkbox';
-import { useCartCtx } from '@/context/CartCtx';
+import useCart from '@/lib/hooks/useCart';
 import { ProductItemT } from '@/lib/mock-data';
 import Image from 'next/image';
-import { useState } from 'react';
 
 export default function SliderSlide({ slide }: { slide: ProductItemT }) {
-	const [checked, setChecked] = useState(false);
-	const { add, deleteProduct } = useCartCtx();
+	const { addCartItem, deleteCartItem, cartItems } = useCart();
+
+	const checked = cartItems.includes(slide.id);
 
 	function toggle() {
 		if (checked) {
-			deleteProduct(slide.id);
+			deleteCartItem(slide.id);
 		} else {
-			add(slide);
+			addCartItem(slide.id);
 		}
-		setChecked((prev) => !prev);
 	}
 
 	const { name, material, brand } = slide;

@@ -1,9 +1,13 @@
 'use client';
 import SelectedProduct from '@/components/home/cart/SelectedProduct';
-import { useCartCtx } from '@/context/CartCtx';
+import useCart from '@/lib/hooks/useCart';
+
+import { mockProducts } from '@/lib/mock-data';
 
 export default function SelectedProducts() {
-	const { selected } = useCartCtx();
+	const { cartItems } = useCart();
+
+	const selected = mockProducts.filter((el) => cartItems.includes(el));
 
 	return (
 		<>
