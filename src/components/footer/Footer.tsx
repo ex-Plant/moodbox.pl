@@ -1,10 +1,11 @@
+'use client';
+
 import LogoSquares from '@/components/common/LogoSquares';
+import inProgress from '@/lib/helpers/inProgress';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
-type PropsT = {};
-
-export default function Footer({}: PropsT) {
+export default function Footer() {
 	return (
 		<>
 			<footer className={`relative mx-auto w-full max-w-[1440px] pb-12`}>
@@ -14,13 +15,13 @@ export default function Footer({}: PropsT) {
 				<div className={`xPaddings border-mood-brown text-mood-dark-brown grid grid-cols-12 border-t pt-4`}>
 					<FooterCat className={`pl-4`} title={'Obsługa klienta'}>
 						<div className={`grid gap-1`}>
-							<Link className={`font-normal`} href={'/faq'}>
+							<Link onClick={inProgress} className={`font-normal`} href={'#'}>
 								FAQ
 							</Link>{' '}
-							<Link className={`font-normal`} href={'/faq'}>
+							<Link onClick={inProgress} className={`font-normal`} href={'#'}>
 								Regulamin
 							</Link>{' '}
-							<Link className={`font-normal`} href={'/faq'}>
+							<Link onClick={inProgress} className={`font-normal`} href={'#'}>
 								Polityka prywatności
 							</Link>
 						</div>

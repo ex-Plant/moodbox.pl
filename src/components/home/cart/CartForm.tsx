@@ -3,6 +3,7 @@ import FormConsents from '@/components/home/cart/FormConsents';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import inProgress from '@/lib/helpers/inProgress';
 import { CircleQuestionMark } from 'lucide-react';
 
 const txt = `Dlaczego prosimy o wypełnienie formularza?
@@ -86,7 +87,7 @@ export default function CartForm() {
 
 						<span className={`text-[40px] text-nowrap`}>49 PLN</span>
 					</div>
-					<Button variant={'mood'} size={`lg`} className={`w-full`}>
+					<Button onClick={inProgress} variant={'mood'} size={`lg`} className={`w-full`}>
 						Przejdź do płatności
 					</Button>
 				</div>

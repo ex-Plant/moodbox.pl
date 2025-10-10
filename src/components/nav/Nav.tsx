@@ -1,3 +1,6 @@
+'use client';
+
+import inProgress from '@/lib/helpers/inProgress';
 import Link from 'next/link';
 
 export default function Nav() {
@@ -6,14 +9,16 @@ export default function Nav() {
 			<div className={`border-background grid h-20 grid-cols-12 items-center justify-between border-b`}>
 				<div className={`col-span-3 text-[48px] text-white`}>moodbox</div>
 				<Link
+					onClick={inProgress}
 					className={`pointer-events-auto col-start-11 border-b border-transparent text-right text-white delay-100 duration-500 hover:border-white`}
-					href={'/faq'}
+					href={'/#'}
 				>
 					FAQ
 				</Link>
 				<Link
+					onClick={inProgress}
 					className={`pointer-events-auto col-span-1 col-start-12 border-b border-transparent text-right text-white delay-100 duration-500 hover:border-white`}
-					href={'/contact'}
+					href={'/#'}
 				>
 					Kontakt
 				</Link>
