@@ -27,11 +27,11 @@ export default function RootLayout({
 	children: ReactNode;
 }>) {
 	return (
-		<html lang='pl'>
+		<html lang='pl' className='scroll-smooth'>
 			<body
 				className={cn(
 					`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col antialiased`,
-					`bg-background relative hidden xl:block`
+					`bg-background relative hidden scroll-smooth xl:block`
 					// `bg-test1`
 					// `bg-red-200`
 					// `[&_*]:outline [&_*]:outline-[1px] [&_*]:outline-pink-400`
