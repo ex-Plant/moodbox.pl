@@ -11,11 +11,11 @@ export default function Page() {
 			<div className={`bg-mood-dark-brown flex py-6 text-white`}>
 				<p className={`mx-auto text-[28px]`}>Od wyboru do dostawy - prościej się nie da</p>
 			</div>
-			<Icons />
+			{/*<Icons />*/}
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />
-			<Home />
+			{/*<Home />*/}
 		</div>
 	);
 }
