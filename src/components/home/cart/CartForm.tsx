@@ -21,7 +21,7 @@ export default function CartForm() {
 					</Tip>
 				</div>
 
-				<div className={`mr-4 grid grid-cols-2 gap-4`}>
+				<div className={`xL:grid-cols-2 grid gap-4 xl:mr-4`}>
 					<Input placeholder={'Nazwa firmy / pracowni'} />
 					<Input placeholder={'NIP'} />
 					<Input placeholder={'E-mail'} />
@@ -31,7 +31,7 @@ export default function CartForm() {
 			</div>
 			<div>
 				<h4 className={`text-[18px] font-bold`}>Informacje dodatkowe o Twoim projekcie </h4>
-				<div className={`mr-4 grid grid-cols-2 gap-4 pt-2`}>
+				<div className={`grid gap-4 pt-2 xl:mr-4 xl:grid-cols-2`}>
 					<Input placeholder={'Miejscowość'} />
 					<Select>
 						<SelectTrigger className='w'>
@@ -83,17 +83,17 @@ export default function CartForm() {
 				</div>
 			</div>
 			<FormConsents />
-			<div className={`mr-4 flex flex-col items-end gap-4 pt-4`}>
+			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 				<div className={`grid gap-2`}>
-					<div className={`flex items-center`}>
+					<div className={`flex items-start xl:items-center`}>
 						<Input
-							className={`mr-4 h-auto w-fit py-4 pr-0 text-[20px] placeholder:text-[20px] placeholder:text-black`}
+							className={`mr-4 h-auto w-fit py-4 pr-0 placeholder:text-[20px] placeholder:text-black xl:text-[20px]`}
 							placeholder={'Kod rabatowy'}
 						/>
 
-						<span className={`text-[40px] text-nowrap`}>49 PLN</span>
+						<span className={`text-[32px] text-nowrap xl:text-[40px]`}>49 PLN</span>
 					</div>
-					<Button onClick={inProgress} variant={'mood'} size={`lg`} className={`w-full`}>
+					<Button onClick={inProgress} variant={'mood'} size={`lg`} className={`xl:w-full`}>
 						Przejdź do płatności
 					</Button>
 				</div>

@@ -28,14 +28,14 @@ export default function SliderSlide({ slide, selectable, fullScreen }: PropsT) {
 				{selectable || checked ? (
 					<Checkbox
 						onClick={(e) => e.stopPropagation()}
-						className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4 size-10')}
+						className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4 size-8' + ' xl:size-10')}
 						checked={checked}
 						onCheckedChange={toggle}
 					/>
 				) : (
 					<Tip content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
 						<Checkbox
-							className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4 size-10')}
+							className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4' + ' size-8 xl:size-10')}
 							checked={checked}
 						/>
 					</Tip>

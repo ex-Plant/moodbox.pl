@@ -9,7 +9,7 @@ export default function Home() {
 			<section id={'products'} className={`space-y-4 pb-20`}>
 				<Suspense fallback={null}>
 					{mockData.map((category) => (
-						<ProductsSlider key={category.title} slides={category.items} title={category.title} />
+						<ProductsSlider key={category.title} slides={category.items} title={category.title} fullScreen={false} />
 					))}
 				</Suspense>
 			</section>

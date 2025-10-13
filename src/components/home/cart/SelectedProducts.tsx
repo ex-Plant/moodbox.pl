@@ -17,7 +17,7 @@ export default function SelectedProducts() {
 		<>
 			<div className={`flex h-full flex-col rounded bg-white p-4 shadow-sm`}>
 				<h4 className={`text-mood-dark-gray text-[18px]`}>Wybrane próbki:</h4>
-				<ul className={`grid gap-4 pt-4`}>
+				<ul className={`grid gap-4 pt-4 pb-12`}>
 					{cartItems.map((item: string) => {
 						const fullItem = selected.find((el) => el.id === item);
 						return (
