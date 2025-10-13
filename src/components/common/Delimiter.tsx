@@ -8,18 +8,18 @@ type PropsT = {
 
 export default function Delimiter({ title, className }: PropsT) {
 	return (
-		<div className={`xPaddings mx-auto my-6 max-w-[1440px]`}>
+		<div className={`xPaddings mx-auto my-4 max-w-[1440px] xl:my-6`}>
 			<div
 				className={cn(
-					`border-mood-brown relative flex min-h-20 items-center border border-r-0 border-l-0 py-4`,
+					`border-mood-brown relative flex min-h-16 items-center border border-r-0 border-l-0 py-4 xl:min-h-20`,
 					className
 				)}
 			>
-				<div className={`absolute inset-0 flex items-center justify-center`}>
+				<div className={cn(`absolute inset-0 flex items-center justify-center md:block`, title && 'hidden md:flex')}>
 					<LogoSquares />
 				</div>
 
-				<p className={`text-mood-dark-gray pl-4 text-[2.25rem]`}>{title}</p>
+				<p className={`text-mood-dark-gray pl-4 text-[1.5rem] xl:text-[2.25rem]`}>{title}</p>
 			</div>
 		</div>
 	);

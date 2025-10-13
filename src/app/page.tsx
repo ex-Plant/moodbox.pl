@@ -9,13 +9,15 @@ export default function Page() {
 			<Hero />
 			<Delimiter className={`flex justify-center`} />
 			<div className={`bg-mood-dark-brown flex py-6 text-white`}>
-				<p className={`mx-auto text-[28px]`}>Od wyboru do dostawy - prościej się nie da</p>
+				<p className={`xPaddings mx-auto text-center text-[1rem] md:text-[1.5rem] xl:text-[1.625rem]`}>
+					Od wyboru do dostawy - prościej się nie da
+				</p>
 			</div>
-			{/*<Icons />*/}
+			<Icons />
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />
-			{/*<Home />*/}
+			<Home />
 		</div>
 	);
 }
