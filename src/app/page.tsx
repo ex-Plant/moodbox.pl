@@ -3,7 +3,7 @@ import Hero from '@/components/home/Hero';
 import Home from '@/components/home/Home';
 import Icons from '@/components/home/Icons';
 
-export default function Page() {
+export default function Page({ props }) {
 	return (
 		<div className=''>
 			<Hero />
