@@ -1,11 +1,8 @@
 'use client';
 
-import inProgress from '@/lib/helpers/inProgress';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { type } from 'node:os';
 import { UrlObject } from 'node:url';
-import { ComponentProps } from 'react';
 
 export default function Nav() {
 	return (

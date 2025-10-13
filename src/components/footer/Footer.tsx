@@ -1,7 +1,6 @@
 'use client';
 
 import LogoSquares from '@/components/common/LogoSquares';
-import inProgress from '@/lib/helpers/inProgress';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { UrlObject } from 'node:url';
@@ -48,7 +47,7 @@ type PropsT = {
 	className?: string;
 };
 
-function FooterLink({ title, href, className }: PropsT) {
+function FooterLink({ title, href }: PropsT) {
 	return (
 		<>
 			<Link className={`font-normal`} href={href}>

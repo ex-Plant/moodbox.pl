@@ -1,8 +1,6 @@
 import { moodboxInfo } from '@/lib/temp/temp';
 
-type PropsT = {};
-
-export default function Faq({}: PropsT) {
+export default function Faq() {
 	return (
 		<>
 			{moodboxInfo.sections.map((section) => {
