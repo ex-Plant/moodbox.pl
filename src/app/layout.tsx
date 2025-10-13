@@ -1,7 +1,5 @@
 import Footer from '@/components/footer/Footer';
 import Nav from '@/components/nav/Nav';
-import PageTransition from '@/components/PageTransition';
-import TextPage from '@/components/TextPage';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';

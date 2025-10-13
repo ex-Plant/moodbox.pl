@@ -3,10 +3,11 @@
 import { Tip } from '@/components/common/Tip';
 import SliderSlide from '@/components/home/SliderSlide';
 import useCart from '@/lib/hooks/useCart';
+import useHandleClickOutside from '@/lib/hooks/useHandleClickOutside';
 import { ProductItemT } from '@/lib/temp/mock-data';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -26,10 +27,11 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
+	const [fullScreen, setFullScreen] = useState(false);
 	const swiperConfig = {
 		modules: [Pagination, Mousewheel],
-		spaceBetween: 48,
-		slidesPerView: 6,
+		spaceBetween: fullScreen ? 0 : 48,
+		slidesPerView: fullScreen ? 1 : 6,
 		draggable: true,
 		centeredSlides: false,
 		// Swipe feel tuning
@@ -48,8 +50,21 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 		},
 	};
 
+	const ref = useRef<HTMLDivElement>(null);
+
+	function exitFullScreen() {
+		setFullScreen(false);
+	}
+
+	useHandleClickOutside(ref, exitFullScreen, !fullScreen);
+
+	function toggle() {
+		setFullScreen((curr) => !curr);
+	}
+
 	return (
 		<div
+			ref={ref}
 			className={cn(`xPaddings mx-auto max-w-[1440px]`, swiperIsReady ? 'opacity-100' + ' duration-500' : 'opacity-0')}
 		>
 			<div className={`text-mood-dark-gray flex items-center pb-6 pl-4 text-[24px]`}>
@@ -58,20 +73,25 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 					{selectedWithinCatLen > 1 && <span className={`mx-2`}>{selectedWithinCatLen} / 2</span>}
 				</Tip>
 			</div>
-			<div className={`flex items-center`}>
+			<div className={cn(`flex items-center`, fullScreen ? 'mx-auto max-w-[min(60vw,770px)]' : '')}>
 				<button className={`translate-y-[-25px] pr-8`} onClick={() => swiper?.slidePrev()}>
-					<ChevronLeft className={`stroke-mood-brown h-14 w-auto stroke-[1.5px]`} />
+					<ChevronLeft className={cn(`stroke-mood-brown w-auto stroke-[1.5px]`, fullScreen ? 'h-20' : 'h-14')} />
 				</button>
 				<Swiper {...swiperConfig} className={`mx-9 flex h-full`}>
 					{slides.map((slide, i) => (
-						<SwiperSlide key={i}>
-							<SliderSlide slide={slide} selectable={selectedWithinCatLen < 2} />
+						<SwiperSlide onClick={toggle} key={i}>
+							<SliderSlide
+								slide={slide}
+								selectable={selectedWithinCatLen < 2}
+								fullScreen={fullScreen}
+								exitFullScreen={exitFullScreen}
+							/>
 						</SwiperSlide>
 					))}
 				</Swiper>
 
 				<button className={`translate-y-[-25px] pl-8`} onClick={() => swiper?.slideNext()}>
-					<ChevronRight className={`stroke-mood-brown h-14 w-auto stroke-[1.5px]`} />
+					<ChevronRight className={cn(`stroke-mood-brown w-auto stroke-[1.5px]`, fullScreen ? 'h-20' : 'h-14')} />
 				</button>
 			</div>
 		</div>
