@@ -26,7 +26,7 @@ export default function ProductsSlider({ slides, title }: PropsT) {
 		spaceBetween: 48,
 		slidesPerView: 6,
 		draggable: true,
-		centeredSlides: true,
+		centeredSlides: false,
 		// Swipe feel tuning
 
 		loop: slides.length > 2,

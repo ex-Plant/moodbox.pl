@@ -6,9 +6,9 @@ import SelectedProducts from '@/components/home/cart/SelectedProducts';
 import useCart from '@/lib/hooks/useCart';
 
 export default function Cart() {
-	const { cartItems } = useCart();
-
-	if (cartItems.length < 1) return <></>;
+	// const { cartItems } = useCart();
+	//
+	// if (cartItems.length < 1) return <></>;
 
 	return (
 		<section className={`pb-20`}>

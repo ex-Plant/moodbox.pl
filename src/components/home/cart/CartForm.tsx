@@ -38,9 +38,11 @@ export default function CartForm() {
 							<SelectValue placeholder='Typ' />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value='light'>Light</SelectItem>
-							<SelectItem value='dark'>Dark</SelectItem>
-							<SelectItem value='system'>System</SelectItem>
+							<SelectItem value='light'>Mieszkanie</SelectItem>
+							<SelectItem value='dark'>Dom</SelectItem>
+							<SelectItem value='system'>Hotel</SelectItem>
+							<SelectItem value='system'>Restauracja</SelectItem>
+							<SelectItem value='system'>Biuro</SelectItem>
 						</SelectContent>
 					</Select>
 					<Select>
@@ -48,20 +50,24 @@ export default function CartForm() {
 							<SelectValue placeholder='Metraż' />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value='light'>Light</SelectItem>
-							<SelectItem value='dark'>Dark</SelectItem>
-							<SelectItem value='system'>System</SelectItem>
+							<SelectItem value='light'>0-100 m2</SelectItem>
+							<SelectItem value='dark'>100-500 m2</SelectItem>
+							<SelectItem value='system'>500-2000 m2</SelectItem>
+							<SelectItem value='system'>2000 m2 i więcej</SelectItem>
 						</SelectContent>
 					</Select>
-					<Input placeholder={'Termin realizacji'} />
+					<Input placeholder={'Termin realizacji MM / RR'} />
 					<Select>
 						<SelectTrigger className='w'>
 							<SelectValue placeholder='Budżet' />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value='light'>Light</SelectItem>
-							<SelectItem value='dark'>Dark</SelectItem>
-							<SelectItem value='system'>System</SelectItem>
+							<SelectItem value='light'>do 100 tys. zł</SelectItem>
+							<SelectItem value='dark'>100–300 tys. zł</SelectItem>
+							<SelectItem value='system'>300–700 tys. zł</SelectItem>{' '}
+							<SelectItem value='system'>700 tys.–1,5 mln zł</SelectItem>
+							<SelectItem value='system'>powyżej 1,5 mln zł</SelectItem>
+							<SelectItem value='system'>jeszcze nie wiem</SelectItem>
 						</SelectContent>
 					</Select>
 					<Select>
@@ -69,9 +75,9 @@ export default function CartForm() {
 							<SelectValue placeholder='Etap projektu' />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectItem value='light'>Light</SelectItem>
-							<SelectItem value='dark'>Dark</SelectItem>
-							<SelectItem value='system'>System</SelectItem>
+							<SelectItem value='light'>koncepcja</SelectItem>
+							<SelectItem value='dark'>projekt wykonawczy</SelectItem>
+							<SelectItem value='system'>realizacja</SelectItem>
 						</SelectContent>
 					</Select>
 				</div>

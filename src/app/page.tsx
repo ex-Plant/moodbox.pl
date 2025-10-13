@@ -1,6 +1,6 @@
 import Delimiter from '@/components/common/Delimiter';
-import Home from '@/components/Home';
 import Hero from '@/components/home/Hero';
+import Home from '@/components/home/Home';
 import Icons from '@/components/home/Icons';
 
 export default function Page() {
