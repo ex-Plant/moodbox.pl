@@ -10,7 +10,7 @@ export default function Hero() {
 				<div className={`bg-mood-dark-brown absolute inset-0 opacity-10`}></div>
 
 				<div
-					className={`xPaddings absolute inset-0 mx-auto flex max-w-[1440px] grid-cols-12 flex-col pt-[160px] xl:grid`}
+					className={`xPaddings absolute inset-0 mx-auto flex max-w-[1440px] grid-cols-12 flex-col pt-[180px] xl:grid`}
 				>
 					<div className={`col-span-11 flex flex-col items-end text-white`}>
 						<div className={`text-[2.5rem] leading-tight text-[#EEEBE3] xl:text-[60px]`}>

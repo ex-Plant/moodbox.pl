@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
  sm: '640px',
  md: '768px',
  lg: '1024px',
- xxl: '1440px',
+ xxl: '1440px',`
  '3xl': '1920px',
  },*/
 

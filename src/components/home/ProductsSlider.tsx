@@ -20,9 +20,10 @@ type PropsT = {
 	slides: ProductItemT[];
 	title: string;
 	fullScreen: boolean;
+	initSlide?: number;
 };
 
-export default function ProductsSlider({ slides, title, fullScreen }: PropsT) {
+export default function ProductsSlider({ slides, title, fullScreen, initSlide = 0 }: PropsT) {
 	const { cartItems } = useCart();
 	const selectedWithinCatLen = slides.filter((slide) => cartItems.includes(slide.id)).length ?? 0;
 
@@ -49,14 +50,10 @@ export default function ProductsSlider({ slides, title, fullScreen }: PropsT) {
 		slidesPerView: fullScreen ? 1 : numberOfSlides,
 		draggable: true,
 		centeredSlides: false,
-		// Swipe feel tuning
+		initialSlide: initSlide,
 
 		loop: slides.length > 2,
-		speed: 250, // faster animation
-		touchRatio: 1.5, // stronger swipe
-		threshold: 4, // triggers sooner
-		longSwipesMs: 200, // quicker long-swipe window
-		longSwipesRatio: 0.2, // less distance to trigger
+		speed: 250,
 		mousewheel: { forceToAxis: true, releaseOnEdges: true, sensitivity: 3.5 },
 		keyboard: { enabled: true, onlyInViewport: true },
 
@@ -69,11 +66,13 @@ export default function ProductsSlider({ slides, title, fullScreen }: PropsT) {
 	const ref = useRef<HTMLDivElement>(null);
 
 	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
-
-	function toggle() {
+	const [activeSlide, setActiveSlide] = useState(0);
+	function toggle(index: number) {
 		// do not open dialog on mobile
 		if (isSm) return;
 		setFullScreenDialogOpen((curr) => !curr);
+		swiper?.slideTo(index);
+		setActiveSlide(index);
 	}
 
 	return (
@@ -99,7 +98,7 @@ export default function ProductsSlider({ slides, title, fullScreen }: PropsT) {
 					</button>
 					<Swiper {...swiperConfig} className={`mx-9 flex h-full`}>
 						{slides.map((slide, i) => (
-							<SwiperSlide onClick={toggle} key={i}>
+							<SwiperSlide onClick={() => toggle(i)} key={i}>
 								<SliderSlide slide={slide} selectable={selectedWithinCatLen < 2} fullScreen={fullScreen} />
 							</SwiperSlide>
 						))}
@@ -121,7 +120,7 @@ export default function ProductsSlider({ slides, title, fullScreen }: PropsT) {
 						<DialogTitle></DialogTitle>
 						<DialogDescription></DialogDescription>
 					</DialogHeader>
-					<ProductsSlider key={title} slides={slides} title={title} fullScreen />
+					<ProductsSlider key={title} slides={slides} title={title} fullScreen initSlide={activeSlide} />
 				</DialogContent>
 			</Dialog>
 		</>
