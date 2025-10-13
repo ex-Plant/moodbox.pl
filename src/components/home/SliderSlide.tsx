@@ -1,17 +1,13 @@
-'use client';
-
 import { Tip } from '@/components/common/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
-import useHandleClickOutside from '@/lib/hooks/useHandleClickOutside';
 import { ProductItemT } from '@/lib/temp/mock-data';
 import { cn } from '@/lib/utils';
-import { X } from 'lucide-react';
 import Image from 'next/image';
 
-type PropsT = { slide: ProductItemT; selectable: boolean; fullScreen: boolean; exitFullScreen: () => void };
+type PropsT = { slide: ProductItemT; selectable: boolean; fullScreen: boolean };
 
-export default function SliderSlide({ slide, selectable, fullScreen, exitFullScreen }: PropsT) {
+export default function SliderSlide({ slide, selectable, fullScreen }: PropsT) {
 	const { addCartItem, deleteCartItem, cartItems } = useCart();
 
 	const checked = cartItems.includes(slide.id);
@@ -43,17 +39,6 @@ export default function SliderSlide({ slide, selectable, fullScreen, exitFullScr
 							checked={checked}
 						/>
 					</Tip>
-				)}
-				{fullScreen && (
-					<button
-						onClick={(e) => {
-							e.stopPropagation();
-							exitFullScreen();
-						}}
-						className={`absolute top-4 right-4 z-10`}
-					>
-						<X className={`stroke-mood-brown size-8`} />
-					</button>
 				)}
 			</div>
 
