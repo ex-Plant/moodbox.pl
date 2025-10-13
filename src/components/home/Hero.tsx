@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { tr } from '@/utils/translations/pl';
+import { tr } from '@/lib/translations/pl';
 import Link from 'next/link';
 
 export default function Hero() {

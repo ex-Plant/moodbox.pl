@@ -1,6 +1,6 @@
 import { Tip } from '@/components/common/Tip';
 import useCart from '@/lib/hooks/useCart';
-import { ProductItemT } from '@/lib/mock-data';
+import { ProductItemT } from '@/lib/temp/mock-data';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 

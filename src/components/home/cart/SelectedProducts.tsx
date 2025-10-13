@@ -2,7 +2,7 @@
 import SelectedProduct from '@/components/home/cart/SelectedProduct';
 import { Button } from '@/components/ui/button';
 import useCart from '@/lib/hooks/useCart';
-import { mockData } from '@/lib/mock-data';
+import { mockData } from '@/lib/temp/mock-data';
 
 export default function SelectedProducts() {
 	const { cartItems, removeAllItems } = useCart();

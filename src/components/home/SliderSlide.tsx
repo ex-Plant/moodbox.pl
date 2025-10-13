@@ -3,7 +3,7 @@
 import { Tip } from '@/components/common/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
-import { ProductItemT } from '@/lib/mock-data';
+import { ProductItemT } from '@/lib/temp/mock-data';
 import Image from 'next/image';
 
 type PropsT = { slide: ProductItemT; selectable: boolean };

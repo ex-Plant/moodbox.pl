@@ -1,6 +1,6 @@
 import Cart from '@/components/home/cart/Cart';
 import ProductsSlider from '@/components/home/ProductsSlider';
-import { mockData } from '@/lib/mock-data';
+import { mockData } from '@/lib/temp/mock-data';
 import { Suspense } from 'react';
 
 export default function Home() {

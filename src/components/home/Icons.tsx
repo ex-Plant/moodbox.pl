@@ -1,5 +1,5 @@
 import IconItem from '@/components/home/IconItem';
-import { tr } from '@/utils/translations/pl';
+import { tr } from '@/lib/translations/pl';
 import { ClipboardList, Cuboid, SquareCheckBig, Truck } from 'lucide-react';
 
 export default function Icons() {
