@@ -1,11 +1,14 @@
 'use client';
 
+import { Tip } from '@/components/common/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
 import { ProductItemT } from '@/lib/mock-data';
 import Image from 'next/image';
 
-export default function SliderSlide({ slide }: { slide: ProductItemT }) {
+type PropsT = { slide: ProductItemT; selectable: boolean };
+
+export default function SliderSlide({ slide, selectable }: PropsT) {
 	const { addCartItem, deleteCartItem, cartItems } = useCart();
 
 	const checked = cartItems.includes(slide.id);
@@ -23,7 +26,13 @@ export default function SliderSlide({ slide }: { slide: ProductItemT }) {
 		<article>
 			<div className={`relative aspect-square h-auto w-full`}>
 				<Image className={`rounded`} layout={'fill'} src={`/card2.png`} alt={''} />
-				<Checkbox className={`absolute top-2 left-2 size-6`} checked={checked} onCheckedChange={toggle} />
+				{selectable || checked ? (
+					<Checkbox className={`absolute top-2 left-2 size-6`} checked={checked} onCheckedChange={toggle} />
+				) : (
+					<Tip content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
+						<Checkbox disabled={!checked} className={`absolute top-2 left-2 size-6`} checked={checked} />
+					</Tip>
+				)}
 			</div>
 
 			<div>

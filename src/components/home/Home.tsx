@@ -8,8 +8,8 @@ export default function Home() {
 		<>
 			<section id={'products'} className={`space-y-4 pb-20`}>
 				<Suspense fallback={null}>
-					{mockData.map((el) => (
-						<ProductsSlider key={el.title} slides={el.items} title={el.title} />
+					{mockData.map((category) => (
+						<ProductsSlider key={category.title} slides={category.items} title={category.title} />
 					))}
 				</Suspense>
 			</section>

@@ -3,13 +3,8 @@
 import Delimiter from '@/components/common/Delimiter';
 import CartForm from '@/components/home/cart/CartForm';
 import SelectedProducts from '@/components/home/cart/SelectedProducts';
-import useCart from '@/lib/hooks/useCart';
 
 export default function Cart() {
-	// const { cartItems } = useCart();
-	//
-	// if (cartItems.length < 1) return <></>;
-
 	return (
 		<section className={`pb-20`}>
 			<Delimiter title={'Formularz'} />
