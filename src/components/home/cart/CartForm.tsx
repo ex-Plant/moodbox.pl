@@ -21,7 +21,7 @@ export default function CartForm() {
 					</Tip>
 				</div>
 
-				<div className={`xL:grid-cols-2 grid gap-4 xl:mr-4`}>
+				<div className={`grid gap-4 md:grid-cols-2 xl:mr-4`}>
 					<Input placeholder={'Nazwa firmy / pracowni'} />
 					<Input placeholder={'NIP'} />
 					<Input placeholder={'E-mail'} />
@@ -31,7 +31,7 @@ export default function CartForm() {
 			</div>
 			<div>
 				<h4 className={`text-[18px] font-bold`}>Informacje dodatkowe o Twoim projekcie </h4>
-				<div className={`grid gap-4 pt-2 xl:mr-4 xl:grid-cols-2`}>
+				<div className={`grid gap-4 pt-2 md:grid-cols-2 xl:mr-4`}>
 					<Input placeholder={'Miejscowość'} />
 					<Select>
 						<SelectTrigger className='w'>
@@ -93,7 +93,7 @@ export default function CartForm() {
 
 						<span className={`text-[32px] text-nowrap xl:text-[40px]`}>49 PLN</span>
 					</div>
-					<Button onClick={inProgress} variant={'mood'} size={`lg`} className={`xl:w-full`}>
+					<Button onClick={inProgress} variant={'mood'} size={`lg`} className={`w-fit xl:w-full`}>
 						Przejdź do płatności
 					</Button>
 				</div>

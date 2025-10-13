@@ -45,10 +45,14 @@ type QueryT =
 	| isMaxLgQueryT;
 
 export default function useMediaQuery(query: QueryT) {
-	const [matches, setMatches] = useState(window?.matchMedia(query).matches);
+	const getMatches = (q: string): boolean => {
+		if (typeof window === 'undefined') return false;
+		return window.matchMedia(q).matches;
+	};
+	const [matches, setMatches] = useState(getMatches(query));
 
 	useEffect(() => {
-		if (!window) return;
+		if (typeof window === 'undefined') return;
 		const media = window.matchMedia(query);
 
 		// Set initial value

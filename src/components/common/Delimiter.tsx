@@ -19,7 +19,7 @@ export default function Delimiter({ title, className }: PropsT) {
 					<LogoSquares />
 				</div>
 
-				<p className={`text-mood-dark-gray pl-4 text-[1.5rem] xl:text-[2.25rem]`}>{title}</p>
+				<p className={`text-mood-dark-gray text-[1.5rem] xl:pl-4 xl:text-[2.25rem]`}>{title}</p>
 			</div>
 		</div>
 	);

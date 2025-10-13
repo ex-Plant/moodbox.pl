@@ -80,12 +80,9 @@ export default function ProductsSlider({ slides, title, fullScreen }: PropsT) {
 		<>
 			<div
 				ref={ref}
-				className={cn(
-					`xPaddings mx-auto max-w-[1440px]`,
-					swiperIsReady ? 'opacity-100' + ' duration-500' : 'opacity-0'
-				)}
+				className={cn(`xPaddings mx-auto max-w-[1440px]`, swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0')}
 			>
-				<div className={`text-mood-dark-gray flex items-center pb-6 pl-4 text-[24px]`}>
+				<div className={`text-mood-dark-gray x:pl-4 flex items-center pb-6 text-[24px]`}>
 					<h3 className={`font-bold`}>{title}</h3>
 					<Tip delay={400} side={`right`} content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
 						{selectedWithinCatLen > 1 && <span className={`mx-2`}>{selectedWithinCatLen} / 2</span>}
