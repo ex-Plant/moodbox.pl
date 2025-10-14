@@ -1,14 +1,12 @@
 import Cart from '@/components/home/cart/Cart';
-import ProductsSlider from '@/components/home/ProductsSlider';
+import ProductsSlider from '@/components/home/slider/ProductsSlider';
 import { ProductT } from '@/lib/shopify';
-import { mockData } from '@/lib/temp/mock-data';
 import { Suspense } from 'react';
 type PropsT = {
 	productsByCollection: { collection: string; handle: string; products: ProductT[] }[];
 };
 
 export default function Home({ productsByCollection }: PropsT) {
-	console.log(productsByCollection);
 	return (
 		<>
 			<section id={'products'} className={`space-y-4 pb-20`}>

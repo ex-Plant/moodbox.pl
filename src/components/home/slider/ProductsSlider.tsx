@@ -1,20 +1,20 @@
 'use client';
 
 import { Tip } from '@/components/common/Tip';
-import SliderSlide from '@/components/home/SliderSlide';
+import SliderSlide from '@/components/home/slider/SliderSlide';
 import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
 import { ProductT } from '@/lib/shopify';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Keyboard, Mousewheel, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../../ui/dialog';
 
 type PropsT = {
 	slides: ProductT[];
@@ -24,11 +24,13 @@ type PropsT = {
 };
 
 export default function ProductsSlider({ slides, title, isFullScreen, initSlide = 0 }: PropsT) {
-	const { cartItems } = useCart();
-	const selectedWithinCatLen = slides.filter((slide) => cartItems.includes(slide.id)).length ?? 0;
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
+	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
+	const [activeSlide, setActiveSlide] = useState(0);
 
+	const { cartItems } = useCart();
+	const selectedWithinCatLen = slides.filter((slide) => cartItems.includes(slide.id)).length ?? 0;
 	const isMaxMd = useIsMaxMd();
 	const isSm = useIsSm();
 
@@ -43,7 +45,6 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 		spaces = 12;
 	}
 
-	// const actualSlidesPerView = fullScreen ? 1 : Math.min(numberOfSlides, slides.length);
 	const actualSlidesPerView = isFullScreen ? 1 : numberOfSlides;
 	const canLoop = slides.length > actualSlidesPerView;
 
@@ -66,10 +67,6 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 		},
 	};
 
-	const ref = useRef<HTMLDivElement>(null);
-
-	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
-	const [activeSlide, setActiveSlide] = useState(0);
 	function toggle(index: number) {
 		// do not open dialog on mobile
 		if (isSm) return;
@@ -83,22 +80,21 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 
 	return (
 		<>
-			<div
-				ref={ref}
-				className={cn(`xPaddings mx-auto max-w-[1440px]`, swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0')}
-			>
-				<div className={`text-mood-dark-gray x:pl-4 flex items-center pb-6 text-[24px]`}>
+			<div className={cn(`xPaddings mx-auto max-w-[1440px]`, swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0')}>
+				<header className={`text-mood-dark-gray x:pl-4 flex items-center pb-6 text-[24px]`}>
 					<h3 className={`font-bold`}>{title}</h3>
 					<Tip delay={400} side={`right`} content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
 						{selectedWithinCatLen > 1 && <span className={`mx-2`}>{selectedWithinCatLen} / 2</span>}
 					</Tip>
-				</div>
+				</header>
+
 				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
 					<button className={`translate-y-[-25px] pr-8`} onClick={() => swiper?.slidePrev()}>
 						<ChevronLeft
 							className={cn(`stroke-mood-brown w-auto stroke-[1.5px]`, isFullScreen ? 'h-12 xl:h-20' : 'h-10 xl:h-14')}
 						/>
 					</button>
+
 					<Swiper {...swiperConfig} className={`mx-9 w-full`}>
 						{slides.map((slide, i) => (
 							<SwiperSlide onClick={() => toggle(i)} key={i} className={``}>
@@ -114,15 +110,35 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 					</button>
 				</div>
 			</div>
-			<Dialog open={fullScreenDialogOpen} onOpenChange={setFullScreenDialogOpen}>
-				<DialogContent>
-					<DialogHeader>
-						<DialogTitle></DialogTitle>
-						<DialogDescription></DialogDescription>
-					</DialogHeader>
-					<ProductsSlider key={title} slides={slides} title={title} isFullScreen initSlide={activeSlide} />
-				</DialogContent>
-			</Dialog>
+
+			<SliderDialog
+				title={title}
+				slides={slides}
+				fullScreenDialogOpen={fullScreenDialogOpen}
+				setFullScreenDialogOpen={setFullScreenDialogOpen}
+				initSlide={activeSlide}
+			/>
 		</>
+	);
+}
+
+type SliderDialogT = {
+	fullScreenDialogOpen: boolean;
+	setFullScreenDialogOpen: Dispatch<SetStateAction<boolean>>;
+	title: string;
+	slides: ProductT[];
+	initSlide: number;
+};
+function SliderDialog({ setFullScreenDialogOpen, fullScreenDialogOpen, title, slides, initSlide }: SliderDialogT) {
+	return (
+		<Dialog open={fullScreenDialogOpen} onOpenChange={setFullScreenDialogOpen}>
+			<DialogContent>
+				<DialogHeader>
+					<DialogTitle></DialogTitle>
+					<DialogDescription></DialogDescription>
+				</DialogHeader>
+				<ProductsSlider slides={slides} title={title} isFullScreen initSlide={initSlide} />
+			</DialogContent>
+		</Dialog>
 	);
 }
