@@ -16,6 +16,10 @@ export async function shopifyFetch<T>({
 	cache = 'force-cache',
 	tags = [],
 }: ShopifyFetchParamsT): Promise<ShopifyResponseT<T>> {
+	if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
+		throw new Error('❗!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN');
+	}
+
 	try {
 		const response = await fetch(SHOPIFY_STORE_DOMAIN, {
 			method: 'POST',
