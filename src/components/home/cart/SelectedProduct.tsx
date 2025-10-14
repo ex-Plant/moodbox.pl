@@ -1,7 +1,6 @@
 import { Tip } from '@/components/common/Tip';
 import useCart from '@/lib/hooks/useCart';
 import { ProductT } from '@/lib/shopify';
-import { ProductItemT } from '@/lib/temp/mock-data';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
@@ -17,7 +16,7 @@ export default function SelectedProduct({ selected }: PropsT) {
 	const src = selected.images.edges?.[0]?.node.url;
 
 	return (
-		<article className={`flex gap-2`}>
+		<li className={`flex gap-2`}>
 			<div className={`relative size-[60px] rounded outline`}>
 				{src && <Image width={60} height={60} className={`h-full w-full rounded`} src={src} alt={''} />}
 			</div>
@@ -31,6 +30,6 @@ export default function SelectedProduct({ selected }: PropsT) {
 			<Tip content={`Usuń z koszyka`} className={`item-start ml-auto flex pt-1`}>
 				<X onClick={() => deleteCartItem(selected.id)} className={`size-4`} />
 			</Tip>
-		</article>
+		</li>
 	);
 }
