@@ -30,7 +30,8 @@ export async function shopifyFetch<T>({
 			body: JSON.stringify({ query, variables }),
 			// cache,
 			next: {
-				revalidate: 0,
+				// todo ? change to greater value
+				revalidate: 60, // 1 minute
 				tags,
 			},
 		});
