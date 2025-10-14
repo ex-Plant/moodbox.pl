@@ -13,7 +13,7 @@ type ShopifyFetchParamsT = {
 export async function shopifyFetch<T>({
 	query,
 	variables = {},
-	cache = 'force-cache',
+	cache = 'no-cache',
 	tags = [],
 }: ShopifyFetchParamsT): Promise<ShopifyResponseT<T>> {
 	if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
