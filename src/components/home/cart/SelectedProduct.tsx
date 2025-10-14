@@ -1,4 +1,4 @@
-import { Tip } from '@/components/common/Tip';
+import { Tip } from '@/components/ui/Tip';
 import useCart from '@/lib/hooks/useCart';
 import { ProductT } from '@/lib/shopify/types';
 import { X } from 'lucide-react';

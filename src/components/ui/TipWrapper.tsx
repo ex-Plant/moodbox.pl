@@ -1,4 +1,4 @@
-import { Tip } from '@/components/common/Tip';
+import { Tip } from '@/components/ui/Tip';
 import { cn } from '@/lib/utils';
 import { SIDE_OPTIONS } from '@radix-ui/react-popper';
 import { ReactNode } from 'react';

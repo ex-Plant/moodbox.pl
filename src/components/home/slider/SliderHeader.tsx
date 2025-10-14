@@ -1,4 +1,4 @@
-import { Tip } from '@/components/common/Tip';
+import { Tip } from '@/components/ui/Tip';
 
 type PropsT = {
 	title: string;

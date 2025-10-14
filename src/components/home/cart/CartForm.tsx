@@ -1,8 +1,8 @@
-import { Tip } from '@/components/common/Tip';
 import FormConsents from '@/components/home/cart/FormConsents';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Tip } from '@/components/ui/Tip';
 import inProgress from '@/lib/helpers/inProgress';
 import { CircleQuestionMark } from 'lucide-react';
 

@@ -3,7 +3,7 @@
 import { cn } from '@/lib/utils';
 import { SIDE_OPTIONS } from '@radix-ui/react-popper';
 import React, { useRef } from 'react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../ui/tooltip';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip';
 
 type TipProps = React.PropsWithChildren<{
 	content: string | React.ReactNode;
