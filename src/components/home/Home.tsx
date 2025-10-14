@@ -7,6 +7,8 @@ type PropsT = {
 };
 
 export default function Home({ productsByCollection }: PropsT) {
+	const allProducts = productsByCollection.flatMap((collection) => collection.products);
+
 	return (
 		<>
 			<section id={'products'} className={`space-y-4 pb-20`}>
@@ -22,7 +24,7 @@ export default function Home({ productsByCollection }: PropsT) {
 				</Suspense>
 			</section>
 			<Suspense fallback={null}>
-				<Cart />
+				<Cart allProducts={allProducts} />
 			</Suspense>
 		</>
 	);

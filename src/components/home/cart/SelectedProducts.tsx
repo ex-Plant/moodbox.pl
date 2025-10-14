@@ -2,15 +2,19 @@
 import SelectedProduct from '@/components/home/cart/SelectedProduct';
 import { Button } from '@/components/ui/button';
 import useCart from '@/lib/hooks/useCart';
+import { ProductT } from '@/lib/shopify';
 import { mockData } from '@/lib/temp/mock-data';
 
-export default function SelectedProducts() {
+type PropsT = {
+	allProducts: ProductT[];
+};
+
+export default function SelectedProducts({ allProducts }: PropsT) {
 	const { cartItems, removeAllItems } = useCart();
 	// const { cartItems } = useCart();
 	//
 	if (cartItems.length < 1) return <></>;
 
-	const allProducts = mockData.flatMap((el) => el.items);
 	const selected = allProducts.filter((el) => cartItems.includes(el.id));
 
 	return (
