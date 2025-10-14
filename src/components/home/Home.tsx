@@ -1,15 +1,25 @@
 import Cart from '@/components/home/cart/Cart';
 import ProductsSlider from '@/components/home/ProductsSlider';
+import { ProductT } from '@/lib/shopify';
 import { mockData } from '@/lib/temp/mock-data';
 import { Suspense } from 'react';
+type PropsT = {
+	productsByCollection: { collection: string; handle: string; products: ProductT[] }[];
+};
 
-export default function Home() {
+export default function Home({ productsByCollection }: PropsT) {
+	console.log(productsByCollection);
 	return (
 		<>
 			<section id={'products'} className={`space-y-4 pb-20`}>
 				<Suspense fallback={null}>
-					{mockData.map((category) => (
-						<ProductsSlider key={category.title} slides={category.items} title={category.title} fullScreen={false} />
+					{productsByCollection.map((collection) => (
+						<ProductsSlider
+							key={collection.collection}
+							slides={collection.products}
+							title={collection.collection}
+							isFullScreen={false}
+						/>
 					))}
 				</Suspense>
 			</section>

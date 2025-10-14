@@ -1,17 +1,17 @@
 import { Tip } from '@/components/common/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
-import { ProductItemT } from '@/lib/temp/mock-data';
+import { ProductT } from '@/lib/shopify';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
-type PropsT = { slide: ProductItemT; selectable: boolean; fullScreen: boolean };
+type PropsT = { slide: ProductT; selectable: boolean; fullScreen: boolean };
 
 export default function SliderSlide({ slide, selectable, fullScreen }: PropsT) {
 	const { addCartItem, deleteCartItem, cartItems } = useCart();
 
 	const checked = cartItems.includes(slide.id);
-	const { name, material, brand } = slide;
+	const { title, productType, description } = slide;
 
 	function toggle() {
 		if (checked) {
@@ -20,22 +20,23 @@ export default function SliderSlide({ slide, selectable, fullScreen }: PropsT) {
 			addCartItem(slide.id);
 		}
 	}
+	const src = slide.images.edges?.[0]?.node.url ?? '';
 
 	return (
 		<article>
-			<div className={`relative aspect-square h-auto w-full`}>
-				<Image className={`rounded`} layout={'fill'} src={`/card2.png`} alt={''} />
+			<div className={cn(`relative aspect-square`)}>
+				<Image layout={'fill'} className={`h-full w-full rounded`} src={src} alt={''} />
 				{selectable || checked ? (
 					<Checkbox
 						onClick={(e) => e.stopPropagation()}
-						className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4 size-8' + ' xl:size-10')}
+						className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4 size-8 xl:size-10')}
 						checked={checked}
 						onCheckedChange={toggle}
 					/>
 				) : (
 					<Tip content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
 						<Checkbox
-							className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4' + ' size-8 xl:size-10')}
+							className={cn(`absolute top-2 left-2 size-6`, fullScreen && 'top-4 left-4 size-8 xl:size-10')}
 							checked={checked}
 						/>
 					</Tip>
@@ -49,15 +50,15 @@ export default function SliderSlide({ slide, selectable, fullScreen }: PropsT) {
 						fullScreen ? 'text-[20px]' : ''
 					)}
 				>
-					{material}
+					{productType}
 				</div>
 				<div className={cn(`line-clamp-1 text-[14px] leading-tight font-bold`, fullScreen ? 'text-[28px]' : '')}>
-					{brand}
+					{description}
 				</div>
 				<div
 					className={cn(`text-mood-dark-gray line-clamp-1 text-[12px] leading-tight`, fullScreen ? 'text-[24px]' : '')}
 				>
-					{name}
+					{title}
 				</div>
 			</div>
 		</article>

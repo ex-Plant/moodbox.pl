@@ -4,6 +4,16 @@ const nextConfig: NextConfig = {
 	typedRoutes: true,
 	/* config options here */
 
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'cdn.shopify.com',
+				pathname: '/**',
+			},
+		],
+	},
+
 	typescript: {
 		// !! WARN !!
 		// Dangerously allow production builds to successfully complete even if

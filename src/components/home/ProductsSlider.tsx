@@ -4,7 +4,7 @@ import { Tip } from '@/components/common/Tip';
 import SliderSlide from '@/components/home/SliderSlide';
 import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
-import { ProductItemT } from '@/lib/temp/mock-data';
+import { ProductT } from '@/lib/shopify';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useRef, useState } from 'react';
@@ -17,16 +17,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '../ui/dialog';
 
 type PropsT = {
-	slides: ProductItemT[];
+	slides: ProductT[];
 	title: string;
-	fullScreen: boolean;
+	isFullScreen: boolean;
 	initSlide?: number;
 };
 
-export default function ProductsSlider({ slides, title, fullScreen, initSlide = 0 }: PropsT) {
+export default function ProductsSlider({ slides, title, isFullScreen, initSlide = 0 }: PropsT) {
 	const { cartItems } = useCart();
 	const selectedWithinCatLen = slides.filter((slide) => cartItems.includes(slide.id)).length ?? 0;
-
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 
@@ -40,19 +39,23 @@ export default function ProductsSlider({ slides, title, fullScreen, initSlide = 
 		numberOfSlides = 1;
 		spaces = 0;
 	} else if (isMaxMd) {
-		numberOfSlides = 3;
-		spaces = 24;
+		numberOfSlides = 4;
+		spaces = 12;
 	}
+
+	// const actualSlidesPerView = fullScreen ? 1 : Math.min(numberOfSlides, slides.length);
+	const actualSlidesPerView = isFullScreen ? 1 : numberOfSlides;
+	const canLoop = slides.length > actualSlidesPerView;
 
 	const swiperConfig = {
 		modules: [Pagination, Mousewheel, Keyboard],
-		spaceBetween: fullScreen ? 0 : spaces,
-		slidesPerView: fullScreen ? 1 : numberOfSlides,
+		spaceBetween: isFullScreen ? 0 : spaces,
+		slidesPerView: actualSlidesPerView,
 		draggable: true,
 		centeredSlides: false,
 		initialSlide: initSlide,
 
-		loop: slides.length > 2,
+		loop: canLoop,
 		speed: 250,
 		mousewheel: { forceToAxis: true, releaseOnEdges: true, sensitivity: 3.5 },
 		keyboard: { enabled: true, onlyInViewport: true },
@@ -70,10 +73,13 @@ export default function ProductsSlider({ slides, title, fullScreen, initSlide = 
 	function toggle(index: number) {
 		// do not open dialog on mobile
 		if (isSm) return;
+		if (isFullScreen) return;
 		setFullScreenDialogOpen((curr) => !curr);
 		swiper?.slideTo(index);
 		setActiveSlide(index);
 	}
+
+	if (slides.length === 0) return <></>;
 
 	return (
 		<>
@@ -87,29 +93,23 @@ export default function ProductsSlider({ slides, title, fullScreen, initSlide = 
 						{selectedWithinCatLen > 1 && <span className={`mx-2`}>{selectedWithinCatLen} / 2</span>}
 					</Tip>
 				</div>
-				<div className={cn(`flex items-center`, fullScreen ? 'mx-auto max-w-[min(60vw,770px)]' + ' w-full' : '')}>
+				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
 					<button className={`translate-y-[-25px] pr-8`} onClick={() => swiper?.slidePrev()}>
 						<ChevronLeft
-							className={cn(
-								`stroke-mood-brown w-auto stroke-[1.5px]`,
-								fullScreen ? 'h-12' + ' xl:h-20' : 'h-10 xl:h-14'
-							)}
+							className={cn(`stroke-mood-brown w-auto stroke-[1.5px]`, isFullScreen ? 'h-12 xl:h-20' : 'h-10 xl:h-14')}
 						/>
 					</button>
-					<Swiper {...swiperConfig} className={`mx-9 flex h-full`}>
+					<Swiper {...swiperConfig} className={`mx-9 w-full`}>
 						{slides.map((slide, i) => (
-							<SwiperSlide onClick={() => toggle(i)} key={i}>
-								<SliderSlide slide={slide} selectable={selectedWithinCatLen < 2} fullScreen={fullScreen} />
+							<SwiperSlide onClick={() => toggle(i)} key={i} className={``}>
+								<SliderSlide slide={slide} selectable={selectedWithinCatLen < 2} fullScreen={isFullScreen} />
 							</SwiperSlide>
 						))}
 					</Swiper>
 
 					<button className={`translate-y-[-25px] pl-8`} onClick={() => swiper?.slideNext()}>
 						<ChevronRight
-							className={cn(
-								`stroke-mood-brown w-auto stroke-[1.5px]`,
-								fullScreen ? 'h-12' + ' xl:h-20' : 'h-10 xl:h-14'
-							)}
+							className={cn(`stroke-mood-brown w-auto stroke-[1.5px]`, isFullScreen ? 'h-12 xl:h-20' : 'h-10 xl:h-14')}
 						/>
 					</button>
 				</div>
@@ -120,7 +120,7 @@ export default function ProductsSlider({ slides, title, fullScreen, initSlide = 
 						<DialogTitle></DialogTitle>
 						<DialogDescription></DialogDescription>
 					</DialogHeader>
-					<ProductsSlider key={title} slides={slides} title={title} fullScreen initSlide={activeSlide} />
+					<ProductsSlider key={title} slides={slides} title={title} isFullScreen initSlide={activeSlide} />
 				</DialogContent>
 			</Dialog>
 		</>
