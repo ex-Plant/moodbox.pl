@@ -2,8 +2,12 @@ import Delimiter from '@/components/common/Delimiter';
 import Hero from '@/components/home/Hero';
 import Home from '@/components/home/Home';
 import Icons from '@/components/home/Icons';
+import { getProductsByCollection } from '@/lib/shopify';
 
-export default function Page() {
+export default async function Page() {
+	const productsByCollection = await getProductsByCollection();
+	console.log(productsByCollection);
+
 	return (
 		<div className=''>
 			<Hero />
@@ -17,7 +21,7 @@ export default function Page() {
 			{/*<Delimiter className={`flex`} title={'Partnerzy'} />*/}
 			{/*<Partners />*/}
 			<Delimiter className={``} title={'Katalog próbek'} />
-			<Home />
+			<Home productsByCollection={productsByCollection} />
 		</div>
 	);
 }
