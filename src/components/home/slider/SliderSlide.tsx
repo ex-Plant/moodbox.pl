@@ -1,5 +1,5 @@
 import SliderImg from '@/components/home/slider/SliderImg';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 
 type PropsT = { slide: ProductT; selectable: boolean; fullScreen: boolean };
@@ -23,7 +23,10 @@ export default function SliderSlide({ slide, selectable, fullScreen }: PropsT) {
 					{description}
 				</p>
 				<h4
-					className={cn(`text-mood-dark-gray line-clamp-1 text-[12px] leading-tight`, fullScreen ? 'text-[24px]' : '')}
+					className={cn(
+						`text-mood-dark-gray line-clamp-1 text-[12px] leading-tight`,
+						fullScreen ? 'text-[24px]' : ''
+					)}
 				>
 					{title}
 				</h4>

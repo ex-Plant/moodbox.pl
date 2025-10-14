@@ -2,7 +2,7 @@
 import SelectedProduct from '@/components/home/cart/SelectedProduct';
 import { Button } from '@/components/ui/button';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 
 type PropsT = {
 	selected: ProductT[];

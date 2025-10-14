@@ -4,7 +4,7 @@ import Delimiter from '@/components/common/Delimiter';
 import CartForm from '@/components/home/cart/CartForm';
 import SelectedProducts from '@/components/home/cart/SelectedProducts';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 
 type PropsT = {
 	allProducts: ProductT[];

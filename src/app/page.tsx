@@ -2,7 +2,7 @@ import Delimiter from '@/components/common/Delimiter';
 import Hero from '@/components/home/Hero';
 import Home from '@/components/home/Home';
 import Icons from '@/components/home/Icons';
-import { getProductsByCollection } from '@/lib/shopify';
+import { getProductsByCollection } from '@/lib/shopify/api';
 
 export default async function Page() {
 	const productsByCollection = await getProductsByCollection();

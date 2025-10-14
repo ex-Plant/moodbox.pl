@@ -1,6 +1,6 @@
 import ProductsSlider from '@/components/home/slider/ProductsSlider';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 import { Dispatch, SetStateAction } from 'react';
 
 type SliderDialogT = {

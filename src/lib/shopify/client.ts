@@ -13,7 +13,7 @@ type ShopifyFetchParamsT = {
 export async function shopifyFetch<T>({
 	query,
 	variables = {},
-	cache = 'no-cache',
+	// cache = 'no-cache',
 	tags = [],
 }: ShopifyFetchParamsT): Promise<ShopifyResponseT<T>> {
 	if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
@@ -28,8 +28,11 @@ export async function shopifyFetch<T>({
 				'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
 			},
 			body: JSON.stringify({ query, variables }),
-			cache,
-			...(tags.length > 0 && { next: { tags } }),
+			// cache,
+			next: {
+				revalidate: 0,
+				tags,
+			},
 		});
 
 		if (!response.ok) {

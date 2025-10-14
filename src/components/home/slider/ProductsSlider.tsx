@@ -5,7 +5,7 @@ import SliderHeader from '@/components/home/slider/SliderHeader';
 import SliderSlide from '@/components/home/slider/SliderSlide';
 import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';

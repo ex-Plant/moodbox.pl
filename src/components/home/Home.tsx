@@ -1,6 +1,6 @@
 import Cart from '@/components/home/cart/Cart';
 import ProductsSlider from '@/components/home/slider/ProductsSlider';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 import { Suspense } from 'react';
 type PropsT = {
 	productsByCollection: { collection: string; handle: string; products: ProductT[] }[];

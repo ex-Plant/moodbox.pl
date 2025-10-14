@@ -1,7 +1,7 @@
 import { Tip } from '@/components/common/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT } from '@/lib/shopify';
+import { ProductT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
