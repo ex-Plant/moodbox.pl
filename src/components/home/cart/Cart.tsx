@@ -12,7 +12,6 @@ type PropsT = {
 
 export default function Cart({ allProducts }: PropsT) {
 	const { cartItems } = useCart();
-	if (cartItems.length < 1) return <></>;
 
 	const selected = allProducts.filter((el) => cartItems.includes(el.id));
 
