@@ -5,9 +5,9 @@ type PropsT = {
 export default function LogoText({ className }: PropsT) {
 	return (
 		<svg
-			className={`h-full w-auto`}
+			className={`h-10 w-auto`}
 			version='1.1'
-			viewBox='290 540 1400 320'
+			viewBox='320 560 1400 320'
 			// width='2000'
 			// height='1414'
 			xmlns='http://www.w3.org/2000/svg'

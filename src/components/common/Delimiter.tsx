@@ -15,9 +15,9 @@ export default function Delimiter({ title, className }: PropsT) {
 					className
 				)}
 			>
-				<div className={cn(`absolute inset-0 items-center justify-center`, title ? `hidden md:flex` : `flex`)}>
-					<LogoSquares />
-				</div>
+				{/*<div className={cn(`absolute inset-0 items-center justify-center`, title ? `hidden md:flex` : `flex`)}>*/}
+				{/*	<LogoSquares />*/}
+				{/*</div>*/}
 
 				<p className={`text-mood-dark-gray text-[1.5rem] xl:pl-4 xl:text-[2.25rem]`}>{title}</p>
 			</div>

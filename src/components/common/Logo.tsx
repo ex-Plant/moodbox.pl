@@ -8,7 +8,7 @@ export default function LogoSvg({ className }: PropsT) {
 	return (
 		<>
 			<svg
-				className={cn(`h-full w-auto`, className)}
+				className={cn(`h-10 w-auto`, className)}
 				version='1.1'
 				viewBox='800 400 400 400'
 				// width='2000'
