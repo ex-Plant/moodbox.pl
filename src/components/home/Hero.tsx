@@ -6,7 +6,12 @@ export default function Hero() {
 	return (
 		<>
 			<div className={`relative`}>
-				<video muted={true} autoPlay={true} className={`h-screen w-full object-cover xl:w-screen`} src='/moodvid.mp4' />
+				<video
+					muted={true}
+					autoPlay={true}
+					className={`h-screen w-full object-cover xl:w-screen`}
+					src='/moodbox _intro.mp4'
+				/>
 				<div className={`bg-mood-dark-brown absolute inset-0 opacity-10`}></div>
 
 				<div
