@@ -9,8 +9,9 @@ export default function Hero() {
 				<video
 					muted={true}
 					autoPlay={true}
-					className={`h-screen w-full object-cover xl:w-screen`}
+					className={`h-screen min-h-[600px] w-full object-cover xl:w-screen`}
 					src='/moodbox _intro.mp4'
+					loop={true}
 				/>
 				<div className={`bg-mood-dark-brown absolute inset-0 opacity-10`}></div>
 
