@@ -3,6 +3,7 @@
 - ✅ favicon
 - ✅ video
 - ✅ disable toggling form
+- ✅ pinterest extension
 
 - logo
 - new tiles layout

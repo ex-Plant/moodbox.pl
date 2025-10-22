@@ -21,9 +21,10 @@ type PropsT = {
 	title: string;
 	isFullScreen: boolean;
 	initSlide?: number;
+	className?: string;
 };
 
-export default function ProductsSlider({ slides, title, isFullScreen, initSlide = 0 }: PropsT) {
+export default function ProductsSlider({ slides, title, isFullScreen, initSlide = 0, className }: PropsT) {
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
@@ -91,7 +92,7 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 				<SliderHeader selectedWithinCatLen={selectedWithinCatLen} title={title} />
 				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
 					<button
-						disabled={!navigationActive}
+						disabled={!swiperIsReady ? false : !navigationActive}
 						className={`translate-y-[-25px] pr-8 disabled:opacity-20`}
 						onClick={() => swiper?.slidePrev()}
 					>
@@ -115,7 +116,7 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 					</Swiper>
 
 					<button
-						disabled={!navigationActive}
+						disabled={!swiperIsReady ? false : !navigationActive}
 						className={`translate-y-[-25px] pl-8 disabled:opacity-20`}
 						onClick={() => swiper?.slideNext()}
 					>

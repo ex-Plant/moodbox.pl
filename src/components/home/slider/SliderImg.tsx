@@ -27,6 +27,8 @@ export default function SliderImg({ slide, fullScreen, selectable }: PropsT) {
 		<div className={cn(`relative aspect-square rounded`)}>
 			{src && (
 				<Image
+					// data-pin-nopin='true'
+					// data-pin-no-hover='true'
 					fill={true}
 					className={`h-full w-full rounded`}
 					src={src}
@@ -42,7 +44,7 @@ export default function SliderImg({ slide, fullScreen, selectable }: PropsT) {
 				<Checkbox
 					onClick={(e) => e.stopPropagation()}
 					className={cn(
-						`absolute top-2 left-2 size-6`,
+						`absolute top-2 right-2 z-10 size-6`,
 						fullScreen && `top-4 left-4 size-8 xl:size-10`,
 						!selectable && !checked && 'cursor-not-allowed'
 					)}
