@@ -16,7 +16,6 @@ export default function Nav() {
 		if (typeof window === 'undefined') return;
 
 		function handleScroll() {
-			console.log(window.scrollY);
 			setIsOnTop(window.scrollY < 80);
 		}
 

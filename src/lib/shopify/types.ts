@@ -22,6 +22,14 @@ export type ProductVariantT = {
 	price: MoneyT;
 	compareAtPrice: MoneyT | null;
 	image: ImageT | null;
+	product?: {
+		productType: string;
+		description: string;
+		descriptionHtml: string;
+		availableForSale: boolean;
+		tags: string[];
+		vendor: string;
+	};
 };
 
 export type ProductT = {

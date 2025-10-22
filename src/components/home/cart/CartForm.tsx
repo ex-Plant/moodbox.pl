@@ -91,7 +91,7 @@ export default function CartForm() {
 							placeholder={'Kod rabatowy'}
 						/>
 
-						<span className={`text-[32px] text-nowrap xl:text-[40px]`}>49 PLN</span>
+						<span className={`text-[32px] text-nowrap xl:text-[40px]`}>39 PLN</span>
 					</div>
 					<Button onClick={inProgress} variant={'mood'} size={`lg`} className={`w-fit xl:w-full`}>
 						Przejdź do płatności

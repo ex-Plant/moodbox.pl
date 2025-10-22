@@ -105,11 +105,12 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 					</button>
 					<Swiper {...swiperConfig} className={`mx-9 w-full`}>
 						{slides.map((slide, i) => (
-							<SwiperSlide onClick={() => toggle(i)} key={i} className={``}>
+							<SwiperSlide key={i} className={``}>
 								<SliderSlide
 									slide={slide}
 									selectable={selectedWithinCatLen < 2}
 									fullScreen={isFullScreen}
+									toggleFullScreen={() => toggle(i)}
 								/>
 							</SwiperSlide>
 						))}

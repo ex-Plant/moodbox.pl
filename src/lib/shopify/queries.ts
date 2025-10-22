@@ -55,6 +55,10 @@ export const PRODUCT_FRAGMENT = `
 						width
 						height
 					}
+					product {
+					productType
+					description
+					}
 				}
 			}
 		}
