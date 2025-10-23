@@ -6,7 +6,6 @@ import { getProductsByCollection } from '@/lib/shopify/api';
 
 export default async function Page() {
 	const productsByCollection = await getProductsByCollection();
-	console.log(productsByCollection);
 
 	return (
 		<div className=''>

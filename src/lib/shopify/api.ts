@@ -53,6 +53,15 @@ export async function getAllCollections(): Promise<CollectionT[]> {
 export async function getProductsByCollection(): Promise<
 	{ collection: string; handle: string; products: ProductT[] }[]
 > {
+	// async function wait(): Promise<void> {
+	// 	console.log(`timeout start`);
+	// 	return new Promise((res) => {
+	// 		setTimeout(() => res(), 2000);
+	// 	});
+	// }
+	// await wait();
+	// console.log(`timeout end`);
+
 	const collections = await getAllCollections();
 
 	return collections.map((collection) => ({

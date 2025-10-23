@@ -16,7 +16,7 @@ export default function LogoSvg({ className, asButon }: PropsT) {
 	return (
 		<button
 			onClick={scrollToTop}
-			className={cn(asButon ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none', className)}
+			className={cn(`block`, asButon ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none', className)}
 		>
 			<svg
 				className={cn(`h-10 w-auto`)}
