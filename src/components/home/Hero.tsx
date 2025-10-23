@@ -3,6 +3,7 @@
 import Loader from '@/components/common/Loader';
 import { Button } from '@/components/ui/button';
 import { tr } from '@/lib/translations/pl';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -12,20 +13,20 @@ export default function Hero() {
 	return (
 		<>
 			<div className={`relative`}>
-				{/*{!isVideoReady && (*/}
-				{/*	<div className={`absolute inset-0`}>*/}
-				{/*		<Loader />*/}
-				{/*	</div>*/}
-				{/*)}*/}
+				{/*<div className={cn(`absolute inset-0`, isVideoReady && 'hidden')}>*/}
+				{/*	<Loader />*/}
+				{/*</div>*/}
 				<>
 					<video
+						playsInline={true}
 						muted={true}
 						autoPlay={true}
 						className={`bg-background h-screen min-h-[600px] w-full object-cover xl:w-screen`}
 						src='/moodbox _intro.mp4'
 						loop={true}
-						onLoad={() => setIsVideoReady(true)}
-						onCanPlay={() => setIsVideoReady(true)}
+						// onLoadedData={() => setIsVideoReady(true)}
+						// onCanPlay={() => setIsVideoReady(true)}
+						// onPlaying={() => setIsVideoReady(true)}
 					/>
 					<div className={`bg-mood-dark-brown absolute inset-0 opacity-10`}></div>
 
