@@ -12,11 +12,11 @@ export default function Hero() {
 	return (
 		<>
 			<div className={`relative`}>
-				{!isVideoReady && (
-					<div className={`absolute inset-0`}>
-						<Loader />
-					</div>
-				)}
+				{/*{!isVideoReady && (*/}
+				{/*	<div className={`absolute inset-0`}>*/}
+				{/*		<Loader />*/}
+				{/*	</div>*/}
+				{/*)}*/}
 				<>
 					<video
 						muted={true}

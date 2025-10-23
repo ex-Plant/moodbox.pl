@@ -44,7 +44,7 @@ export default function Nav() {
 					</div>
 					<div
 						className={cn(
-							`bg-background fixed top-0 right-0 left-0 flex h-14 items-center justify-center`,
+							`bg-background pointer-events-none fixed top-0 right-0 left-0 flex h-14 items-center justify-center`,
 							isOnTop ? `opacity-0` : `opacity-100`,
 							animDuration
 						)}

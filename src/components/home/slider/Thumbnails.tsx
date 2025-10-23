@@ -15,7 +15,12 @@ export default function Thumbnails({ fullScreen, variants, setSelected, selected
 		setSelected(variant.node);
 	}
 	return (
-		<div className={cn(`grid`, fullScreen ? 'grid-cols-6 gap-2 pt-4' : `grid-cols-6 gap-2 pt-2 md:grid-cols-4`)}>
+		<div
+			className={cn(
+				`grid h-fit`,
+				fullScreen ? 'grid-cols-6 gap-2 pt-4' : `grid-cols-6 gap-2 pt-2 md:grid-cols-4`
+			)}
+		>
 			{variants.map((el, i) => (
 				<button
 					className={cn(`aspect-square min-h-6 w-full cursor-pointer`)}
