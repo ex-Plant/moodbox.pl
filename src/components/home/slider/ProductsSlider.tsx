@@ -85,8 +85,9 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 		<>
 			<div
 				className={cn(
-					`xPaddings mx-auto h-full max-h-[80vh] max-w-[1440px] overflow-y-auto`,
-					swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0'
+					`xPaddings mx-auto h-full max-w-[1440px]`,
+					swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0',
+					isFullScreen && 'max-h-[80vh] overflow-y-auto'
 				)}
 			>
 				<SliderHeader selectedWithinCatLen={selectedWithinCatLen} title={title} />
