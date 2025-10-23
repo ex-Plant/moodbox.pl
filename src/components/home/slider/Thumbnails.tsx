@@ -14,19 +14,16 @@ export default function Thumbnails({ fullScreen, variants, setSelected, selected
 	function selectVariant(variant: { node: ProductVariantT }) {
 		setSelected(variant.node);
 	}
+
 	return (
 		<div
 			className={cn(
-				`grid h-fit`,
+				`grid h-fit w-full`,
 				fullScreen ? 'grid-cols-6 gap-2 pt-4' : `grid-cols-6 gap-2 pt-2 md:grid-cols-4`
 			)}
 		>
 			{variants.map((el, i) => (
-				<button
-					className={cn(`aspect-square min-h-6 w-full cursor-pointer`)}
-					key={i}
-					onClick={() => selectVariant(el)}
-				>
+				<button className={cn(`aspect-square w-full cursor-pointer`)} key={i} onClick={() => selectVariant(el)}>
 					<ThumbnailSingle variant={el.node} fullScreen={fullScreen} selected={selected} />
 				</button>
 			))}
