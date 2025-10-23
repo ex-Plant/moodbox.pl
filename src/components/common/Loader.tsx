@@ -14,7 +14,7 @@ export default function Loader() {
 					ease: 'easeInOut',
 				}}
 			>
-				<LogoSvg />
+				<LogoSvg asButon={false} />
 			</motion.div>
 		</div>
 	);

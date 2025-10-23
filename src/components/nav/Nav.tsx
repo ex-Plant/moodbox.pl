@@ -23,13 +23,6 @@ export default function Nav() {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	function scrollToTop() {
-		window.scrollTo({
-			top: 0,
-			behavior: 'smooth',
-		});
-	}
-
 	return (
 		<nav className={`xPaddings pointer-events-none fixed top-0 right-0 left-0 z-10 mx-auto max-w-[1440px]`}>
 			<div
@@ -56,21 +49,19 @@ export default function Nav() {
 							animDuration
 						)}
 					>
-						<button onClick={scrollToTop}>
-							<LogoSvg className={`pointer-events-auto h-10 cursor-pointer`} />
-						</button>
+						<LogoSvg className={`h-10`} asButon={true} />
 					</div>
 				</Link>
 				<NavItem
 					className={`col-start-11 mr-4 ml-auto xl:mr-0 xl:ml-0`}
 					title='FAQ'
-					href={{ pathname: '/faq', hash: 'faq' }}
+					href={{ pathname: '/faq', hash: '' }}
 					isOnTop={isOnTop}
 					animationDuration={animDuration}
 				/>
 				<NavItem
 					title='Kontakt'
-					href={{ pathname: '/contact', hash: 'contact' }}
+					href={{ pathname: '/contact', hash: '' }}
 					isOnTop={isOnTop}
 					animationDuration={animDuration}
 				/>

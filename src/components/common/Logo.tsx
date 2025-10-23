@@ -2,13 +2,24 @@ import { cn } from '@/lib/utils';
 
 type PropsT = {
 	className?: string;
+	asButon: boolean;
 };
 
-export default function LogoSvg({ className }: PropsT) {
+export default function LogoSvg({ className, asButon }: PropsT) {
+	function scrollToTop() {
+		window.scrollTo({
+			top: 0,
+			behavior: 'smooth',
+		});
+	}
+
 	return (
-		<>
+		<button
+			onClick={scrollToTop}
+			className={cn(asButon ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none', className)}
+		>
 			<svg
-				className={cn(`h-10 w-auto`, className)}
+				className={cn(`h-10 w-auto`)}
 				version='1.1'
 				viewBox='800 400 400 400'
 				// width='2000'
@@ -41,6 +52,6 @@ export default function LogoSvg({ className }: PropsT) {
 					fill='#472927'
 				/>
 			</svg>
-		</>
+		</button>
 	);
 }

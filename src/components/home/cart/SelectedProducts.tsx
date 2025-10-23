@@ -2,10 +2,10 @@
 import SelectedProduct from '@/components/home/cart/SelectedProduct';
 import { Button } from '@/components/ui/button';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT } from '@/lib/shopify/types';
+import { ProductT, ProductVariantT } from '@/lib/shopify/types';
 
 type PropsT = {
-	selected: ProductT[];
+	selected: { node: ProductVariantT }[];
 };
 
 export default function SelectedProducts({ selected }: PropsT) {
@@ -17,7 +17,7 @@ export default function SelectedProducts({ selected }: PropsT) {
 				<h4 className={`text-mood-dark-gray text-[18px]`}>Wybrane próbki:</h4>
 				<ul className={`grid gap-4 pt-4 pb-12`}>
 					{selected.map((item) => (
-						<SelectedProduct selected={item} key={item.id} />
+						<SelectedProduct selected={item.node} key={item.node.id} />
 					))}
 				</ul>
 				{cartItems.length > 0 && (

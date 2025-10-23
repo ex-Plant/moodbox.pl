@@ -1,19 +1,18 @@
 import { Tip } from '@/components/ui/Tip';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT } from '@/lib/shopify/types';
+import { ProductT, ProductVariantT } from '@/lib/shopify/types';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
 type PropsT = {
-	selected: ProductT;
+	selected: ProductVariantT;
 };
 
 export default function SelectedProduct({ selected }: PropsT) {
 	const { deleteCartItem } = useCart();
 
-	const { title, productType, description } = selected;
-	const src = selected.images.edges?.[0]?.node.url;
+	const src = selected.image?.url;
 
 	return (
 		<li className={`flex gap-2`}>
@@ -22,9 +21,11 @@ export default function SelectedProduct({ selected }: PropsT) {
 			</div>
 
 			<div className={``}>
-				<p className={`line-clamp-1 pt-1 text-[10px] leading-tight font-bold text-[#9d9c9c]`}>{productType}</p>
-				<p className={`line-clamp-1 text-[14px] leading-tight font-bold`}>{description}</p>
-				<h6 className={`text-mood-dark-gray line-clamp-1 text-[12px] leading-tight`}>{title}</h6>
+				<p className={`line-clamp-1 pt-1 text-[10px] leading-tight font-bold text-[#9d9c9c]`}>
+					{selected.product?.productType}
+				</p>
+				<p className={`line-clamp-1 text-[14px] leading-tight font-bold`}>{selected.product?.description}</p>
+				<h6 className={`text-mood-dark-gray line-clamp-1 text-[12px] leading-tight`}>{selected.title}</h6>
 			</div>
 
 			<Tip content={`Usuń z koszyka`} className={`item-start ml-auto flex pt-1`}>

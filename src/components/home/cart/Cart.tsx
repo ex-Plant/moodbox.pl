@@ -13,7 +13,11 @@ type PropsT = {
 export default function Cart({ allProducts }: PropsT) {
 	const { cartItems } = useCart();
 
-	const selected = allProducts.filter((el) => cartItems.includes(el.id));
+	const allVariants = allProducts.flatMap((el) => {
+		return el.variants.edges;
+	});
+	console.log(allVariants);
+	const selected = allVariants.filter((el) => cartItems.includes(el.node.id));
 
 	return (
 		<section className={`pb-12 xl:pb-20`}>
