@@ -1,16 +1,20 @@
 'use client';
 
-import LogoSvg from '@/components/common/Logo';
+import Loader from '@/components/common/Loader';
 import { Button } from '@/components/ui/button';
 import { tr } from '@/lib/translations/pl';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function Hero() {
+	const [isVideoReady, setIsVideoReady] = useState(false);
+
 	return (
 		<>
 			<div className={`relative min-h-[600px]`}>
-				<div className={`pointer-events-none absolute inset-0 flex items-center justify-center`}>
-					<LogoSvg asButon={false} className={`animate-bounce duration-500`} />
+				<div className={cn(`absolute inset-0`, isVideoReady && 'hidden')}>
+					<Loader />
 				</div>
 				<>
 					<video
@@ -20,6 +24,9 @@ export default function Hero() {
 						className={`relative h-screen min-h-[600px] w-full object-cover xl:w-screen`}
 						src='/moodbox _intro.mp4'
 						loop={true}
+						// onLoadedData={() => setIsVideoReady(true)}
+						// onCanPlay={() => setIsVideoReady(true)}
+						// onPlaying={() => setIsVideoReady(true)}
 					/>
 					<div className={`bg-mood-dark-brown absolute inset-0 opacity-10`}></div>
 
