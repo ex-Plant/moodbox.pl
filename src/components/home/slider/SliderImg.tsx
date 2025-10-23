@@ -24,7 +24,7 @@ export default function SliderImg({ variant, fullScreen, selectable }: PropsT) {
 	}
 
 	return (
-		<div className={cn(`relative mx-auto aspect-square max-h-[50svh] rounded`)}>
+		<div className={cn(`relative mx-auto aspect-square rounded`)}>
 			{src && (
 				<Image
 					// data-pin-nopin='true'

@@ -85,7 +85,7 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 		<>
 			<div
 				className={cn(
-					`xPaddings mx-auto max-w-[1440px]`,
+					`xPaddings mx-auto h-full max-h-[80vh] max-w-[1440px] overflow-y-auto`,
 					swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0'
 				)}
 			>
@@ -93,7 +93,10 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
 					<button
 						disabled={!swiperIsReady ? false : !navigationActive}
-						className={`translate-y-[-25px] pr-8 disabled:opacity-20`}
+						className={cn(
+							`translate-y-[-25px] pr-8 disabled:opacity-20`,
+							isFullScreen ? `hidden lg:block` : ''
+						)}
 						onClick={() => swiper?.slidePrev()}
 					>
 						<ChevronLeft
@@ -118,7 +121,10 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 
 					<button
 						disabled={!swiperIsReady ? false : !navigationActive}
-						className={`translate-y-[-25px] pl-8 disabled:opacity-20`}
+						className={cn(
+							`translate-y-[-25px] pl-8 disabled:opacity-20`,
+							isFullScreen ? `hidden lg:block` : ''
+						)}
 						onClick={() => swiper?.slideNext()}
 					>
 						<ChevronRight

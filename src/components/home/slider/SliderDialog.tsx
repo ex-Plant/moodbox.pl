@@ -19,7 +19,7 @@ export default function SliderDialog({
 }: SliderDialogT) {
 	return (
 		<Dialog open={fullScreenDialogOpen} onOpenChange={setFullScreenDialogOpen}>
-			<DialogContent>
+			<DialogContent className={``}>
 				<DialogHeader>
 					<DialogTitle></DialogTitle>
 					<DialogDescription></DialogDescription>
