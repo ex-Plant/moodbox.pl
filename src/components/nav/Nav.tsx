@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 export default function Nav() {
 	const [isOnTop, setIsOnTop] = useState(true);
 
-	const animDuration = 'duration-500';
+	const animDuration = 'duration-300';
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
@@ -27,8 +27,8 @@ export default function Nav() {
 		<nav className={`xPaddings pointer-events-none fixed top-0 right-0 left-0 z-10 mx-auto max-w-[1440px]`}>
 			<div
 				className={cn(
-					`relative flex h-16 grid-cols-12 items-center justify-between border-b xl:grid xl:h-20`,
-					isOnTop ? 'border-background' : 'border-transparent',
+					`relative flex grid-cols-12 items-center justify-between border-b xl:grid`,
+					isOnTop ? 'border-background h-16 xl:h-20' : 'h-14 border-transparent',
 					animDuration
 				)}
 			>
@@ -36,7 +36,7 @@ export default function Nav() {
 					<div
 						className={cn(
 							`absolute top-0 bottom-0 left-0 flex items-center`,
-							isOnTop ? `opacity-100` : `opacity-0`,
+							isOnTop ? `translate-x-0 opacity-100` : `translate-x-[-50vw] opacity-0`,
 							animDuration
 						)}
 					>
