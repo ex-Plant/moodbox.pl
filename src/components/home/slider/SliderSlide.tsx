@@ -7,8 +7,12 @@ import React, { useState } from 'react';
 type PropsT = { slide: ProductT; selectable: boolean; fullScreen: boolean; toggleFullScreen: () => void };
 
 export default function SliderSlide({ slide, selectable, fullScreen, toggleFullScreen }: PropsT) {
-	const { title, productType, description, variants } = slide;
 	const [selected, setSelected] = useState<ProductVariantT>(slide.variants.edges[0].node);
+
+	let title = selected.title;
+	if (selected.title === 'Default Title') {
+		title = slide.title;
+	}
 
 	return (
 		<article className={``}>
@@ -19,7 +23,7 @@ export default function SliderSlide({ slide, selectable, fullScreen, toggleFullS
 				fullScreen={fullScreen}
 				selected={selected}
 				setSelected={setSelected}
-				variants={variants.edges}
+				variants={slide.variants.edges}
 			/>
 
 			<div>
@@ -29,10 +33,10 @@ export default function SliderSlide({ slide, selectable, fullScreen, toggleFullS
 						fullScreen ? 'text-[20px]' : ''
 					)}
 				>
-					{productType}
+					{selected.product?.productType}
 				</p>
 				<p className={cn(`line-clamp-1 text-[14px] leading-tight font-bold`, fullScreen ? 'text-[28px]' : '')}>
-					{description}
+					{selected.product?.description}
 				</p>
 				<h4
 					className={cn(
