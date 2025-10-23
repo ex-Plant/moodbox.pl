@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 export default function Nav() {
 	const [isOnTop, setIsOnTop] = useState(true);
 
-	const animDuration = 'duration-300';
+	const animDuration = 'duration-500';
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
@@ -49,7 +49,14 @@ export default function Nav() {
 							animDuration
 						)}
 					>
-						<LogoSvg className={`h-10`} asButon={true} />
+						<LogoSvg
+							className={cn(
+								`h-10`,
+								isOnTop ? `translate-y-[-200px] rotate-360` : `translate-y-0 rotate-0`,
+								animDuration
+							)}
+							asButon={true}
+						/>
 					</div>
 				</Link>
 				<NavItem
