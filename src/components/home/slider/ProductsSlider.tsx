@@ -31,7 +31,8 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 	const [activeSlide, setActiveSlide] = useState(0);
 
 	const { cartItems } = useCart();
-	const selectedWithinCatLen = slides.filter((slide) => cartItems.includes(slide.id)).length ?? 0;
+	const allVariants = slides.flatMap((el) => el.variants.edges);
+	const selectedWithinCatLen = allVariants.filter((variant) => cartItems.includes(variant.node.id)).length ?? 0;
 	const isMaxMd = useIsMaxMd();
 	const isSm = useIsSm();
 

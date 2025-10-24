@@ -18,6 +18,7 @@ export default function SliderImg({ variant, fullScreen, selectable }: PropsT) {
 	const src = variant.image?.url;
 
 	function toggle() {
+		console.log(`toggle`);
 		if (!selectable && !checked) return;
 		if (checked) return deleteCartItem(variant.id);
 		addCartItem(variant.id);

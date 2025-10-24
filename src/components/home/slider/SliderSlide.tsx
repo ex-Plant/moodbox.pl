@@ -19,12 +19,6 @@ export default function SliderSlide({ slide, selectable, fullScreen, toggleFullS
 			<div onClick={toggleFullScreen} className={cn(`mx-auto h-full`, !fullScreen && `cursor-zoom-in`)}>
 				<SliderImg variant={selected} selectable={selectable} fullScreen={fullScreen} />
 			</div>
-			<Thumbnails
-				fullScreen={fullScreen}
-				selected={selected}
-				setSelected={setSelected}
-				variants={slide.variants.edges}
-			/>
 
 			<div>
 				<p
@@ -47,6 +41,12 @@ export default function SliderSlide({ slide, selectable, fullScreen, toggleFullS
 					{title}
 				</h4>
 			</div>
+			<Thumbnails
+				fullScreen={fullScreen}
+				selected={selected}
+				setSelected={setSelected}
+				variants={slide.variants.edges}
+			/>
 		</article>
 	);
 }

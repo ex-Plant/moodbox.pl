@@ -16,7 +16,6 @@ export default function Cart({ allProducts }: PropsT) {
 	const allVariants = allProducts.flatMap((el) => {
 		return el.variants.edges;
 	});
-	console.log(allVariants);
 	const selected = allVariants.filter((el) => cartItems.includes(el.node.id));
 
 	return (
