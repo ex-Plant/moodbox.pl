@@ -42,16 +42,23 @@ export default function SliderImg({ variant, fullScreen, selectable }: PropsT) {
 				/>
 			)}
 			<Tip disabled={selectable || checked} content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
-				<Checkbox
-					onClick={(e) => e.stopPropagation()}
-					className={cn(
-						`absolute top-2 right-2 z-10 size-6`,
-						fullScreen && `top-4 right-4 size-8 xl:size-10`,
-						!selectable && !checked && 'cursor-not-allowed'
-					)}
-					checked={checked}
-					onCheckedChange={toggle}
-				/>
+				<div
+					role={`button`}
+					onClick={(e) => {
+						e.stopPropagation();
+						toggle();
+					}}
+					className={cn(`absolute top-0 right-0 z-10 p-2`, fullScreen && `top-0 right-0 p-4`)}
+				>
+					<Checkbox
+						className={cn(
+							`h-full w-full`,
+							fullScreen ? 'size-8 xl:size-10' : 'size-6',
+							!selectable && !checked ? `cursor-not-allowed` : 'cursor-pointer'
+						)}
+						checked={checked}
+					/>
+				</div>
 			</Tip>
 		</div>
 	);
