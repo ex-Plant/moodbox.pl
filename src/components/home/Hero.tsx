@@ -1,32 +1,26 @@
 'use client';
 
-import Loader from '@/components/common/Loader';
 import { Button } from '@/components/ui/button';
 import { tr } from '@/lib/translations/pl';
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useState } from 'react';
+import LogoSvg from '@/components/common/Logo';
 
 export default function Hero() {
-	const [isVideoReady, setIsVideoReady] = useState(false);
 
 	return (
 		<>
 			<div className={`relative min-h-[600px]`}>
-				<div className={cn(`absolute inset-0`, isVideoReady && 'hidden')}>
-					<Loader />
+				<div className={`absolute pointer-events-none flex inset-0 items-center justify-center`}>
+					<LogoSvg asButon={false} className={`animate-bounce duration-500`} />
 				</div>
 				<>
 					<video
 						playsInline={true}
 						muted={true}
 						autoPlay={true}
-						className={`relative h-screen min-h-[600px] w-full object-cover xl:w-screen`}
+						className={`relative h-screen min-h-[600px] w-full object-cover xl:w-screen  `}
 						src='/moodbox _intro.mp4'
 						loop={true}
-						// onLoadedData={() => setIsVideoReady(true)}
-						// onCanPlay={() => setIsVideoReady(true)}
-						// onPlaying={() => setIsVideoReady(true)}
 					/>
 					<div className={`bg-mood-dark-brown absolute inset-0 opacity-10`}></div>
 
@@ -46,8 +40,11 @@ export default function Hero() {
 							</div>
 
 							<div className={`pt-12 xl:pt-28`}>
-								<Button asChild={true} variant={`mood`} size={`sm`}>
-									<Link href='#products' className={`cursor-pointer`}>
+								<Button asChild={true}
+												variant={`mood`}
+												size={`sm`}>
+									<Link href='#products'
+												className={`cursor-pointer`}>
 										{tr.heroButton}
 									</Link>
 								</Button>

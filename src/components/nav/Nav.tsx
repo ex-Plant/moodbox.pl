@@ -4,13 +4,13 @@ import LogoSvg from '@/components/common/Logo';
 import LogoText from '@/components/common/LogoText';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { UrlObject } from 'node:url';
 import { useEffect, useState } from 'react';
+import NavItem from '@/components/nav/NavItem';
 
 export default function Nav() {
 	const [isOnTop, setIsOnTop] = useState(true);
 
-	const animDuration = 'duration-500';
+	const animDuration = 'duration-200';
 
 	useEffect(() => {
 		if (typeof window === 'undefined') return;
@@ -74,33 +74,5 @@ export default function Nav() {
 				/>
 			</div>
 		</nav>
-	);
-}
-
-type PropsT = {
-	title: string;
-	href: UrlObject;
-	className?: string;
-	isOnTop: boolean;
-	animationDuration: string;
-};
-
-function NavItem({ title, href, className, isOnTop, animationDuration }: PropsT) {
-	return (
-		<>
-			<Link
-				className={cn(
-					`pointer-events-auto col-span-1 text-right text-white`,
-					isOnTop ? 'opacity-100' : 'opacity-0',
-					animationDuration,
-					className
-				)}
-				href={href}
-			>
-				<span className={cn(`border-b border-transparent delay-100 hover:border-white`, animationDuration)}>
-					{title}
-				</span>
-			</Link>
-		</>
 	);
 }

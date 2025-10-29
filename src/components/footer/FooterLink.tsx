@@ -12,7 +12,7 @@ export default function FooterLink({ title, href, className }: PropsT) {
 	return (
 		<>
 			<Link className={`font-normal`} href={href}>
-				<span className={cn(`hover:border-mood-dark-brown border-b border-transparent delay-100 duration-500`, className)}>
+				<span className={cn(`hover:border-mood-dark-brown border-b border-transparent delay-200 duration-200 pb-0.5`, className)}>
 					{title}
 				</span>
 			</Link>
