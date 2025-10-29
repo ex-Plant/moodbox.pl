@@ -26,7 +26,13 @@ export default function Footer() {
 						/>
 					</div>
 				</FooterCat>
-				<FooterCat title={'Kontakt'} className={``} />
+				<FooterCat title={'Kontakt'} className={``} >
+					<FooterLink
+						href={{ pathname: 'mailto:hello@moodbox.pl', hash: '' }}
+						title={'hello@moodbox.pl'}
+						className={'lowercase'}
+					/>
+				</FooterCat>
 				<FooterCat title={'Newsletter'} className={'xl:col-start-9'} />
 			</div>
 			<div className={`pointer-events-none flex items-center justify-center py-4 xl:hidden`}>
