@@ -1,16 +1,12 @@
-22/10
-- ✅ fonts
-- ✅ favicon
-- ✅ video
-- ✅ disable toggling form
-- ✅ pinterest extension
-
-- logo
-- new tiles layout
+24/10
+ - sprawdzić / podpiac koszyk
 
 
-
-
+tematy do przegadania
+- jak oznaczamy produkty które sa niedostepne - tymczasowo / na stałe
+- czy wyswieltac tylko aktywne produkty
+- dodac kategorie do testow koszyka
+- how to chain animations in framer motion
 
 
 
@@ -22,8 +18,7 @@
 
 
 
-
-
+   
 Lista rzeczy których nie ogarnalem na etapie rozmawiania o projekcie
 - favicony
 - 

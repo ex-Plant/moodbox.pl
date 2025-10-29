@@ -6,7 +6,7 @@ type PropsT = {
 	productsByCollection: { collection: string; handle: string; products: ProductT[] }[];
 };
 
-export default function Home({ productsByCollection }: PropsT) {
+export default function ProductsListing({ productsByCollection }: PropsT) {
 	const allProducts = productsByCollection.flatMap((collection) => collection.products);
 
 	return (

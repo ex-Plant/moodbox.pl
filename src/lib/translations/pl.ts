@@ -5,7 +5,7 @@ export const tr = {
 	icons: {
 		chooseSamples: 'Wybierasz próbki',
 		fillForm: 'Wypełniasz formularz',
-		payBox: 'Opłacasz box 49 zl ',
+		payBox: 'Opłacasz box 39 zl ',
 		receive: 'Otrzymujesz w 72h',
 	},
 };

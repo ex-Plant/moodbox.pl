@@ -1,10 +1,8 @@
 'use client';
 
 import LogoSvg from '@/components/common/Logo';
-import LogoSquares from '@/components/common/LogoSquares';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { UrlObject } from 'node:url';
+import FooterCat from '@/components/footer/FooterCat';
+import FooterLink from '@/components/footer/FooterLink';
 
 export default function Footer() {
 	return (
@@ -35,38 +33,5 @@ export default function Footer() {
 				<LogoSvg asButon={true} />
 			</div>
 		</footer>
-	);
-}
-
-type T = {
-	title: string;
-	className?: string;
-	children?: React.ReactNode;
-};
-
-function FooterCat({ title, className, children }: T) {
-	return (
-		<div className={cn(`space-y-2 font-bold uppercase xl:col-span-3`, className)}>
-			<h3>{title}</h3>
-			{children}
-		</div>
-	);
-}
-
-type PropsT = {
-	title: string;
-	href: UrlObject;
-	className?: string;
-};
-
-function FooterLink({ title, href }: PropsT) {
-	return (
-		<>
-			<Link className={`font-normal`} href={href}>
-				<span className={`hover:border-mood-dark-brown border-b border-transparent delay-100 duration-500`}>
-					{title}
-				</span>
-			</Link>
-		</>
 	);
 }
