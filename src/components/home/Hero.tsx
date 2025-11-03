@@ -1,16 +1,15 @@
 'use client';
 
+import LogoSvg from '@/components/common/Logo';
 import { Button } from '@/components/ui/button';
 import { tr } from '@/lib/translations/pl';
 import Link from 'next/link';
-import LogoSvg from '@/components/common/Logo';
 
 export default function Hero() {
-
 	return (
 		<>
 			<div className={`relative min-h-[600px]`}>
-				<div className={`absolute pointer-events-none flex inset-0 items-center justify-center`}>
+				<div className={`pointer-events-none absolute inset-0 flex items-center justify-center`}>
 					<LogoSvg asButon={false} className={`animate-bounce duration-500`} />
 				</div>
 				<>
@@ -18,7 +17,7 @@ export default function Hero() {
 						playsInline={true}
 						muted={true}
 						autoPlay={true}
-						className={`relative h-screen min-h-[600px] w-full object-cover xl:w-screen  `}
+						className={`relative h-screen min-h-[600px] w-full object-cover xl:w-screen`}
 						src='/moodbox _intro.mp4'
 						loop={true}
 					/>
@@ -28,23 +27,22 @@ export default function Hero() {
 						className={`xPaddings absolute inset-0 mx-auto flex max-w-[1440px] grid-cols-12 flex-col pt-[180px] xl:grid`}
 					>
 						<div className={`col-span-11 flex flex-col items-end text-white`}>
-							<div className={`text-[2.5rem] leading-tight text-[#EEEBE3] xl:text-[60px]`}>
-								<div className={``}>{'Twoje materiały w '}</div>
-								<div className={`text-[2.5rem] text-[#EEEBE3] xl:text-[60px]`}>
-									<span className={`pr-3 font-bold`}>jednym</span>
-									<span>boxie</span>
-								</div>
-								<div className={`pt-4 text-[1.5rem] text-[#f6f4f0] xl:text-[24px]`}>
-									{tr.heroSubtitle}
-								</div>
+							<div className={`lead ing-tight text-[2.5rem] text-[#EEEBE3] xl:text-[60px]`}>
+								<h1>
+									<span className={`block`}>{'Twoje materiały w '}</span>
+									<span className={`block text-[2.5rem] text-[#EEEBE3] xl:text-[60px]`}>
+										<span className={`pr-3 font-bold`}>jednym</span>
+										<span>boxie</span>
+									</span>
+									<span className={`block pt-4 text-[1.5rem] text-[#f6f4f0] xl:text-[24px]`}>
+										{tr.heroSubtitle}
+									</span>
+								</h1>
 							</div>
 
 							<div className={`pt-12 xl:pt-28`}>
-								<Button asChild={true}
-												variant={`mood`}
-												size={`sm`}>
-									<Link href='#products'
-												className={`cursor-pointer`}>
+								<Button asChild={true} variant={`mood`} size={`sm`}>
+									<Link href='#products' className={`cursor-pointer`}>
 										{tr.heroButton}
 									</Link>
 								</Button>
