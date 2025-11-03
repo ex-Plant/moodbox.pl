@@ -20,9 +20,7 @@ export default function FormFooter() {
 	const missingConsents = !consent1 || !consent2;
 	const emptyCart = cartItems.length < 1;
 	let text = 'Zaznacz wszystkie wymagane zgody';
-	if (emptyCart) {
-		text = 'Koszyk jest pusty';
-	}
+	if (emptyCart) text = 'Koszyk jest pusty';
 
 	return (
 		<>

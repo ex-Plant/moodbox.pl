@@ -1,6 +1,3 @@
-import { Route } from 'next';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
