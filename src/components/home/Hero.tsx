@@ -27,16 +27,14 @@ export default function Hero() {
 						className={`xPaddings absolute inset-0 mx-auto flex max-w-[1440px] grid-cols-12 flex-col pt-[180px] xl:grid`}
 					>
 						<div className={`col-span-11 flex flex-col items-end text-white`}>
-							<div className={`lead ing-tight text-[2.5rem] text-[#EEEBE3] xl:text-[60px]`}>
+							<div className={`lead ing-tight text-[2.5rem] text-[#EEEBE3] xl:text-[3.75rem]`}>
 								<h1>
 									<span className={`block`}>{'Twoje materiały w '}</span>
-									<span className={`block text-[2.5rem] text-[#EEEBE3] xl:text-[60px]`}>
+									<span className={`block text-[2.5rem] text-[#EEEBE3] xl:text-[3.75rem]`}>
 										<span className={`pr-3 font-bold`}>jednym</span>
 										<span>boxie</span>
 									</span>
-									<span className={`block pt-4 text-[1.5rem] text-[#f6f4f0] xl:text-[24px]`}>
-										{tr.heroSubtitle}
-									</span>
+									<span className={`block pt-4 text-[1.5rem] text-[#f6f4f0]`}>{tr.heroSubtitle}</span>
 								</h1>
 							</div>
 

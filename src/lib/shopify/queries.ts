@@ -157,12 +157,16 @@ export const GET_ALL_COLLECTIONS_QUERY = `
 `;
 
 export const CREATE_CART_MUTATION = `
-	mutation CreateCart($lineItems: [CartLineInput!]) {
-		cartCreate(input: { lines: $lineItems }) {
+	mutation CreateCart($lineItems: [CartLineInput!], $attributes: [AttributeInput!]) {
+		cartCreate(input: { lines: $lineItems, attributes: $attributes }) {
 			cart {
 				id
 				checkoutUrl
 				totalQuantity
+				attributes {
+					key
+					value
+				}
 				lines(first: 100) {
 					edges {
 						node {
@@ -283,61 +287,6 @@ export const ADD_TO_CART_MUTATION = `
 						currencyCode
 					}
 				}
-			}
-		}
-	}
-`;
-
-export const UPDATE_CART_LINES_MUTATION = `
-	mutation UpdateCartLines($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
-		cartLinesUpdate(cartId: $cartId, lines: $lines) {
-			cart {
-				id
-				totalQuantity
-				lines(first: 100) {
-					edges {
-						node {
-							id
-							quantity
-						}
-					}
-				}
-			}
-		}
-	}
-`;
-
-export const REMOVE_FROM_CART_MUTATION = `
-	mutation RemoveFromCart($cartId: ID!, $lineIds: [ID!]!) {
-		cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
-			cart {
-				id
-				totalQuantity
-			}
-		}
-	}
-`;
-
-export const APPLY_DISCOUNT_MUTATION = `
-	mutation ApplyDiscount($cartId: ID!, $discountCode: String!) {
-		cartDiscountCodesUpdate(cartId: $cartId, discountCodes: [$discountCode]) {
-			cart {
-				id
-				checkoutUrl
-				cost {
-					subtotalAmount {
-						amount
-						currencyCode
-					}
-					totalAmount {
-						amount
-						currencyCode
-					}
-				}
-			}
-			userErrors {
-				field
-				message
 			}
 		}
 	}

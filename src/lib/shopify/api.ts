@@ -79,14 +79,17 @@ export async function getCollectionByHandle(handle: string): Promise<CollectionT
 	return response.data.collection;
 }
 
-export async function createCart(lineItems: { merchandiseId: string; quantity: number }[]): Promise<CartT> {
+export async function createCart(
+	lineItems: { merchandiseId: string; quantity: number }[],
+	attributes?: { key: string; value: string }[]
+): Promise<CartT> {
 	const response = await shopifyFetch<{
 		cartCreate: {
 			cart: CartT;
 		};
 	}>({
 		query: CREATE_CART_MUTATION,
-		variables: { lineItems },
+		variables: { lineItems, attributes: attributes || [] },
 		cache: 'no-store',
 	});
 
@@ -95,4 +98,42 @@ export async function createCart(lineItems: { merchandiseId: string; quantity: n
 
 export async function getFlatFeeProduct(): Promise<ProductT | null> {
 	return getProductByHandle('box-stala-cena');
+}
+
+export async function proceedToCheckout(variantIds: string[]) {
+	try {
+		// Get the flat fee product
+		const flatFeeProduct = await getFlatFeeProduct();
+		if (!flatFeeProduct?.variants?.edges?.[0]?.node?.id) {
+			throw new Error('Failed to get flat fee product');
+		}
+
+		// Create line items from variant IDs
+		const lineItems = variantIds.map((id) => ({
+			merchandiseId: id,
+			quantity: 1, // or get quantity from your cart if you have it
+		}));
+
+		// Add the flat fee product variant
+		// lineItems.push({
+		// 	merchandiseId: flatFeeProduct.variants.edges[0].node.id,
+		// 	quantity: 1,
+		// });
+
+		// Create cart with the items
+		const cart = await createCart(lineItems, [
+			{ key: 'test1', value: 'test1' },
+			{ key: 'test2', value: 'test2' },
+		]);
+
+		// Redirect to Shopify checkout
+		if (cart?.checkoutUrl) {
+			window.location.href = cart.checkoutUrl;
+		} else {
+			throw new Error('Failed to create checkout');
+		}
+	} catch (error) {
+		console.error('Checkout error:', error);
+		// Handle error (show error message to user)
+	}
 }

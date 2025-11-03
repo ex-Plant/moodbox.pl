@@ -26,7 +26,7 @@ export default function RootLayout({
 			<body
 				className={cn(
 					` ${inclusive_Sans.variable} flex min-h-screen flex-col antialiased`,
-					`bg-background relative scroll-smooth xl:flex`
+					`bg-background relative`
 					// `[&_*]:outline [&_*]:outline-[1px] [&_*]:outline-pink-400`
 				)}
 			>

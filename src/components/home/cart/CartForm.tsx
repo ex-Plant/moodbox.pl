@@ -4,54 +4,15 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tip } from '@/components/ui/Tip';
 import useCart from '@/lib/hooks/useCart';
-import { createCart, getFlatFeeProduct } from '@/lib/shopify/api';
+import { proceedToCheckout } from '@/lib/shopify/api';
 import { CircleQuestionMark } from 'lucide-react';
 
 const txt = `Dlaczego prosimy o wypełnienie formularza?
 Informacje o projekcie pozwalają nam przekazać producentom wartościowe dane i usprawnić proces dystrybucji próbek. Dzięki temu materiały są dobierane bardziej precyzyjnie, a cały proces zamawiania staje się szybszy i wygodniejszy.
 Twoje dane są chronione i wykorzystywane wyłącznie w celu obsługi zamówienia oraz poprawy jakości usługi.`;
 
-type PropsT = {};
-
-export default function CartForm({}: PropsT) {
+export default function CartForm() {
 	const { cartItems } = useCart();
-
-	// src/lib/shopify/checkout.ts
-
-	async function proceedToCheckout(variantIds: string[]) {
-		try {
-			// Get the flat fee product
-			const flatFeeProduct = await getFlatFeeProduct();
-			if (!flatFeeProduct?.variants?.edges?.[0]?.node?.id) {
-				throw new Error('Failed to get flat fee product');
-			}
-
-			// Create line items from variant IDs
-			const lineItems = variantIds.map((id) => ({
-				merchandiseId: id,
-				quantity: 1, // or get quantity from your cart if you have it
-			}));
-
-			// Add the flat fee product variant
-			lineItems.push({
-				merchandiseId: flatFeeProduct.variants.edges[0].node.id,
-				quantity: 1,
-			});
-
-			// Create cart with the items
-			const cart = await createCart(lineItems);
-
-			// Redirect to Shopify checkout
-			if (cart?.checkoutUrl) {
-				window.location.href = cart.checkoutUrl;
-			} else {
-				throw new Error('Failed to create checkout');
-			}
-		} catch (error) {
-			console.error('Checkout error:', error);
-			// Handle error (show error message to user)
-		}
-	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -60,7 +21,6 @@ export default function CartForm({}: PropsT) {
 			// Show error to user
 			return;
 		}
-
 		try {
 			await proceedToCheckout(cartItems);
 		} catch (error) {
@@ -143,15 +103,8 @@ export default function CartForm({}: PropsT) {
 			<FormConsents />
 			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 				<div className={`grid gap-2`}>
-					<div className={`flex items-start xl:items-center`}>
-						<Input
-							className={`mr-4 h-auto w-fit py-4 pr-0 placeholder:text-[20px] placeholder:text-black xl:text-[20px]`}
-							placeholder={'Kod rabatowy'}
-						/>
-
-						<span className={`text-[32px] text-nowrap xl:text-[40px]`}>39 PLN</span>
-					</div>
-					<Button onClick={handleSubmit} variant={'mood'} size={`lg`} className={`w-fit xl:w-full`}>
+					<p className={`ml-auto text-[2rem] text-nowrap xl:text-[2.5rem]`}>39 PLN</p>
+					<Button onClick={handleSubmit} variant={'mood'} size={`lg`} className={`ml-auto w-fit xl:w-full`}>
 						Przejdź do płatności
 					</Button>
 				</div>
