@@ -5,7 +5,7 @@ type PropsT = {
 	selectedWithinCatLen: number;
 };
 
-export default function SliderHeader({ title, selectedWithinCatLen }: PropsT) {
+export default function CollectionTitle({ title, selectedWithinCatLen }: PropsT) {
 	return (
 		<header className={`text-mood-dark-gray flex items-center pb-6 text-[24px] xl:pl-4`}>
 			<h3 className={`font-bold`}>{title}</h3>

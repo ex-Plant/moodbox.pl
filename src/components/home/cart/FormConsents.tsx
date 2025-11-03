@@ -9,7 +9,7 @@ export default function FormConsents() {
 			</div>
 			<div className={`flex items-center  gap-4`}>
 				<Checkbox />
-				<p className={`leading-none`}>
+				<p className={``}>
 					Wyrażam zgodę na kontakt w sprawie realizacji zamówienia oraz otrzymywania informacji związanych z obsług
 					zamówienia
 				</p>

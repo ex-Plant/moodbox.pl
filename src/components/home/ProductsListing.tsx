@@ -1,5 +1,5 @@
 import Cart from '@/components/home/cart/Cart';
-import ProductsSlider from '@/components/home/slider/ProductsSlider';
+import Collection from '@/components/home/slider/Collection';
 import { ProductT } from '@/lib/shopify/types';
 import { Suspense } from 'react';
 type PropsT = {
@@ -14,7 +14,7 @@ export default function ProductsListing({ productsByCollection }: PropsT) {
 			<section id={'products'} className={`space-y-4 pb-20`}>
 				<Suspense fallback={null}>
 					{productsByCollection.map((collection) => (
-						<ProductsSlider
+						<Collection
 							key={collection.collection}
 							slides={collection.products}
 							title={collection.collection}

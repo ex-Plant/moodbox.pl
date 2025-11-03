@@ -1,4 +1,4 @@
-import ProductsSlider from '@/components/home/slider/ProductsSlider';
+import Collection from '@/components/home/slider/Collection';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ProductT } from '@/lib/shopify/types';
 import { Dispatch, SetStateAction } from 'react';
@@ -10,7 +10,7 @@ type SliderDialogT = {
 	slides: ProductT[];
 	initSlide: number;
 };
-export default function SliderDialog({
+export default function ProductsDialog({
 	setFullScreenDialogOpen,
 	fullScreenDialogOpen,
 	title,
@@ -24,7 +24,7 @@ export default function SliderDialog({
 					<DialogTitle></DialogTitle>
 					<DialogDescription></DialogDescription>
 				</DialogHeader>
-				<ProductsSlider slides={slides} title={title} isFullScreen initSlide={initSlide} />
+				<Collection slides={slides} title={title} isFullScreen initSlide={initSlide} />
 			</DialogContent>
 		</Dialog>
 	);

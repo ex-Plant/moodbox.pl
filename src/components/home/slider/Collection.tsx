@@ -1,8 +1,8 @@
 'use client';
 
-import SliderDialog from '@/components/home/slider/SliderDialog';
-import SliderHeader from '@/components/home/slider/SliderHeader';
-import SliderSlide from '@/components/home/slider/SliderSlide';
+import ProductsDialog from '@/components/home/slider/ProductsDialog';
+import CollectionTitle from '@/components/home/slider/CollectionTitle';
+import Product from '@/components/home/slider/Product';
 import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
 import { ProductT } from '@/lib/shopify/types';
@@ -24,13 +24,15 @@ type PropsT = {
 	className?: string;
 };
 
-export default function ProductsSlider({ slides, title, isFullScreen, initSlide = 0, className }: PropsT) {
+export default function Collection({ slides, title, isFullScreen, initSlide = 0, className }: PropsT) {
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
 	const [activeSlide, setActiveSlide] = useState(0);
 
 	const { cartItems } = useCart();
+
+	console.log(slides, 'slides');
 	const allVariants = slides.flatMap((el) => el.variants.edges);
 	const selectedWithinCatLen = allVariants.filter((variant) => cartItems.includes(variant.node.id)).length ?? 0;
 	const isMaxMd = useIsMaxMd();
@@ -91,7 +93,7 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 					isFullScreen && 'max-h-[80vh] overflow-y-auto'
 				)}
 			>
-				<SliderHeader selectedWithinCatLen={selectedWithinCatLen} title={title} />
+				<CollectionTitle selectedWithinCatLen={selectedWithinCatLen} title={title} />
 				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
 					<button
 						disabled={!swiperIsReady ? false : !navigationActive}
@@ -111,7 +113,7 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 					<Swiper {...swiperConfig} className={`mx-9 w-full`}>
 						{slides.map((slide, i) => (
 							<SwiperSlide key={i} className={``}>
-								<SliderSlide
+								<Product
 									slide={slide}
 									selectable={selectedWithinCatLen < 2}
 									fullScreen={isFullScreen}
@@ -139,7 +141,7 @@ export default function ProductsSlider({ slides, title, isFullScreen, initSlide 
 				</div>
 			</div>
 
-			<SliderDialog
+			<ProductsDialog
 				title={title}
 				slides={slides}
 				fullScreenDialogOpen={fullScreenDialogOpen}

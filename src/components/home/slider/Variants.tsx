@@ -1,4 +1,4 @@
-import ThumbnailSingle from '@/components/home/slider/ThumbnailSingle';
+import Variant from '@/components/home/slider/Variant';
 import { ProductVariantT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import React, { Dispatch } from 'react';
@@ -10,7 +10,7 @@ type PropsT = {
 	variants: Array<{ node: ProductVariantT }>;
 };
 
-export default function Thumbnails({ fullScreen, variants, setSelected, selected }: PropsT) {
+export default function Variants({ fullScreen, variants, setSelected, selected }: PropsT) {
 	function selectVariant(variant: { node: ProductVariantT }) {
 		setSelected(variant.node);
 	}
@@ -24,7 +24,7 @@ export default function Thumbnails({ fullScreen, variants, setSelected, selected
 		>
 			{variants.map((el, i) => (
 				<button className={cn(`aspect-square w-full cursor-pointer`)} key={i} onClick={() => selectVariant(el)}>
-					<ThumbnailSingle variant={el.node} fullScreen={fullScreen} selected={selected} />
+					<Variant variant={el.node} fullScreen={fullScreen} selected={selected} />
 				</button>
 			))}
 		</div>

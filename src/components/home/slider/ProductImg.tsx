@@ -1,7 +1,7 @@
 import { Tip } from '@/components/ui/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT, ProductVariantT } from '@/lib/shopify/types';
+import { ProductVariantT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
@@ -12,7 +12,7 @@ type PropsT = {
 	selectable: boolean;
 };
 
-export default function SliderImg({ variant, fullScreen, selectable }: PropsT) {
+export default function ProductImg({ variant, fullScreen, selectable }: PropsT) {
 	const { addCartItem, deleteCartItem, cartItems } = useCart();
 	const checked = cartItems.includes(variant.id);
 	const src = variant.image?.url;
