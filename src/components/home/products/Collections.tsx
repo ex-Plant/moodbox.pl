@@ -1,3 +1,4 @@
+import Delimiter from '@/components/common/Delimiter';
 import Cart from '@/components/home/cart/Cart';
 import Collection from '@/components/home/products/Collection';
 import { ProductT } from '@/lib/shopify/types';
@@ -7,25 +8,19 @@ type PropsT = {
 };
 
 export default function Collections({ productsByCollection }: PropsT) {
-	const allProducts = productsByCollection.flatMap((collection) => collection.products);
-
 	return (
-		<>
-			<section id={'products'} className={`space-y-4 pb-20`}>
-				<Suspense fallback={null}>
-					{productsByCollection.map((collection) => (
-						<Collection
-							key={collection.collection}
-							slides={collection.products}
-							title={collection.collection}
-							isFullScreen={false}
-						/>
-					))}
-				</Suspense>
-			</section>
+		<section id={'collections'} className={`space-y-4 pb-20`}>
+			<Delimiter title={'Katalog próbek'} />
 			<Suspense fallback={null}>
-				<Cart allProducts={allProducts} />
+				{productsByCollection.map((collection) => (
+					<Collection
+						key={collection.collection}
+						slides={collection.products}
+						title={collection.collection}
+						isFullScreen={false}
+					/>
+				))}
 			</Suspense>
-		</>
+		</section>
 	);
 }

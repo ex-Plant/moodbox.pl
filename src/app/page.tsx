@@ -1,12 +1,15 @@
 import Delimiter from '@/components/common/Delimiter';
 import DelimiterFullW from '@/components/common/DelimiterFullW';
+import Cart from '@/components/home/cart/Cart';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/iconsSection/Icons';
 import Collections from '@/components/home/products/Collections';
 import { getProductsByCollection } from '@/lib/shopify/api';
+import { Suspense } from 'react';
 
 export default async function HomePage() {
 	const productsByCollection = await getProductsByCollection();
+	const allProducts = productsByCollection.flatMap((collection) => collection.products);
 
 	return (
 		<>
@@ -14,8 +17,10 @@ export default async function HomePage() {
 			<Delimiter className={`flex justify-center`} />
 			<DelimiterFullW title={`Od wyboru do dostawy - prościej się nie da`} />
 			<Icons />
-			<Delimiter title={'Katalog próbek'} />
 			<Collections productsByCollection={productsByCollection} />
+			<Suspense fallback={null}>
+				<Cart allProducts={allProducts} />
+			</Suspense>
 		</>
 	);
 }

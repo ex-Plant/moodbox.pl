@@ -42,7 +42,7 @@ export default function Hero() {
 
 							<div className={`pt-12 xl:pt-28`}>
 								<Button asChild={true} variant={`mood`} size={`sm`}>
-									<Link href='#products' className={`cursor-pointer`}>
+									<Link href='#collections' className={`cursor-pointer`}>
 										{tr.heroButton}
 									</Link>
 								</Button>
