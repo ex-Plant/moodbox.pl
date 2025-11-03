@@ -1,10 +1,10 @@
-import { FormT, proceedToCheckout } from '@/app/actions/proceedToCheckoutA';
+import { proceedToCheckout } from '@/app/actions/proceedToCheckoutA';
 import LogoSvg from '@/components/common/Logo';
-import FormConsents from '@/components/home/cart/FormConsents';
-import { Button } from '@/components/ui/button';
+import FormFooter from '@/components/home/cart/FormFooter';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tip } from '@/components/ui/Tip';
+import { initData } from '@/lib/CartSchema';
 import useCart from '@/lib/hooks/useCart';
 import { CircleQuestionMark } from 'lucide-react';
 import { useActionState, useState } from 'react';
@@ -12,20 +12,6 @@ import { useActionState, useState } from 'react';
 const txt = `Dlaczego prosimy o wypełnienie formularza?
 Informacje o projekcie pozwalają nam przekazać producentom wartościowe dane i usprawnić proces dystrybucji próbek. Dzięki temu materiały są dobierane bardziej precyzyjnie, a cały proces zamawiania staje się szybszy i wygodniejszy.
 Twoje dane są chronione i wykorzystywane wyłącznie w celu obsługi zamówienia oraz poprawy jakości usługi.`;
-
-const initData: FormT = {
-	company_name: '',
-	nip: '',
-	email: '',
-	website: '',
-	projects_per_year: '',
-	city: '',
-	project_type: '',
-	completion_date: '',
-	project_stage: '',
-	project_area: '',
-	project_budget: '',
-};
 
 export default function CartForm() {
 	const { cartItems } = useCart();
@@ -154,15 +140,8 @@ export default function CartForm() {
 					<input type='hidden' name='project_stage' value={formSelects.project_stage} />
 				</div>
 			</div>
-			<FormConsents />
-			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
-				<div className={`grid gap-2`}>
-					<p className={`ml-auto text-[2rem] text-nowrap xl:text-[2.5rem]`}>39 PLN</p>
-					<Button type={'submit'} variant={'mood'} size={`lg`} className={`ml-auto w-fit xl:w-full`}>
-						Przejdź do płatności
-					</Button>
-				</div>
-			</div>
+			<FormFooter />
+
 			{pending && (
 				<div className={`pointer-events-none absolute inset-0 flex items-center justify-center`}>
 					<LogoSvg asButon={false} className={`animate-bounce duration-500`} />

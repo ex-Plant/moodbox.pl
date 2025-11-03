@@ -1,38 +1,7 @@
 'use server';
+import { ATTRIBUTE_KEY_PL, formSchema, FormT } from '@/lib/CartSchema';
 import { createCart, getProductByHandle } from '@/lib/shopify/api';
 import { redirect } from 'next/navigation';
-
-import { z } from 'zod';
-
-const formSchema = z.object({
-	company_name: z.string().default(''),
-	nip: z.coerce.string().default(''),
-	email: z.string().email().or(z.string().length(0)).default(''),
-	website: z.coerce.string().default(''),
-	projects_per_year: z.coerce.string().default(''),
-	city: z.string().default(''),
-	project_type: z.string().default(''),
-	completion_date: z.string().default(''),
-	project_stage: z.string().default(''),
-	project_area: z.string().default(''),
-	project_budget: z.string().default(''),
-});
-
-const ATTRIBUTE_KEY_PL: Record<keyof FormT, string> = {
-	company_name: 'Nazwa firmy / pracowni',
-	nip: 'NIP',
-	email: 'E-mail',
-	website: 'Strona WWW',
-	projects_per_year: 'Liczba projektów rocznie',
-	city: 'Miejscowość',
-	project_type: 'Typ projektu',
-	completion_date: 'Termin realizacji (MM/RR)',
-	project_stage: 'Etap projektu',
-	project_area: 'Metraż',
-	project_budget: 'Budżet',
-};
-
-export type FormT = z.infer<typeof formSchema>;
 
 export async function proceedToCheckout(cartItems: string[], prevState: FormT, formData: FormData) {
 	const raw = Object.fromEntries(formData.entries());
