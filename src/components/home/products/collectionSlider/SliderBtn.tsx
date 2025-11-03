@@ -14,7 +14,11 @@ export default function SliderBtn({ disabled, onClick, isFullScreen, direction }
 	return (
 		<button
 			disabled={disabled}
-			className={cn(`translate-y-[-25px] pr-8 disabled:opacity-20`, isFullScreen ? `hidden lg:block` : '')}
+			className={cn(
+				`translate-y-[-25px] pr-8 disabled:opacity-20`,
+				isFullScreen ? `hidden lg:block` : '',
+				isFullScreen && disabled && 'disabled:opacity-0'
+			)}
 			onClick={onClick}
 		>
 			{direction === 'left' ? <ChevronLeft className={iconClass} /> : <ChevronRight className={iconClass} />}
