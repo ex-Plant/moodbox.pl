@@ -8,7 +8,6 @@ import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
 import { ProductT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
 import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/css';
@@ -25,7 +24,7 @@ type PropsT = {
 	className?: string;
 };
 
-export default function Collection({ slides, title, isFullScreen, initSlide = 0, className }: PropsT) {
+export default function Collection({ slides, title, isFullScreen, initSlide = 0 }: PropsT) {
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
@@ -35,12 +34,11 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 
 	const allVariants = slides.flatMap((el) => el.variants.edges);
 	const selectedWithinCatLen = allVariants.filter((variant) => cartItems.includes(variant.node.id)).length ?? 0;
+
 	const isMaxMd = useIsMaxMd();
 	const isSm = useIsSm();
-
 	let numberOfVisibleSlides = 6;
 	let spaces = 48;
-
 	if (isSm) {
 		numberOfVisibleSlides = 1;
 		spaces = 0;
@@ -50,8 +48,6 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 	}
 
 	const actualSlidesPerView = isFullScreen ? 1 : numberOfVisibleSlides;
-	const canLoop = slides.length > actualSlidesPerView;
-
 	const navigationActive = isFullScreen ? slides.length > 1 : slides.length > numberOfVisibleSlides;
 
 	const swiperConfig = {
@@ -62,7 +58,7 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 		centeredSlides: false,
 		initialSlide: initSlide,
 
-		loop: canLoop,
+		loop: slides.length > actualSlidesPerView,
 		speed: 250,
 		mousewheel: { forceToAxis: true, releaseOnEdges: true, sensitivity: 3.5 },
 		keyboard: { enabled: true, onlyInViewport: true },

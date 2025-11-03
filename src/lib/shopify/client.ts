@@ -1,3 +1,5 @@
+'use server';
+
 import { ShopifyResponseT } from './types';
 
 const SHOPIFY_STORE_DOMAIN = process.env.SHOPIFY_STOREFRONT_API_URL;
@@ -16,9 +18,8 @@ export async function shopifyFetch<T>({
 	// cache = 'no-cache',
 	tags = [],
 }: ShopifyFetchParamsT): Promise<ShopifyResponseT<T>> {
-	if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
-		throw new Error('❗!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN');
-	}
+	if (!SHOPIFY_STOREFRONT_ACCESS_TOKEN) throw new Error(' ❗SHOPIFY_STOREFRONT_ACCESS_TOKEN');
+	if (!SHOPIFY_STORE_DOMAIN) throw new Error('❗SHOPIFY_STORE_DOMAIN');
 
 	try {
 		const response = await fetch(SHOPIFY_STORE_DOMAIN, {
@@ -44,6 +45,7 @@ export async function shopifyFetch<T>({
 
 		if (json.errors) {
 			console.error('Shopify GraphQL errors:', json.errors);
+			console.error('Shopify GraphQL errors:', JSON.stringify(json.errors, null, 2));
 			throw new Error(json.errors[0]?.message || 'Unknown Shopify API error');
 		}
 

@@ -1,13 +1,10 @@
 import { shopifyFetch } from './client';
 import {
-	ADD_TO_CART_MUTATION,
 	CREATE_CART_MUTATION,
 	GET_ALL_COLLECTIONS_QUERY,
 	GET_ALL_PRODUCTS_QUERY,
 	GET_COLLECTION_BY_HANDLE_QUERY,
 	GET_PRODUCT_BY_HANDLE_QUERY,
-	REMOVE_FROM_CART_MUTATION,
-	UPDATE_CART_LINES_MUTATION,
 } from './queries';
 import { CartT, CollectionT, ProductT } from './types';
 
@@ -96,44 +93,6 @@ export async function createCart(lineItems: { merchandiseId: string; quantity: n
 	return response.data.cartCreate.cart;
 }
 
-export async function addToCart(cartId: string, lines: { merchandiseId: string; quantity: number }[]): Promise<CartT> {
-	const response = await shopifyFetch<{
-		cartLinesAdd: {
-			cart: CartT;
-		};
-	}>({
-		query: ADD_TO_CART_MUTATION,
-		variables: { cartId, lines },
-		cache: 'no-store',
-	});
-
-	return response.data.cartLinesAdd.cart;
-}
-
-export async function updateCartLines(cartId: string, lines: { id: string; quantity: number }[]): Promise<CartT> {
-	const response = await shopifyFetch<{
-		cartLinesUpdate: {
-			cart: CartT;
-		};
-	}>({
-		query: UPDATE_CART_LINES_MUTATION,
-		variables: { cartId, lines },
-		cache: 'no-store',
-	});
-
-	return response.data.cartLinesUpdate.cart;
-}
-
-export async function removeFromCart(cartId: string, lineIds: string[]): Promise<CartT> {
-	const response = await shopifyFetch<{
-		cartLinesRemove: {
-			cart: CartT;
-		};
-	}>({
-		query: REMOVE_FROM_CART_MUTATION,
-		variables: { cartId, lineIds },
-		cache: 'no-store',
-	});
-
-	return response.data.cartLinesRemove.cart;
+export async function getFlatFeeProduct(): Promise<ProductT | null> {
+	return getProductByHandle('box-stala-cena');
 }

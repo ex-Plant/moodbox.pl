@@ -317,3 +317,28 @@ export const REMOVE_FROM_CART_MUTATION = `
 		}
 	}
 `;
+
+export const APPLY_DISCOUNT_MUTATION = `
+	mutation ApplyDiscount($cartId: ID!, $discountCode: String!) {
+		cartDiscountCodesUpdate(cartId: $cartId, discountCodes: [$discountCode]) {
+			cart {
+				id
+				checkoutUrl
+				cost {
+					subtotalAmount {
+						amount
+						currencyCode
+					}
+					totalAmount {
+						amount
+						currencyCode
+					}
+				}
+			}
+			userErrors {
+				field
+				message
+			}
+		}
+	}
+`;
