@@ -22,3 +22,8 @@ tematy do przegadania
 Lista rzeczy których nie ogarnalem na etapie rozmawiania o projekcie
 - favicony
 - 
+
+
+
+- jak oznaczać produkty których aktualnie nie ma
+- 
