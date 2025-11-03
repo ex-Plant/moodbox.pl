@@ -23,5 +23,10 @@ TODO:
 - zablokować koszyk gdy zgody nie sa potwierdzone
 - zablokowac koszyk gdy mniej niz 1 produkt w koszyku
 - przerobic funkcje na nowszy syntax
+- dodać gwiazdkę do pola NIP
+- przekazać dodatkowe dane z formularza do checkoutu
 - error page
 - not found 
+- payload
+- translations
+- 
