@@ -1,4 +1,4 @@
-import Variant from '@/components/home/slider/Variant';
+import Variant from '@/components/home/products/Variant';
 import { ProductVariantT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import React, { Dispatch } from 'react';

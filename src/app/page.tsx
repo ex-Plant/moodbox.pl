@@ -1,8 +1,8 @@
 import Delimiter from '@/components/common/Delimiter';
 import Hero from '@/components/home/Hero';
-import Icons from '@/components/home/Icons';
+import Icons from '@/components/home/iconsSection/Icons';
 import { getProductsByCollection } from '@/lib/shopify/api';
-import ProductsListing from '@/components/home/ProductsListing';
+import Collections from '@/components/home/products/Collections';
 
 export default async function Page() {
 	const productsByCollection = await getProductsByCollection();
@@ -18,7 +18,7 @@ export default async function Page() {
 			</div>
 			<Icons />
 			<Delimiter  title={'Katalog próbek'} />
-			<ProductsListing productsByCollection={productsByCollection} />
+			<Collections productsByCollection={productsByCollection} />
 		</div>
 	);
 }

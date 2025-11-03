@@ -1,12 +1,12 @@
 import Cart from '@/components/home/cart/Cart';
-import Collection from '@/components/home/slider/Collection';
+import Collection from '@/components/home/products/Collection';
 import { ProductT } from '@/lib/shopify/types';
 import { Suspense } from 'react';
 type PropsT = {
 	productsByCollection: { collection: string; handle: string; products: ProductT[] }[];
 };
 
-export default function ProductsListing({ productsByCollection }: PropsT) {
+export default function Collections({ productsByCollection }: PropsT) {
 	const allProducts = productsByCollection.flatMap((collection) => collection.products);
 
 	return (

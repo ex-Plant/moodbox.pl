@@ -1,12 +1,12 @@
-import ProductImg from '@/components/home/slider/ProductImg';
-import Variants from '@/components/home/slider/Variants';
+import VariantSelected from '@/components/home/products/VariantSelected';
+import Variants from '@/components/home/products/Variants';
 import { ProductT, ProductVariantT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
 
 type PropsT = { slide: ProductT; selectable: boolean; fullScreen: boolean; toggleFullScreen: () => void };
 
-export default function Product({ slide, selectable, fullScreen, toggleFullScreen }: PropsT) {
+export default function ProductSlide({ slide, selectable, fullScreen, toggleFullScreen }: PropsT) {
 	const [selected, setSelected] = useState<ProductVariantT>(slide.variants.edges[0].node);
 
 	let title = selected.title;
@@ -17,7 +17,7 @@ export default function Product({ slide, selectable, fullScreen, toggleFullScree
 	return (
 		<article className={``}>
 			<div onClick={toggleFullScreen} className={cn(`mx-auto h-full`, !fullScreen && `cursor-zoom-in`)}>
-				<ProductImg variant={selected} selectable={selectable} fullScreen={fullScreen} />
+				<VariantSelected variant={selected} selectable={selectable} fullScreen={fullScreen} />
 			</div>
 
 			<div>

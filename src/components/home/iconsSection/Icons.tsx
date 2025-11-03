@@ -1,4 +1,4 @@
-import IconItem from '@/components/home/IconItem';
+import IconItem from '@/components/home/iconsSection/IconItem';
 import { tr } from '@/lib/translations/pl';
 import { ClipboardList, Cuboid, SquareCheckBig, Truck } from 'lucide-react';
 

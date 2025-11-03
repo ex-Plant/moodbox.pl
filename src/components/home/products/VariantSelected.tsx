@@ -12,10 +12,13 @@ type PropsT = {
 	selectable: boolean;
 };
 
-export default function ProductImg({ variant, fullScreen, selectable }: PropsT) {
+export default function VariantSelected({ variant, fullScreen, selectable }: PropsT) {
 	const { addCartItem, deleteCartItem, cartItems } = useCart();
 	const checked = cartItems.includes(variant.id);
 	const src = variant.image?.url;
+
+	console.log(variant.availableForSale, 'availableForSale');
+
 
 	function toggle() {
 		console.log(`toggle`);
@@ -31,7 +34,9 @@ export default function ProductImg({ variant, fullScreen, selectable }: PropsT) 
 					// data-pin-nopin='true'
 					// data-pin-no-hover='true'
 					fill={true}
-					className={`h-full w-full rounded`}
+					className={cn(`h-full w-full rounded`,
+						variant.availableForSale ? `` : `opacity-50`
+					)}
 					src={src}
 					alt={''}
 					sizes={
@@ -41,6 +46,9 @@ export default function ProductImg({ variant, fullScreen, selectable }: PropsT) 
 					}
 				/>
 			)}
+			{
+				variant.availableForSale ?
+
 			<Tip disabled={selectable || checked} content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
 				<div
 					role={`button`}
@@ -60,6 +68,29 @@ export default function ProductImg({ variant, fullScreen, selectable }: PropsT) 
 					/>
 				</div>
 			</Tip>
+				:
+				<div className={cn(`absolute top-0 right-0  z-10`, fullScreen ? ` p-4 ` : ` p-2`)}>
+
+				<OutOfStockTag fullScreen={fullScreen} />
+				</div>
+			}
 		</div>
 	);
+}
+
+
+
+type P = {
+	fullScreen: boolean;
+}
+
+function OutOfStockTag({fullScreen}: P) {
+	return <>
+	<div className={cn(`text-xs `,
+		fullScreen && `text-base`
+		)}>
+		 Niedostępny
+	</div>
+
+	</>
 }

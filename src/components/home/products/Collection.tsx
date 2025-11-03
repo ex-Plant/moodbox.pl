@@ -1,8 +1,9 @@
 'use client';
 
-import ProductsDialog from '@/components/home/slider/ProductsDialog';
-import CollectionTitle from '@/components/home/slider/CollectionTitle';
-import Product from '@/components/home/slider/Product';
+import SliderBtn from '@/components/home/products/collectionSlider/SliderBtn';
+import CollectionTitle from '@/components/home/products/CollectionTitle';
+import ProductsDialog from '@/components/home/products/ProductsDialog';
+import ProductSlide from '@/components/home/products/ProductSlide';
 import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
 import { ProductT } from '@/lib/shopify/types';
@@ -95,25 +96,16 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 			>
 				<CollectionTitle selectedWithinCatLen={selectedWithinCatLen} title={title} />
 				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
-					<button
+					<SliderBtn
 						disabled={!swiperIsReady ? false : !navigationActive}
-						className={cn(
-							`translate-y-[-25px] pr-8 disabled:opacity-20`,
-							isFullScreen ? `hidden lg:block` : ''
-						)}
 						onClick={() => swiper?.slidePrev()}
-					>
-						<ChevronLeft
-							className={cn(
-								`stroke-mood-brown w-auto stroke-[1.5px]`,
-								isFullScreen ? 'h-12 xl:h-20' : 'h-10 xl:h-14'
-							)}
-						/>
-					</button>
+						isFullScreen={isFullScreen}
+						direction={'left'}
+					/>
 					<Swiper {...swiperConfig} className={`mx-9 w-full`}>
 						{slides.map((slide, i) => (
 							<SwiperSlide key={i} className={``}>
-								<Product
+								<ProductSlide
 									slide={slide}
 									selectable={selectedWithinCatLen < 2}
 									fullScreen={isFullScreen}
@@ -123,21 +115,12 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 						))}
 					</Swiper>
 
-					<button
+					<SliderBtn
 						disabled={!swiperIsReady ? false : !navigationActive}
-						className={cn(
-							`translate-y-[-25px] pl-8 disabled:opacity-20`,
-							isFullScreen ? `hidden lg:block` : ''
-						)}
 						onClick={() => swiper?.slideNext()}
-					>
-						<ChevronRight
-							className={cn(
-								`stroke-mood-brown w-auto stroke-[1.5px]`,
-								isFullScreen ? 'h-12 xl:h-20' : 'h-10 xl:h-14'
-							)}
-						/>
-					</button>
+						isFullScreen={isFullScreen}
+						direction={'right'}
+					/>
 				</div>
 			</div>
 

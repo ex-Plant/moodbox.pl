@@ -11,12 +11,15 @@ type VarT = {
 export default function Variant({ variant, fullScreen, selected }: VarT) {
 	const { image } = variant;
 
+
 	return (
 		<div
 			className={cn(
 				`relative rounded`,
 				fullScreen ? 'h-full w-full' : 'h-full w-full',
-				selected.id === variant.id && 'border border-black'
+				selected.id === variant.id && 'border border-black',
+				variant.availableForSale ? `` : `opacity-50`
+
 			)}
 		>
 			{image?.url && (
