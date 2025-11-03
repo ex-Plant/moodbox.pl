@@ -15,9 +15,10 @@ export default function SliderBtn({ disabled, onClick, isFullScreen, direction }
 		<button
 			disabled={disabled}
 			className={cn(
-				`translate-y-[-25px] pr-8 disabled:opacity-20`,
+				`translate-y-[-25px] disabled:opacity-20`,
 				isFullScreen ? `hidden lg:block` : '',
-				isFullScreen && disabled && 'disabled:opacity-0'
+				isFullScreen && disabled && 'disabled:opacity-0',
+				direction === 'right' ? 'pl-8' : 'pr-8'
 			)}
 			onClick={onClick}
 		>

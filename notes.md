@@ -20,13 +20,13 @@ next template
 
 
 TODO: 
-- zablokować koszyk gdy zgody nie sa potwierdzone
-- zablokowac koszyk gdy mniej niz 1 produkt w koszyku
-- przerobic funkcje na nowszy syntax
+- ✅ zablokować koszyk gdy zgody nie sa potwierdzone
+- ✅ zablokowac koszyk gdy mniej niz 1 produkt w koszyku
+- ✅ przerobic funkcje na nowszy syntax
+- ✅ przekazać dodatkowe dane z formularza do checkoutu
 - dodać gwiazdkę do pola NIP
-- przekazać dodatkowe dane z formularza do checkoutu
 - error page
 - not found 
 - payload
 - translations
-- 
+- zamknięcie dialogu powinno wrócić do itemu o odpowiednim index

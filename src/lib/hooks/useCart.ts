@@ -26,37 +26,9 @@ export const useCartStore = create<CartStoreT>()(
 );
 
 export default function useCart() {
-	const { addCartItem, deleteCartItem, removeAllItems, cartItems } = useCartStore();
-
-	// const router = useRouter();
-	// const pathname = usePathname();
-	// const searchParams = useSearchParams();
-
-	// const curr = searchParams.get('cart');
-	// const cartItems = curr ? JSON.parse(curr) : [];
-	//
-	// function setQueryParam(key: string, value: string | null) {
-	// 	const params = new URLSearchParams(searchParams.toString());
-	// 	if (value === null) params.delete(key);
-	// 	else params.set(key, value);
-	// 	router.replace(`${pathname}?${params.toString()}` as Route, { scroll: false });
-	// }
-	//
-	// function addCartItem(id: string) {
-	// 	console.log('addCartItem');
-	// 	const updated = [...cartItems, id];
-	// 	setQueryParam('cart', JSON.stringify(updated));
-	// }
-	//
-	// function deleteCartItem(id: string) {
-	// 	console.log('deleteCartItem');
-	// 	const updated = cartItems.filter((el: string) => el != id);
-	// 	setQueryParam('cart', JSON.stringify(updated));
-	// }
-	//
-	// function removeAllItems() {
-	// 	setQueryParam('cart', JSON.stringify([]));
-	// }
-
+	const cartItems = useCartStore((s) => s.cartItems);
+	const addCartItem = useCartStore((s) => s.addCartItem);
+	const deleteCartItem = useCartStore((s) => s.deleteCartItem);
+	const removeAllItems = useCartStore((s) => s.removeAllItems);
 	return { addCartItem, deleteCartItem, removeAllItems, cartItems };
 }
