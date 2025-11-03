@@ -1,3 +1,4 @@
+import Tag from '@/components/common/Tag';
 import { Tip } from '@/components/ui/Tip';
 import { Checkbox } from '@/components/ui/checkbox';
 import useCart from '@/lib/hooks/useCart';
@@ -17,9 +18,6 @@ export default function VariantSelected({ variant, fullScreen, selectable }: Pro
 	const checked = cartItems.includes(variant.id);
 	const src = variant.image?.url;
 
-	console.log(variant.availableForSale, 'availableForSale');
-
-
 	function toggle() {
 		console.log(`toggle`);
 		if (!selectable && !checked) return;
@@ -34,8 +32,9 @@ export default function VariantSelected({ variant, fullScreen, selectable }: Pro
 					// data-pin-nopin='true'
 					// data-pin-no-hover='true'
 					fill={true}
-					className={cn(`h-full w-full rounded`,
-						variant.availableForSale ? `` : `opacity-50`
+					className={cn(
+						`h-full w-full rounded`
+						// variant.availableForSale ? `` : `opacity-50`
 					)}
 					src={src}
 					alt={''}
@@ -46,51 +45,35 @@ export default function VariantSelected({ variant, fullScreen, selectable }: Pro
 					}
 				/>
 			)}
-			{
-				variant.availableForSale ?
-
-			<Tip disabled={selectable || checked} content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
-				<div
-					role={`button`}
-					onClick={(e) => {
-						e.stopPropagation();
-						toggle();
-					}}
-					className={cn(`absolute top-0 right-0 z-10 p-2`, fullScreen && `top-0 right-0 p-4`)}
-				>
-					<Checkbox
-						className={cn(
-							`h-full w-full`,
-							fullScreen ? 'size-8 xl:size-10' : 'size-6',
-							!selectable && !checked ? `cursor-not-allowed` : 'cursor-pointer'
-						)}
-						checked={checked}
+			{variant.availableForSale ? (
+				<Tip disabled={selectable || checked} content={`Możesz wybrać po dwie próbki z każdej kategorii`}>
+					<div
+						role={`button`}
+						onClick={(e) => {
+							e.stopPropagation();
+							toggle();
+						}}
+						className={cn(`absolute top-0 right-0 z-10 p-2`, fullScreen && `p-4`)}
+					>
+						<Checkbox
+							className={cn(
+								`h-full w-full`,
+								fullScreen ? 'size-8 xl:size-10' : 'size-6',
+								!selectable && !checked ? `cursor-not-allowed` : 'cursor-pointer'
+							)}
+							checked={checked}
+						/>
+					</div>
+				</Tip>
+			) : (
+				<div className={cn(`absolute top-0 right-0 z-10`, fullScreen ? `p-4` : `p-2`)}>
+					<Tag
+						fullScreen={fullScreen}
+						className={fullScreen ? `text-xs` : `text-[0.625rem]`}
+						title={`Niedostępny`}
 					/>
 				</div>
-			</Tip>
-				:
-				<div className={cn(`absolute top-0 right-0  z-10`, fullScreen ? ` p-4 ` : ` p-2`)}>
-
-				<OutOfStockTag fullScreen={fullScreen} />
-				</div>
-			}
+			)}
 		</div>
 	);
-}
-
-
-
-type P = {
-	fullScreen: boolean;
-}
-
-function OutOfStockTag({fullScreen}: P) {
-	return <>
-	<div className={cn(`text-xs `,
-		fullScreen && `text-base`
-		)}>
-		 Niedostępny
-	</div>
-
-	</>
 }

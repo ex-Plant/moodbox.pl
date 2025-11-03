@@ -1,4 +1,4 @@
-import Collection from '@/components/home/products/Collection';
+import Collection from '@/components/home/products/collectionSlider/Collection';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { ProductT } from '@/lib/shopify/types';
 import { Dispatch, SetStateAction } from 'react';

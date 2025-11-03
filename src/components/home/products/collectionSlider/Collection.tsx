@@ -33,7 +33,6 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 
 	const { cartItems } = useCart();
 
-	console.log(slides, 'slides');
 	const allVariants = slides.flatMap((el) => el.variants.edges);
 	const selectedWithinCatLen = allVariants.filter((variant) => cartItems.includes(variant.node.id)).length ?? 0;
 	const isMaxMd = useIsMaxMd();
@@ -47,7 +46,7 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0,
 		spaces = 0;
 	} else if (isMaxMd) {
 		numberOfVisibleSlides = 4;
-		spaces = 12;
+		spaces = 24;
 	}
 
 	const actualSlidesPerView = isFullScreen ? 1 : numberOfVisibleSlides;

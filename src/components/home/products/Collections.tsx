@@ -1,6 +1,6 @@
 import Delimiter from '@/components/common/Delimiter';
 import Cart from '@/components/home/cart/Cart';
-import Collection from '@/components/home/products/Collection';
+import Collection from '@/components/home/products/collectionSlider/Collection';
 import { ProductT } from '@/lib/shopify/types';
 import { Suspense } from 'react';
 type PropsT = {
