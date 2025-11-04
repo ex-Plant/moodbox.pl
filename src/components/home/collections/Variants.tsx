@@ -1,4 +1,4 @@
-import Variant from '@/components/home/products/Variant';
+import VariantImg from '@/components/home/collections/VariantImg';
 import { ProductVariantT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import React, { Dispatch } from 'react';
@@ -19,12 +19,16 @@ export default function Variants({ fullScreen, variants, setSelected, selected }
 		<div
 			className={cn(
 				`grid h-fit w-full`,
-				fullScreen ? 'grid-cols-6 gap-2 pt-4' : `grid-cols-6 gap-2 pt-2 md:grid-cols-4`
+				fullScreen ? 'flex w-fit flex-wrap gap-2 pt-4' : `grid-cols-6 gap-2 pt-2 md:grid-cols-4`
 			)}
 		>
 			{variants.map((el, i) => (
-				<button className={cn(`aspect-square w-full cursor-pointer`)} key={i} onClick={() => selectVariant(el)}>
-					<Variant variant={el.node} fullScreen={fullScreen} selected={selected} />
+				<button
+					className={cn(`aspect-square w-full cursor-pointer`, fullScreen && 'size-[50px]')}
+					key={i}
+					onClick={() => selectVariant(el)}
+				>
+					<VariantImg variant={el.node} fullScreen={fullScreen} selected={selected} />
 				</button>
 			))}
 		</div>

@@ -1,8 +1,8 @@
 import Delimiter from '@/components/common/Delimiter';
-import Cart from '@/components/home/cart/Cart';
-import Collection from '@/components/home/products/collectionSlider/Collection';
+import CollectionSlider from '@/components/home/collections/CollectionSlider';
 import { ProductT } from '@/lib/shopify/types';
 import { Suspense } from 'react';
+
 type PropsT = {
 	productsByCollection: { collection: string; handle: string; products: ProductT[] }[];
 };
@@ -13,7 +13,7 @@ export default function Collections({ productsByCollection }: PropsT) {
 			<Delimiter title={'Katalog próbek'} />
 			<Suspense fallback={null}>
 				{productsByCollection.map((collection) => (
-					<Collection
+					<CollectionSlider
 						key={collection.collection}
 						slides={collection.products}
 						title={collection.collection}

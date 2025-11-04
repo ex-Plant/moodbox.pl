@@ -2,7 +2,7 @@
 
 import Delimiter from '@/components/common/Delimiter';
 import CartForm from '@/components/home/cart/CartForm';
-import SelectedProducts from '@/components/home/cart/SelectedProducts';
+import CartItems from '@/components/home/cart/CartItems';
 import useCart from '@/lib/hooks/useCart';
 import { ProductT } from '@/lib/shopify/types';
 
@@ -10,7 +10,7 @@ type PropsT = {
 	allProducts: ProductT[];
 };
 
-export default function Cart({ allProducts }: PropsT) {
+export default function CartSection({ allProducts }: PropsT) {
 	const { cartItems } = useCart();
 
 	const allVariants = allProducts.flatMap((el) => {
@@ -23,7 +23,7 @@ export default function Cart({ allProducts }: PropsT) {
 			<Delimiter title={'Formularz'} />
 			<div className={`xPaddings mx-auto grid max-w-[1440px] xl:grid-cols-12`}>
 				<aside className={`xl:col-span-3 xl:pl-4`}>
-					<SelectedProducts selected={selected} />
+					<CartItems selected={selected} />
 				</aside>
 				<div className={`mt-4 xl:col-span-9 xl:col-start-5 xl:mt-0`}>{<CartForm />}</div>
 			</div>

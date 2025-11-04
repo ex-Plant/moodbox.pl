@@ -4,7 +4,7 @@ import { Tip } from '@/components/ui/Tip';
 import useCart from '@/lib/hooks/useCart';
 import { useState } from 'react';
 
-export default function FormFooter() {
+export default function CartFormFooter() {
 	const { cartItems } = useCart();
 
 	const [consent2, setConsent2] = useState(false);
@@ -42,12 +42,7 @@ export default function FormFooter() {
 			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 				<div className={`grid gap-2`}>
 					<p className={`ml-auto text-[2rem] text-nowrap xl:text-[2.5rem]`}>39 PLN</p>
-					<Tip
-						disabled={!missingConsents && !emptyCart}
-						content={text}
-						side={`bottom`}
-						className={`ml-auto p-2`}
-					>
+					<Tip disabled={!missingConsents && !emptyCart} content={text} side={`bottom`} className={`ml-auto`}>
 						<Button
 							disabled={missingConsents || emptyCart}
 							type={'submit'}

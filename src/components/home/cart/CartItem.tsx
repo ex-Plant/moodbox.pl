@@ -9,7 +9,7 @@ type PropsT = {
 	selected: ProductVariantT;
 };
 
-export default function SelectedProduct({ selected }: PropsT) {
+export default function CartItem({ selected }: PropsT) {
 	const { deleteCartItem } = useCart();
 
 	const src = selected.image?.url;

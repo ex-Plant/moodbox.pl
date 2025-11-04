@@ -5,15 +5,16 @@ import useCart from '@/lib/hooks/useCart';
 import { ProductVariantT } from '@/lib/shopify/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
 type PropsT = {
 	fullScreen: boolean;
 	variant: ProductVariantT;
 	selectable: boolean;
+	setImgHeight: (height: number) => void;
 };
 
-export default function VariantSelected({ variant, fullScreen, selectable }: PropsT) {
+export default function SelectedVariantImg({ variant, fullScreen, selectable, setImgHeight }: PropsT) {
 	const { addCartItem, deleteCartItem, cartItems } = useCart();
 	const checked = cartItems.includes(variant.id);
 	const src = variant.image?.url;
@@ -26,10 +27,28 @@ export default function VariantSelected({ variant, fullScreen, selectable }: Pro
 		addCartItem(variant.id);
 	}
 
+	const ref = useRef<HTMLImageElement>(null);
+
+	useEffect(() => {
+		function getImgHeight() {
+			if (!ref.current) return;
+			console.log(ref.current.scrollHeight, '✅');
+			setImgHeight(ref.current.scrollHeight);
+		}
+
+		getImgHeight();
+
+		window.addEventListener('resize', getImgHeight);
+		return () => {
+			window.removeEventListener('resize', getImgHeight);
+		};
+	}, [setImgHeight]);
+
 	return (
 		<div className={cn(`relative mx-auto aspect-square rounded`)}>
 			{src && (
 				<Image
+					ref={ref}
 					fill={true}
 					className={cn(
 						`h-full w-full rounded`

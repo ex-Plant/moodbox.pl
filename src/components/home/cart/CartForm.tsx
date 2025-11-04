@@ -1,6 +1,6 @@
 import { proceedToCheckout } from '@/app/actions/proceedToCheckoutA';
 import LogoSvg from '@/components/common/Logo';
-import FormFooter from '@/components/home/cart/FormFooter';
+import CartFormFooter from '@/components/home/cart/CartFormFooter';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tip } from '@/components/ui/Tip';
@@ -140,7 +140,7 @@ export default function CartForm() {
 					<input type='hidden' name='project_stage' value={formSelects.project_stage} />
 				</div>
 			</div>
-			<FormFooter />
+			<CartFormFooter />
 
 			{pending && (
 				<div className={`pointer-events-none absolute inset-0 flex items-center justify-center`}>

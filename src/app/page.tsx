@@ -1,9 +1,9 @@
 import Delimiter from '@/components/common/Delimiter';
 import DelimiterFullW from '@/components/common/DelimiterFullW';
-import Cart from '@/components/home/cart/Cart';
+import CartSection from '@/components/home/cart/CartSection';
+import Collections from '@/components/home/collections/Collections';
 import Hero from '@/components/home/Hero';
 import Icons from '@/components/home/iconsSection/Icons';
-import Collections from '@/components/home/products/Collections';
 import { getProductsByCollection } from '@/lib/shopify/api';
 import { Suspense } from 'react';
 
@@ -19,7 +19,7 @@ export default async function HomePage() {
 			<Icons />
 			<Collections productsByCollection={productsByCollection} />
 			<Suspense fallback={null}>
-				<Cart allProducts={allProducts} />
+				<CartSection allProducts={allProducts} />
 			</Suspense>
 		</>
 	);

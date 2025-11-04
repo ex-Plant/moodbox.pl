@@ -8,7 +8,7 @@ type VarT = {
 	fullScreen: boolean;
 	selected: ProductVariantT;
 };
-export default function Variant({ variant, fullScreen, selected }: VarT) {
+export default function VariantImg({ variant, fullScreen, selected }: VarT) {
 	const { image } = variant;
 
 	return (

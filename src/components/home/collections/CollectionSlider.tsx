@@ -1,9 +1,9 @@
 'use client';
 
-import SliderBtn from '@/components/home/products/collectionSlider/SliderBtn';
-import CollectionTitle from '@/components/home/products/CollectionTitle';
-import ProductsDialog from '@/components/home/products/ProductsDialog';
-import ProductSlide from '@/components/home/products/ProductSlide';
+import CollectionSliderBtn from '@/components/home/collections/CollectionSliderBtn';
+import CollectionSliderDialog from '@/components/home/collections/CollectionSliderDialog';
+import CollectionSliderProduct from '@/components/home/collections/CollectionSliderProduct';
+import CollectionTitle from '@/components/home/collections/CollectionTitle';
 import useCart from '@/lib/hooks/useCart';
 import { useIsMaxMd, useIsSm } from '@/lib/hooks/useMediaQuery';
 import { ProductT } from '@/lib/shopify/types';
@@ -24,11 +24,12 @@ type PropsT = {
 	className?: string;
 };
 
-export default function Collection({ slides, title, isFullScreen, initSlide = 0 }: PropsT) {
+export default function CollectionSlider({ slides, title, isFullScreen, initSlide = 0 }: PropsT) {
 	const [swiperIsReady, setSwiperIsReady] = useState(false);
 	const [swiper, setSwiper] = useState<SwiperType | null>(null);
 	const [fullScreenDialogOpen, setFullScreenDialogOpen] = useState(false);
 	const [activeSlide, setActiveSlide] = useState(0);
+	const [imgHeight, setImgHeight] = useState(0);
 
 	const { cartItems } = useCart();
 
@@ -84,23 +85,25 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0 
 		<>
 			<div
 				className={cn(
-					`xPaddings mx-auto h-full max-w-[1440px]`,
+					`mx-auto h-full w-full max-w-[1440px]`,
 					swiperIsReady ? 'opacity-100 duration-500' : 'opacity-0',
-					isFullScreen && 'max-h-[80vh] overflow-y-auto'
+					isFullScreen ? 'max-h-[90vh] overflow-y-auto' : 'xPaddings'
 				)}
 			>
-				<CollectionTitle selectedWithinCatLen={selectedWithinCatLen} title={title} />
-				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full max-w-[min(60vw,770px)] items-center` : '')}>
-					<SliderBtn
+				{!isFullScreen && <CollectionTitle selectedWithinCatLen={selectedWithinCatLen} title={title} />}
+				<div className={cn(`flex`, isFullScreen ? `mx-auto w-full items-center` : 'items-start')}>
+					<CollectionSliderBtn
 						disabled={!swiperIsReady ? false : !navigationActive}
 						onClick={() => swiper?.slidePrev()}
 						isFullScreen={isFullScreen}
 						direction={'left'}
+						sliderImgH={imgHeight}
 					/>
 					<Swiper {...swiperConfig} className={`mx-9 w-full`}>
 						{slides.map((slide, i) => (
 							<SwiperSlide key={i} className={``}>
-								<ProductSlide
+								<CollectionSliderProduct
+									setImgHeight={setImgHeight}
 									slide={slide}
 									selectable={selectedWithinCatLen < 2}
 									fullScreen={isFullScreen}
@@ -110,16 +113,17 @@ export default function Collection({ slides, title, isFullScreen, initSlide = 0 
 						))}
 					</Swiper>
 
-					<SliderBtn
+					<CollectionSliderBtn
 						disabled={!swiperIsReady ? false : !navigationActive}
 						onClick={() => swiper?.slideNext()}
 						isFullScreen={isFullScreen}
 						direction={'right'}
+						sliderImgH={imgHeight}
 					/>
 				</div>
 			</div>
 
-			<ProductsDialog
+			<CollectionSliderDialog
 				title={title}
 				slides={slides}
 				fullScreenDialogOpen={fullScreenDialogOpen}
