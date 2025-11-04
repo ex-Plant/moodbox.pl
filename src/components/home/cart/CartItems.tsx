@@ -2,7 +2,7 @@
 import CartItem from '@/components/home/cart/CartItem';
 import { Button } from '@/components/ui/button';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT, ProductVariantT } from '@/lib/shopify/types';
+import { ProductVariantT } from '@/lib/shopify/types';
 
 type PropsT = {
 	selected: { node: ProductVariantT }[];
