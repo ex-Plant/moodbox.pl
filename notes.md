@@ -35,3 +35,8 @@ TODO:
 - zamknięcie dialogu powinno wrócić do itemu o odpowiednim index
 - animacja na scroll trigger tego kwadraciku ? 
 - add tenstack form plus reusable components
+- sitemap
+- robots
+- react compiler tests
+- eslint nie działa
+- 

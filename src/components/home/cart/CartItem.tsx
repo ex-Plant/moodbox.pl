@@ -1,6 +1,6 @@
 import { Tip } from '@/components/ui/Tip';
 import useCart from '@/lib/hooks/useCart';
-import { ProductT, ProductVariantT } from '@/lib/shopify/types';
+import { ProductVariantT } from '@/lib/shopify/types';
 import { X } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
