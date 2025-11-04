@@ -1,8 +1,4 @@
-type PropsT = {
-	className?: string;
-};
-
-export default function LogoText({ className }: PropsT) {
+export default function LogoText() {
 	return (
 		<svg
 			className={`h-10 w-auto`}
