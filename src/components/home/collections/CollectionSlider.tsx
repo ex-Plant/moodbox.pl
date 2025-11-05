@@ -75,7 +75,7 @@ export default function CollectionSlider({ slides, title, isFullScreen, initSlid
 		if (isSm) return;
 		if (isFullScreen) return;
 		setFullScreenDialogOpen((curr) => !curr);
-		swiper?.slideTo(index);
+		// swiper?.slideTo(index);
 		setActiveSlide(index);
 	}
 

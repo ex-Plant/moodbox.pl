@@ -42,11 +42,11 @@ export default function CartFormFooter() {
 						z obsług zamówienia
 					</p>
 				</div>{' '}
-				{/*<div className={`flex items-center gap-4`}>*/}
-				{/*	<Checkbox checked={invoice} onCheckedChange={toggleInvoice} />*/}
-				{/*	<p className={``}>Chcę otrzymać fakturę</p>*/}
-				{/*	{invoice && <p className={``}>* Wypełnij polę NIP!</p>}*/}
-				{/*</div>*/}
+				<div className={`flex items-center gap-4`}>
+					<Checkbox checked={invoice} onCheckedChange={toggleInvoice} />
+					<p className={``}>Chcę otrzymać fakturę</p>
+					{invoice && <p className={``}>* Wypełnij polę NIP!</p>}
+				</div>
 			</div>
 			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 				<div className={`grid gap-2`}>

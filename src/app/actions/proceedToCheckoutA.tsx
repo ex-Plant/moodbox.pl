@@ -32,10 +32,10 @@ export async function proceedToCheckout(cartItems: string[], prevState: FormStat
 
 	// todo add again after testing
 	// Add the flat fee product variant
-	// lineItems.push({
-	// 	merchandiseId: flatFeeProduct.variants.edges[0].node.id,
-	// 	quantity: 1,
-	// });
+	lineItems.push({
+		merchandiseId: flatFeeProduct.variants.edges[0].node.id,
+		quantity: 1,
+	});
 
 	// add custom attributes
 	const cart = await createCart(lineItems, attributes);
