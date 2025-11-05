@@ -30,16 +30,25 @@ export const ATTRIBUTE_KEY_PL: Record<keyof FormT, string> = {
 
 export type FormT = z.infer<typeof formSchema>;
 
-export const initData: FormT = {
-	company_name: '',
-	nip: '',
-	email: '',
-	website: '',
-	projects_per_year: '',
-	city: '',
-	project_type: '',
-	completion_date: '',
-	project_stage: '',
-	project_area: '',
-	project_budget: '',
+// Unified action state type used with useActionState
+export type FormStateT = {
+	data: FormT;
+	error?: boolean;
+};
+
+export const initState: FormStateT = {
+	data: {
+		company_name: '',
+		nip: '',
+		email: '',
+		website: '',
+		projects_per_year: '',
+		city: '',
+		project_type: '',
+		completion_date: '',
+		project_stage: '',
+		project_area: '',
+		project_budget: '',
+	},
+	error: false,
 };

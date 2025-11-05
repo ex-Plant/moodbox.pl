@@ -9,12 +9,16 @@ export default function CartFormFooter() {
 
 	const [consent2, setConsent2] = useState(false);
 	const [consent1, setConsent1] = useState(false);
+	const [invoice, setInvoice] = useState(false);
 
 	function toggleConsent1() {
 		setConsent1((curr) => !curr);
 	}
 	function toggleConsent2() {
 		setConsent2((curr) => !curr);
+	}
+	function toggleInvoice() {
+		setInvoice((curr) => !curr);
 	}
 
 	const missingConsents = !consent1 || !consent2;
@@ -37,7 +41,12 @@ export default function CartFormFooter() {
 						Wyrażam zgodę na kontakt w sprawie realizacji zamówienia oraz otrzymywania informacji związanych
 						z obsług zamówienia
 					</p>
-				</div>
+				</div>{' '}
+				{/*<div className={`flex items-center gap-4`}>*/}
+				{/*	<Checkbox checked={invoice} onCheckedChange={toggleInvoice} />*/}
+				{/*	<p className={``}>Chcę otrzymać fakturę</p>*/}
+				{/*	{invoice && <p className={``}>* Wypełnij polę NIP!</p>}*/}
+				{/*</div>*/}
 			</div>
 			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 				<div className={`grid gap-2`}>

@@ -29,7 +29,10 @@ export default function CollectionSliderProduct({
 
 	return (
 		<article className={cn(`w-full`, fullScreen && `flex max-h-[80vh] items-end gap-x-12 py-8`)}>
-			<div onClick={toggleFullScreen} className={cn(``, !fullScreen ? `aspect-square cursor-zoom-in` : `w-full`)}>
+			<div
+				onClick={toggleFullScreen}
+				className={cn(``, !fullScreen ? `aspect-square md:cursor-zoom-in` : `w-full`)}
+			>
 				<SelectedVariantImg
 					variant={selected}
 					selectable={selectable}

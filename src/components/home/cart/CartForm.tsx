@@ -4,10 +4,11 @@ import CartFormFooter from '@/components/home/cart/CartFormFooter';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tip } from '@/components/ui/Tip';
-import { initData } from '@/lib/CartSchema';
+import { initState } from '@/lib/CartSchema';
 import useCart from '@/lib/hooks/useCart';
+import { toastMessage, ToastType } from '@/lib/toasts/toasts';
 import { CircleQuestionMark } from 'lucide-react';
-import { useActionState, useState } from 'react';
+import { useActionState, useEffect, useState } from 'react';
 
 const txt = `Dlaczego prosimy o wypełnienie formularza?
 Informacje o projekcie pozwalają nam przekazać producentom wartościowe dane i usprawnić proces dystrybucji próbek. Dzięki temu materiały są dobierane bardziej precyzyjnie, a cały proces zamawiania staje się szybszy i wygodniejszy.
@@ -16,7 +17,7 @@ Twoje dane są chronione i wykorzystywane wyłącznie w celu obsługi zamówieni
 export default function CartForm() {
 	const { cartItems } = useCart();
 	const checkoutWithCartItems = proceedToCheckout.bind(null, cartItems);
-	const [state, formAction, pending] = useActionState(checkoutWithCartItems, initData);
+	const [state, formAction, pending] = useActionState(checkoutWithCartItems, initState);
 
 	const [formSelects, setFormSelects] = useState({
 		project_type: '',
@@ -35,6 +36,11 @@ export default function CartForm() {
 		});
 	}
 
+	useEffect(() => {
+		if (pending || !state.error) return;
+		toastMessage('Wystąpił błąd podczas przejścia do płatności. Spróbuj ponownie.', ToastType.Error);
+	}, [pending, state.error]);
+
 	return (
 		<form action={formAction} className={`relative grid gap-4`}>
 			<div>
@@ -47,15 +53,15 @@ export default function CartForm() {
 
 				<div className={`grid gap-4 md:grid-cols-2 xl:mr-4`}>
 					<Input
-						defaultValue={state?.company_name}
+						defaultValue={state.data.company_name}
 						placeholder={'Nazwa firmy / pracowni'}
 						name={'company_name'}
 					/>
-					<Input defaultValue={state?.nip} name={'nip'} placeholder={'NIP'} />
-					<Input defaultValue={state?.email} name={'email'} placeholder={'E-mail'} type={'email'} />
-					<Input defaultValue={state?.website} name={'website'} placeholder={'Link do strony www'} />
+					<Input defaultValue={state.data.nip} name={'nip'} placeholder={'NIP'} />
+					<Input defaultValue={state.data.email} name={'email'} placeholder={'E-mail'} type={'email'} />
+					<Input defaultValue={state.data.website} name={'website'} placeholder={'Link do strony www'} />
 					<Input
-						defaultValue={state?.projects_per_year}
+						defaultValue={state.data.projects_per_year}
 						name={'projects_per_year'}
 						placeholder={'Liczba projektów rocznie'}
 					/>
@@ -64,9 +70,9 @@ export default function CartForm() {
 			<div>
 				<h4 className={`text-[18px] font-bold`}>Informacje dodatkowe o Twoim projekcie </h4>
 				<div className={`grid gap-4 pt-2 md:grid-cols-2 xl:mr-4`}>
-					<Input defaultValue={state.city} name={'city'} placeholder={'Miejscowość'} />
+					<Input defaultValue={state.data.city} name={'city'} placeholder={'Miejscowość'} />
 					<Select
-						defaultValue={state.project_type}
+						defaultValue={state.data.project_type}
 						value={formSelects.project_type}
 						name={'project_type'}
 						onValueChange={(val) => handleSelectChange('project_type', val)}
@@ -84,7 +90,7 @@ export default function CartForm() {
 					</Select>
 					<input type='hidden' name='project_type' value={formSelects.project_type} />
 					<Select
-						defaultValue={state.project_area}
+						defaultValue={state.data.project_area}
 						value={formSelects.project_area}
 						name={'project_area'}
 						onValueChange={(val) => handleSelectChange('project_area', val)}
@@ -103,7 +109,7 @@ export default function CartForm() {
 
 					<Input placeholder={'Termin realizacji MM / RR'} />
 					<Select
-						defaultValue={state.project_budget}
+						defaultValue={state.data.project_budget}
 						value={formSelects.project_budget}
 						name={'project_budget'}
 						onValueChange={(val) => handleSelectChange('project_budget', val)}
@@ -116,14 +122,14 @@ export default function CartForm() {
 							<SelectItem value='100-300'>100–300 tys. zł</SelectItem>
 							<SelectItem value='300-700'>300–700 tys. zł</SelectItem>{' '}
 							<SelectItem value='700-1500'>700 tys.–1,5 mln zł</SelectItem>
-							<SelectItem value='1500>'>powyżej 1,5 mln zł</SelectItem>
+							<SelectItem value='1500'>powyżej 1,5 mln zł</SelectItem>
 							<SelectItem value='nie wiem'>jeszcze nie wiem</SelectItem>
 						</SelectContent>
 					</Select>
 					<input type='hidden' name='project_budget' value={formSelects.project_budget} />
 
 					<Select
-						defaultValue={state.project_stage}
+						defaultValue={state.data.project_stage}
 						value={formSelects.project_stage}
 						name={'project_stage'}
 						onValueChange={(val) => handleSelectChange('project_stage', val)}

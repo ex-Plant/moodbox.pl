@@ -1,9 +1,9 @@
 'use server';
-import { ATTRIBUTE_KEY_PL, formSchema, FormT } from '@/lib/CartSchema';
+import { ATTRIBUTE_KEY_PL, formSchema, FormStateT, FormT } from '@/lib/CartSchema';
 import { createCart, getProductByHandle } from '@/lib/shopify/api';
 import { redirect } from 'next/navigation';
 
-export async function proceedToCheckout(cartItems: string[], prevState: FormT, formData: FormData) {
+export async function proceedToCheckout(cartItems: string[], prevState: FormStateT, formData: FormData) {
 	const raw = Object.fromEntries(formData.entries());
 	const data = formSchema.parse(raw);
 	const entries = Object.entries(data) as [keyof FormT, string][];
@@ -20,7 +20,8 @@ export async function proceedToCheckout(cartItems: string[], prevState: FormT, f
 	// this is to get the fixed price of the box
 	const flatFeeProduct = await getProductByHandle('box-stala-cena');
 	if (!flatFeeProduct?.variants?.edges?.[0]?.node?.id) {
-		throw new Error('Failed to get flat fee product');
+		console.log('Failed to get flat fee product');
+		return { error: true, data: formSchema.parse(raw) } as FormStateT;
 	}
 
 	// Create line items from variant IDs
@@ -38,12 +39,11 @@ export async function proceedToCheckout(cartItems: string[], prevState: FormT, f
 
 	// add custom attributes
 	const cart = await createCart(lineItems, attributes);
-
 	if (cart?.checkoutUrl) {
 		//@ts-expect-error url is fine
 		redirect(cart.checkoutUrl);
 	} else {
-		return formSchema.parse(raw);
-		throw new Error('Failed to create checkout');
+		console.log('Failed to create cart');
+		return { error: true, data: formSchema.parse(raw) } as FormStateT;
 	}
 }
