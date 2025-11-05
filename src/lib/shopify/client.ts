@@ -17,41 +17,38 @@ export async function shopifyFetch<T>({
 	variables = {},
 	// cache = 'no-cache',
 	tags = [],
-}: ShopifyFetchParamsT): Promise<ShopifyResponseT<T>> {
+}: ShopifyFetchParamsT): Promise<ShopifyResponseT<T> | null> {
 	if (!SHOPIFY_STOREFRONT_ACCESS_TOKEN) throw new Error(' ❗SHOPIFY_STOREFRONT_ACCESS_TOKEN');
 	if (!SHOPIFY_STORE_DOMAIN) throw new Error('❗SHOPIFY_STORE_DOMAIN');
 
-	try {
-		const response = await fetch(SHOPIFY_STORE_DOMAIN, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
-			},
-			body: JSON.stringify({ query, variables }),
-			// cache,
-			next: {
-				// todo ? change to greater value
-				revalidate: 60, // 1 minute
-				tags,
-			},
-		});
+	// console.log('🚀', { query, variables });
 
-		if (!response.ok) {
-			throw new Error(`Shopify API error: ${response.status} ${response.statusText}`);
-		}
+	const response = await fetch(SHOPIFY_STORE_DOMAIN, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+		},
+		body: JSON.stringify({ query, variables }),
+		// cache,
+		next: {
+			// todo ? change to greater value
+			revalidate: 60, // 1 minute
+			tags,
+		},
+	});
 
-		const json = await response.json();
-
-		if (json.errors) {
-			console.error('Shopify GraphQL errors:', json.errors);
-			console.error('Shopify GraphQL errors:', JSON.stringify(json.errors, null, 2));
-			throw new Error(json.errors[0]?.message || 'Unknown Shopify API error');
-		}
-
-		return json;
-	} catch (error) {
-		console.error('Shopify fetch error:', error);
-		throw error;
+	if (!response.ok) {
+		console.log(`Shopify API error: ${response.status} ${response.statusText}`);
+		return null;
 	}
+
+	const json = await response.json();
+
+	if (json.errors) {
+		console.error('Shopify GraphQL errors:', json.errors);
+		console.error('Shopify GraphQL errors:', JSON.stringify(json.errors, null, 2));
+		return null;
+	}
+	return json;
 }

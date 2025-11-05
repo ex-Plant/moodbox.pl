@@ -48,6 +48,7 @@ export default function SelectedVariantImg({ variant, fullScreen, selectable, se
 		<div className={cn(`relative mx-auto aspect-square rounded`)}>
 			{src && (
 				<Image
+					quality={100}
 					ref={ref}
 					fill={true}
 					className={cn(
@@ -58,7 +59,7 @@ export default function SelectedVariantImg({ variant, fullScreen, selectable, se
 					alt={''}
 					sizes={
 						fullScreen
-							? '(max-width: 768px) 100vw, (max-width: 1280px) 60vw, 770px'
+							? '(max-width: 768px) 100vw, (max-width: 1280px) 40vw, 480px'
 							: '(max-width: 768px) 100vw, (max-width: 1024px) 25vw, 16vw'
 					}
 				/>

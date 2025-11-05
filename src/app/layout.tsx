@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 import { Inclusive_Sans } from 'next/font/google';
 import { ReactNode } from 'react';
+import { ToastContainer } from 'react-toastify';
 import './globals.css';
 
 const inclusive_Sans = Inclusive_Sans({
@@ -33,6 +34,7 @@ export default function RootLayout({
 				<Nav />
 				<main>{children}</main>
 				<Footer />
+				<ToastContainer />
 			</body>
 		</html>
 	);

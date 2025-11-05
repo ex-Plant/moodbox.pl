@@ -21,6 +21,7 @@ export async function getAllProducts(): Promise<ProductT[]> {
 		tags: ['products'],
 	});
 
+	if (!response) return [];
 	return response.data.products.edges.map((edge) => edge.node);
 }
 
@@ -32,6 +33,7 @@ export async function getProductByHandle(handle: string): Promise<ProductT | nul
 		tags: [`product-${handle}`],
 	});
 
+	if (!response) return null;
 	return response.data.product;
 }
 
@@ -46,6 +48,7 @@ export async function getAllCollections(): Promise<CollectionT[]> {
 		tags: ['collections'],
 	});
 
+	if (!response) return [];
 	return response.data.collections.edges.map((edge) => edge.node);
 }
 
@@ -68,6 +71,7 @@ export async function getCollectionByHandle(handle: string): Promise<CollectionT
 		cache: 'force-cache',
 		tags: [`collection-${handle}`],
 	});
+	if (!response) return null;
 
 	return response.data.collection;
 }
@@ -75,7 +79,7 @@ export async function getCollectionByHandle(handle: string): Promise<CollectionT
 export async function createCart(
 	lineItems: { merchandiseId: string; quantity: number }[],
 	attributes?: { key: string; value: string }[]
-): Promise<CartT> {
+): Promise<CartT | null> {
 	const response = await shopifyFetch<{
 		cartCreate: {
 			cart: CartT;
@@ -86,5 +90,6 @@ export async function createCart(
 		cache: 'no-store',
 	});
 
+	if (!response) return null;
 	return response.data.cartCreate.cart;
 }
