@@ -28,6 +28,8 @@ TODO:
 - ✅ dodać pole - NIP - faktura
 - ✅ dodać gwiazdkę do pola NIP
 - ✅ dodać checkbox chcę fakturę i dodać info, że potrzebny Nip ?
+- required fields
+
 - failed checkout - chekboxes stays checked
 
 - error page

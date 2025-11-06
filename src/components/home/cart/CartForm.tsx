@@ -19,6 +19,9 @@ export default function CartForm() {
 	const checkoutWithCartItems = proceedToCheckout.bind(null, cartItems);
 	const [state, formAction, pending] = useActionState(checkoutWithCartItems, initState);
 
+	const [consent2, setConsent2] = useState(false);
+	const [consent1, setConsent1] = useState(false);
+
 	const [formSelects, setFormSelects] = useState({
 		project_type: '',
 		completion_date: '',
@@ -38,6 +41,8 @@ export default function CartForm() {
 
 	useEffect(() => {
 		if (pending || !state.error) return;
+		setConsent2(true);
+		setConsent1(true);
 		toastMessage('Wystąpił błąd podczas przejścia do płatności. Spróbuj ponownie.', ToastType.Error);
 	}, [pending, state.error]);
 
@@ -146,7 +151,12 @@ export default function CartForm() {
 					<input type='hidden' name='project_stage' value={formSelects.project_stage} />
 				</div>
 			</div>
-			<CartFormFooter />
+			<CartFormFooter
+				consent1={consent1}
+				consent2={consent2}
+				setConsent1={setConsent1}
+				setConsent2={setConsent2}
+			/>
 
 			{pending && (
 				<div className={`pointer-events-none absolute inset-0 flex items-center justify-center`}>
