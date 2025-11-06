@@ -157,8 +157,12 @@ export const GET_ALL_COLLECTIONS_QUERY = `
 `;
 
 export const CREATE_CART_MUTATION = `
-	mutation CreateCart($lineItems: [CartLineInput!], $attributes: [AttributeInput!]) {
-		cartCreate(input: { lines: $lineItems, attributes: $attributes }) {
+	mutation CreateCart($lineItems: [CartLineInput!], $attributes: [AttributeInput!], $email: String) {
+		cartCreate(input: { 
+			lines: $lineItems, 
+			attributes: $attributes,
+			buyerIdentity: { email: $email }
+		}) {
 			cart {
 				id
 				checkoutUrl
@@ -195,6 +199,17 @@ export const CREATE_CART_MUTATION = `
 									price {
 										amount
 										currencyCode
+									}
+									compareAtPrice {
+										amount
+										currencyCode
+									}
+									image {
+										id
+										url
+										altText
+										width
+										height
 									}
 								}
 							}

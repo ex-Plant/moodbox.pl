@@ -38,7 +38,8 @@ export async function proceedToCheckout(cartItems: string[], prevState: FormStat
 	// });
 
 	// add custom attributes
-	const cart = await createCart(lineItems, attributes);
+	const cart = await createCart(lineItems, attributes, data.email);
+	// const cart = await createCart(lineItems, attributes);
 	if (cart?.checkoutUrl) {
 		//@ts-expect-error url is fine
 		redirect(cart.checkoutUrl);

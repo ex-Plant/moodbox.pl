@@ -1,7 +1,6 @@
 import { proceedToCheckout } from '@/app/actions/proceedToCheckoutA';
 import LogoSvg from '@/components/common/Logo';
 import CartFormFooter from '@/components/home/cart/CartFormFooter';
-import { TestCustomer } from '@/components/test-customer';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tip } from '@/components/ui/Tip';
@@ -51,7 +50,6 @@ export default function CartForm() {
 						<CircleQuestionMark className={`fill-mood-dark-brown w-5 border-none stroke-white`} />
 					</Tip>
 				</header>
-				<TestCustomer />
 
 				<div className={`grid gap-4 md:grid-cols-2 xl:mr-4`}>
 					<Input

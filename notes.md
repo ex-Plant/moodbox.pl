@@ -19,6 +19,7 @@ next template
 
 
 
+
 TODO: 
 - ✅ zablokować koszyk gdy zgody nie sa potwierdzone
 - ✅ zablokowac koszyk gdy mniej niz 1 produkt w koszyku
@@ -27,6 +28,8 @@ TODO:
 - ✅ dodać pole - NIP - faktura
 - ✅ dodać gwiazdkę do pola NIP
 - ✅ dodać checkbox chcę fakturę i dodać info, że potrzebny Nip ?
+- failed checkout - chekboxes stays checked
+
 - error page
 - not found 
 - payload
