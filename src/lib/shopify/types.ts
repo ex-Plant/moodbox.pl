@@ -126,3 +126,28 @@ export type ShopifyResponseT<T> = {
 		path?: string[];
 	}[];
 };
+
+export type CustomerT = {
+	id: string;
+	email?: string | null;
+	firstName?: string | null;
+	lastName?: string | null;
+	phone?: string | null;
+	metafields?: {
+		edges: {
+			node: {
+				key: string;
+				value: string;
+				namespace: string;
+			};
+		}[];
+	};
+};
+
+export type CustomerInputT = {
+	email: string;
+	firstName: string;
+	lastName: string;
+	phone?: string;
+	nip?: string;
+};
