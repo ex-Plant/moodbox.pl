@@ -1,5 +1,4 @@
 import { z } from 'zod';
-
 export const formSchema = z.object({
 	company_name: z.string().default(''),
 	nip: z.coerce.string().default(''),
@@ -14,6 +13,8 @@ export const formSchema = z.object({
 	project_budget: z.string().default(''),
 });
 
+export type FormT = z.infer<typeof formSchema>;
+
 export const ATTRIBUTE_KEY_PL: Record<keyof FormT, string> = {
 	company_name: 'Nazwa firmy / pracowni',
 	nip: 'NIP',
@@ -27,8 +28,6 @@ export const ATTRIBUTE_KEY_PL: Record<keyof FormT, string> = {
 	project_area: 'Metraż',
 	project_budget: 'Budżet',
 };
-
-export type FormT = z.infer<typeof formSchema>;
 
 // Unified action state type used with useActionState
 export type FormStateT = {

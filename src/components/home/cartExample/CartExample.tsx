@@ -1,0 +1,163 @@
+'use client';
+
+import { Button } from '@/components/ui/button';
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { toastMessage } from '@/lib/toasts/toasts';
+import { zodResolver } from '@hookform/resolvers/zod';
+import React, { useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+const schema = z.object({
+	company_name: z.string().min(1),
+	email: z.string().length(3, { message: 'Podaj prawdziwy email' }),
+	// accept both string and number, but transform to string
+	projects_per_year: z.union([z.string().min(1), z.number().min(1)]).transform((value) => String(value)),
+	nip: z
+		.string()
+		.length(10, { message: 'NIP musi mieć dokładnie 10 cyfr' })
+		.regex(/^[0-9]+$/, { message: 'Tylko cyfry są dozwolone' }),
+	// optional field, if filled only with default empty string it will convert to undefined
+	website: z
+		.string()
+		.optional()
+		.transform((v) => v || undefined),
+	city: z.string().min(1),
+	project_type: z.string().min(1),
+	completion_date: z.string().min(1),
+	project_stage: z.string().min(1),
+	project_area: z.string().min(1),
+	project_budget: z.string().min(1),
+});
+
+type SchemaT = z.infer<typeof schema>;
+
+const init: SchemaT = {
+	company_name: '',
+	nip: '',
+	email: '',
+	website: '',
+	projects_per_year: '',
+	city: '',
+	project_type: '',
+	completion_date: '',
+	project_stage: '',
+	project_area: '',
+	project_budget: '',
+};
+
+export default function CartExample() {
+	const form = useForm({
+		defaultValues: init,
+		// resolver is validating data = without it we could submit anything we want !
+		resolver: zodResolver(schema),
+	});
+
+	function onSubmit() {
+		form.reset();
+		toastMessage('✅');
+	}
+
+	const [error, setError] = useState(false);
+
+	return (
+		<>
+			<div className={`px-r container mx-auto my-6 mt-20`}>
+				<form action=''>
+					{/* Field Group is adding space between fields*/}
+					<FieldGroup>
+						{/*Controller is from React Hook Form to connect everything properly */}
+						<Controller
+							// we start by adding control - after that we are getting type safety
+							control={form.control}
+							name={`company_name`}
+							// function that also gives us state of the field
+							render={({ field, fieldState }) => {
+								return (
+									// if data is invalid it will change the color to red
+									<Field data-invalid={fieldState.invalid}>
+										{/* If we connect htmlFor and id, clicking on the label
+										 will highlight the input for us*/}
+										<FieldLabel htmlFor={field.name}>Label</FieldLabel>
+										{/*aria-invalid gives us styling like red highlight if
+										 field is invalid*/}
+										<Input {...field} id={field.name} aria-invalid={fieldState.invalid} />
+										{fieldState.error && (
+											<FieldError errors={error ? [{ message: 'Error message' }] : undefined} />
+										)}
+									</Field>
+								);
+							}}
+						/>
+						<Controller
+							// we start by adding control - after that we are getting type safety
+							control={form.control}
+							name={`nip`}
+							// function that also gives us state of the field
+							render={({ field, fieldState }) => {
+								return (
+									// if data is invalid it will change the color to red
+									<Field data-invalid={fieldState.invalid}>
+										{/* If we connect htmlFor and id, clicking on the label
+										 will highlight the input for us*/}
+										<FieldLabel htmlFor={field.name}>nip</FieldLabel>
+										{/*aria-invalid gives us styling like red highlight if
+										 field is invalid*/}
+										<Input
+											{...field}
+											type='text'
+											inputMode='numeric' // Shows numeric keyboard on mobile
+											pattern='[0-9]*' // Ensures only numbers are entered
+											id={field.name}
+											aria-invalid={fieldState.invalid}
+											value={field.value}
+											onChange={(e) => {
+												// Only allow numbers
+												const value = e.target.value.replace(/\D/g, '');
+												// Limit to 10 digits
+												if (value.length <= 10) {
+													field.onChange(value);
+												}
+											}}
+										/>
+										{fieldState.error && (
+											<FieldError errors={error ? [{ message: 'Error message' }] : undefined} />
+										)}
+									</Field>
+								);
+							}}
+						/>
+					</FieldGroup>
+
+					<FieldGroup>
+						<Controller
+							control={form.control}
+							name={'project_type'}
+							render={({ field, fieldState }) => {
+								return (
+									<Field data-invalid={fieldState.invalid}>
+										<FieldLabel htmlFor={field.name}>Label</FieldLabel>
+										<Select {...field}>
+											<SelectTrigger>
+												<SelectValue></SelectValue>
+											</SelectTrigger>
+											<SelectContent>
+												<SelectItem value={`1`}> {'value'}</SelectItem>
+											</SelectContent>
+										</Select>
+										{fieldState.error && <FieldError errors={[{ message: 'Error message' }]} />}
+									</Field>
+								);
+							}}
+						/>
+					</FieldGroup>
+
+					<Button>submit</Button>
+				</form>
+			</div>
+			<div></div>
+		</>
+	);
+}
