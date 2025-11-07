@@ -4,10 +4,8 @@ export const cartSchema = z.object({
 	company_name: z.string().min(1),
 	email: z.string().min(3, { message: 'Podaj prawidłowy adres email' }),
 	projects_per_year: z.union([z.string().min(1), z.number().min(0)]),
-	nip: z
-		.string()
-		.length(10, { message: 'NIP musi mieć dokładnie 10 cyfr' })
-		.regex(/^[0-9]+$/, { message: 'Tylko cyfry są dozwolone' }),
+	nip: z.string().length(10, { message: 'Nieprawidłowy numer NIP' }),
+	// .regex(/^[0-9]+$/, { message: 'Tylko cyfry są dozwolone' }),
 	website: z.string().optional(),
 	city: z.string().min(1),
 	project_type: z.string().min(1),
