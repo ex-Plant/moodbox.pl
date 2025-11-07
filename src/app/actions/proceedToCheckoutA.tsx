@@ -1,27 +1,33 @@
 'use server';
-import { ATTRIBUTE_KEY_PL, formSchema, FormStateT, FormT } from '@/lib/CartSchema';
+import { ATTRIBUTE_KEY_PL, cartSchema, CartSchemaT } from '@/lib/CartSchema';
 import { createCart, getProductByHandle } from '@/lib/shopify/api';
 import { redirect } from 'next/navigation';
 
-export async function proceedToCheckout(cartItems: string[], prevState: FormStateT, formData: FormData) {
-	const raw = Object.fromEntries(formData.entries());
-	const data = formSchema.parse(raw);
-	const entries = Object.entries(data) as [keyof FormT, string][];
+export async function checkoutA(cartItems: string[], formData: CartSchemaT) {
+	console.log(formData, 'formData');
 
-	// filter out empty fields
-	const entriesFiltered = entries.filter((entry) => entry[1] !== '');
+	try {
+		const data = cartSchema.parse(formData);
+	} catch {
+		console.log('❌ Invalid data - schema is throwing errors');
+		return { error: true, message: 'Coś poszło nie tak, spróbuj ponownie' };
+	}
 
 	// map field names to polish keys - this is visible at admin panel when order arrives
-	const attributes = entriesFiltered.map(([k, v]) => ({
-		key: ATTRIBUTE_KEY_PL[k] ?? String(k),
-		value: v,
-	}));
+	// exclude non-attribute fields like "consents" and keep typing strict
+	type AttributeKeyT = Exclude<keyof CartSchemaT, 'consents'>;
+	const attributes = (Object.keys(formData) as (keyof CartSchemaT)[])
+		.filter((k): k is AttributeKeyT => k !== 'consents')
+		.map((k) => ({
+			key: ATTRIBUTE_KEY_PL[k] ?? String(k),
+			value: String((formData as Record<string, unknown>)[k] ?? ''),
+		}));
 
 	// this is to get the fixed price of the box
 	const flatFeeProduct = await getProductByHandle('box-stala-cena');
 	if (!flatFeeProduct?.variants?.edges?.[0]?.node?.id) {
-		console.log('Failed to get flat fee product');
-		return { error: true, data: formSchema.parse(raw) } as FormStateT;
+		console.log(`❌ adding flat fee product failed`);
+		return { error: true, message: 'Coś poszło nie tak' };
 	}
 
 	// Create line items from variant IDs
@@ -32,18 +38,21 @@ export async function proceedToCheckout(cartItems: string[], prevState: FormStat
 
 	// todo add again after testing
 	// Add the flat fee product variant
-	// lineItems.push({
-	// 	merchandiseId: flatFeeProduct.variants.edges[0].node.id,
-	// 	quantity: 1,
-	// });
+	lineItems.push({
+		merchandiseId: flatFeeProduct.variants.edges[0].node.id,
+		quantity: 1,
+	});
 
 	// add custom attributes
-	const cart = await createCart(lineItems, attributes);
+	// console.log('📦 lineItems before createCart:', lineItems);
+	// console.log('🏷️ attributes:', attributes);
+	const cart = await createCart(lineItems, attributes, formData.email);
+
 	if (cart?.checkoutUrl) {
 		//@ts-expect-error url is fine
 		redirect(cart.checkoutUrl);
 	} else {
-		console.log('Failed to create cart');
-		return { error: true, data: formSchema.parse(raw) } as FormStateT;
+		console.log(`❌ Uncaught error in checkout`);
+		return { error: true, message: 'Coś poszło nie tak' };
 	}
 }

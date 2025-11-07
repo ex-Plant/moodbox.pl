@@ -78,18 +78,30 @@ export async function getCollectionByHandle(handle: string): Promise<CollectionT
 
 export async function createCart(
 	lineItems: { merchandiseId: string; quantity: number }[],
-	attributes?: { key: string; value: string }[]
+	attributes?: { key: string; value: string }[],
+	email?: string
 ): Promise<CartT | null> {
 	const response = await shopifyFetch<{
 		cartCreate: {
-			cart: CartT;
+			cart: CartT | null;
+			userErrors?: Array<{ field: string[]; message: string }>;
 		};
 	}>({
 		query: CREATE_CART_MUTATION,
-		variables: { lineItems, attributes: attributes || [] },
+		variables: {
+			lineItems,
+			attributes: attributes || [],
+			email: email || null,
+		},
 		cache: 'no-store',
 	});
 
 	if (!response) return null;
-	return response.data.cartCreate.cart;
+
+	const { cart, userErrors } = response.data.cartCreate;
+	if (!cart && userErrors?.length) {
+		console.error('❌ cartCreate userErrors:', userErrors);
+	}
+
+	return cart;
 }

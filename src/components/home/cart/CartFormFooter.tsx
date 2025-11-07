@@ -2,23 +2,23 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tip } from '@/components/ui/Tip';
 import useCart from '@/lib/hooks/useCart';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-export default function CartFormFooter() {
+type TProps = {
+	consent1: boolean;
+	setConsent1: Dispatch<SetStateAction<boolean>>;
+	consent2: boolean;
+	setConsent2: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function CartFormFooter({ setConsent2, setConsent1, consent2, consent1 }: TProps) {
 	const { cartItems } = useCart();
-
-	const [consent2, setConsent2] = useState(false);
-	const [consent1, setConsent1] = useState(false);
-	const [invoice, setInvoice] = useState(false);
 
 	function toggleConsent1() {
 		setConsent1((curr) => !curr);
 	}
 	function toggleConsent2() {
 		setConsent2((curr) => !curr);
-	}
-	function toggleInvoice() {
-		setInvoice((curr) => !curr);
 	}
 
 	const missingConsents = !consent1 || !consent2;
@@ -37,16 +37,11 @@ export default function CartFormFooter() {
 				</div>
 				<div className={`flex items-center gap-4`}>
 					<Checkbox checked={consent2} onCheckedChange={toggleConsent2} />
-					<p className={``}>
+					<p className={`leading-none`}>
 						Wyrażam zgodę na kontakt w sprawie realizacji zamówienia oraz otrzymywania informacji związanych
 						z obsług zamówienia
 					</p>
-				</div>{' '}
-				{/*<div className={`flex items-center gap-4`}>*/}
-				{/*	<Checkbox checked={invoice} onCheckedChange={toggleInvoice} />*/}
-				{/*	<p className={``}>Chcę otrzymać fakturę</p>*/}
-				{/*	{invoice && <p className={``}>* Wypełnij polę NIP!</p>}*/}
-				{/*</div>*/}
+				</div>
 			</div>
 			<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 				<div className={`grid gap-2`}>

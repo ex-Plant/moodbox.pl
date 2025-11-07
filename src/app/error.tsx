@@ -1,5 +1,6 @@
 'use client'; // Error boundaries must be Client Components
 
+import { Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
@@ -9,16 +10,19 @@ export default function Error({ error, reset }: { error: Error & { digest?: stri
 	}, [error]);
 
 	return (
-		<div>
-			<h2>Something went wrong!</h2>
-			<button
+		<div className={`flex h-[50vh] flex-col items-center justify-center`}>
+			<p className={`text-[40px]`}>⚠️ </p>
+			<h2>Ups... Coś poszło nie tak </h2>
+			<Button
+				variant={`moodDark`}
+				className={`mt-4 cursor-pointer`}
 				onClick={
 					// Attempt to recover by trying to re-render the segment
 					() => reset()
 				}
 			>
-				Try again
-			</button>
+				Spróbuj ponownie
+			</Button>
 		</div>
 	);
 }
