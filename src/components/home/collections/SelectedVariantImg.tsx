@@ -20,7 +20,7 @@ export default function SelectedVariantImg({ variant, fullScreen, selectable, se
 	const src = variant.image?.url;
 
 	function toggle(e: React.MouseEvent) {
-		console.log(`toggle`);
+		// console.log(`toggle`);
 		e.stopPropagation();
 		if (!selectable && !checked) return;
 		if (checked) return deleteCartItem(variant.id);
@@ -32,7 +32,7 @@ export default function SelectedVariantImg({ variant, fullScreen, selectable, se
 	useEffect(() => {
 		function getImgHeight() {
 			if (!ref.current) return;
-			console.log(ref.current.scrollHeight, '✅');
+			// console.log(ref.current.scrollHeight, '✅');
 			setImgHeight(ref.current.scrollHeight);
 		}
 

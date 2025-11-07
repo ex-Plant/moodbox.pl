@@ -158,9 +158,9 @@ export const GET_ALL_COLLECTIONS_QUERY = `
 
 export const CREATE_CART_MUTATION = `
 	mutation CreateCart($lineItems: [CartLineInput!], $attributes: [AttributeInput!], $email: String) {
-		cartCreate(input: { 
-			lines: $lineItems, 
-			attributes: $attributes,
+		cartCreate(input: {
+			lines: $lineItems
+			attributes: $attributes
 			buyerIdentity: { email: $email }
 		}) {
 			cart {
@@ -236,6 +236,10 @@ export const CREATE_CART_MUTATION = `
 						currencyCode
 					}
 				}
+			}
+			userErrors {
+				field
+				message
 			}
 		}
 	}

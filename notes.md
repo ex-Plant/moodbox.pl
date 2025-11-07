@@ -19,7 +19,9 @@ TODO:
 - sitemap
 - robots
 - react compiler tests
-- 🤔 Kiedy czyścić koszyk i formularz - po linku do shopify?
+- 🤔 Kiedy czyścić koszyk i formularz - po linku do shopify? - kiedy przyjdzie webhook z info o nowym orderze 
+  przypisanym np. do tego emaila co trzeba ? 
+- 
 
 
 - ✅ zablokować koszyk gdy zgody nie sa potwierdzone

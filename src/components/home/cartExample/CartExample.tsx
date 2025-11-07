@@ -1,12 +1,10 @@
 // 'use client';
 //
-// import { proceedToCheckout } from '@/app/actions/proceedToCheckoutA';
 // import { Button } from '@/components/ui/button';
 // import { Field, FieldContent, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field';
 // import { Input } from '@/components/ui/input';
 // import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 // import { Textarea } from '@/components/ui/textarea';
-// import { initState } from '@/lib/CartSchema';
 // import useCart from '@/lib/hooks/useCart';
 // import { toastMessage } from '@/lib/toasts/toasts';
 // import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,7 +21,7 @@
 // 		.string()
 // 		.length(10, { message: 'NIP musi mieć dokładnie 10 cyfr' })
 // 		.regex(/^[0-9]+$/, { message: 'Tylko cyfry są dozwolone' }),
-// 	// optional field, if filled only with default empty string it will convert to undefined
+// 	// optional field, if filled only with default empty string it will convert to a
 // 	website: z
 // 		.string()
 // 		.optional()

@@ -83,7 +83,8 @@ export async function createCart(
 ): Promise<CartT | null> {
 	const response = await shopifyFetch<{
 		cartCreate: {
-			cart: CartT;
+			cart: CartT | null;
+			userErrors?: Array<{ field: string[]; message: string }>;
 		};
 	}>({
 		query: CREATE_CART_MUTATION,
@@ -96,5 +97,11 @@ export async function createCart(
 	});
 
 	if (!response) return null;
-	return response.data.cartCreate.cart;
+
+	const { cart, userErrors } = response.data.cartCreate;
+	if (!cart && userErrors?.length) {
+		console.error('❌ cartCreate userErrors:', userErrors);
+	}
+
+	return cart;
 }

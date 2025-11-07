@@ -37,7 +37,7 @@ export default function CartFormFooter({ setConsent2, setConsent1, consent2, con
 				</div>
 				<div className={`flex items-center gap-4`}>
 					<Checkbox checked={consent2} onCheckedChange={toggleConsent2} />
-					<p className={``}>
+					<p className={`leading-none`}>
 						Wyrażam zgodę na kontakt w sprawie realizacji zamówienia oraz otrzymywania informacji związanych
 						z obsług zamówienia
 					</p>
