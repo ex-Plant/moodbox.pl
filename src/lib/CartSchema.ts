@@ -51,3 +51,30 @@ export const initState: FormStateT = {
 	},
 	error: false,
 };
+
+const schema = z.object({
+	company_name: z.string().min(1),
+	email: z.string().length(3, { message: 'Podaj prawdziwy email' }),
+	// accept both string and number, but transform to string
+	projects_per_year: z.union([z.string().min(1), z.number().min(1)]).transform((value) => String(value)),
+	nip: z
+		.string()
+		.length(10, { message: 'NIP musi mieć dokładnie 10 cyfr' })
+		.regex(/^[0-9]+$/, { message: 'Tylko cyfry są dozwolone' }),
+	// optional field, if filled only with default empty string it will convert to undefined
+	website: z
+		.string()
+		.optional()
+		.transform((v) => v || undefined),
+	city: z.string().min(1),
+	project_type: z.string().min(1),
+	completion_date: z.string().min(1),
+	project_stage: z.string().min(1),
+	project_area: z.string().min(1),
+	project_budget: z.string().min(1),
+	notifications: z.object({
+		email: z.string(),
+		sms: z.string(),
+		push: z.boolean(),
+	}),
+});

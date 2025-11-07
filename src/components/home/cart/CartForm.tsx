@@ -1,7 +1,6 @@
 import { proceedToCheckout } from '@/app/actions/proceedToCheckoutA';
 import LogoSvg from '@/components/common/Logo';
 import CartFormFooter from '@/components/home/cart/CartFormFooter';
-import CartExample from '@/components/home/cartExample/CartExample';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tip } from '@/components/ui/Tip';
@@ -49,7 +48,6 @@ export default function CartForm() {
 
 	return (
 		<>
-			<CartExample />
 			<form action={formAction} className={`relative grid gap-4`}>
 				<div>
 					<header className={`flex items-center`}>
