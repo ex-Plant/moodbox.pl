@@ -9,6 +9,7 @@ export function FormInput(props: FormControlProps) {
 	return (
 		<FormBase {...props}>
 			<Input
+				placeholder={props.placeholder}
 				id={field.name}
 				name={field.name}
 				value={field.state.value}

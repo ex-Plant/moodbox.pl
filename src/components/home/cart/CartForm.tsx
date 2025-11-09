@@ -7,6 +7,7 @@ import {
 	PROJECT_TYPES,
 	txt,
 } from '@/components/home/cart/temporaryData';
+import { useAppForm } from '@/components/home/cart/tenstack/hooks';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Field, FieldError, FieldLabel } from '@/components/ui/field';
@@ -16,6 +17,7 @@ import { Tip } from '@/components/ui/Tip';
 import { cartSchema, CartSchemaT } from '@/lib/CartSchema';
 import useCart from '@/lib/hooks/useCart';
 import { toastMessage, ToastType } from '@/lib/toasts/toasts';
+import { cn } from '@/lib/utils';
 import { useForm } from '@tanstack/react-form';
 import { useStore } from '@tanstack/react-store';
 import { CircleQuestionMark } from 'lucide-react';
@@ -23,7 +25,7 @@ import { CircleQuestionMark } from 'lucide-react';
 export default function CartForm() {
 	const { cartItems } = useCart();
 
-	const form = useForm({
+	const form = useAppForm({
 		defaultValues: {
 			company_name: '',
 			email: '',
@@ -63,6 +65,11 @@ export default function CartForm() {
 	const emptyCart = cartItems.length < 1;
 
 	const isSubmitting = useStore(form.store, (s) => s.isSubmitting);
+	const isFormValid = useStore(
+		form.store,
+		(state) => !state.isValidating && Object.keys(state.errors || {}).length === 0
+	);
+
 	return (
 		<>
 			<form
@@ -80,6 +87,9 @@ export default function CartForm() {
 						</Tip>
 					</header>
 					<div className={`grid gap-4 md:grid-cols-2 xl:mr-4`}>
+						<form.AppField name='company_name'>
+							{(field) => <field.Input placeholder={'Nazwa firmy / pracowni'} />}
+						</form.AppField>
 						<form.Field name='company_name'>
 							{(field) => {
 								const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid;
@@ -340,7 +350,7 @@ export default function CartForm() {
 										aria-invalid={isInvalid}
 									/>
 									<FieldLabel className='font-normal' htmlFor={field.name}>
-										Zapoznałem am się z Regulaminem i Polityką Prywatności oraz akceptuje ich
+										Zapoznałem/am się z Regulaminem i Polityką Prywatności oraz akceptuje ich
 										postanowienia
 									</FieldLabel>
 								</Field>
@@ -372,13 +382,21 @@ export default function CartForm() {
 				<div className={`flex flex-col gap-4 pt-4 xl:mr-4 xl:items-end`}>
 					<div className={`grid gap-2`}>
 						<p className={`ml-auto text-[2rem] text-nowrap xl:text-[2.5rem]`}>39 PLN</p>
-						<Tip disabled={!emptyCart} content={'Koszyk jest pusty'} side={`bottom`} className={`ml-auto`}>
+						<Tip
+							disabled={!emptyCart}
+							content={'Koszyk jest pusty'}
+							side={`bottom`}
+							className={cn(`ml-auto`, emptyCart && 'cursor-not-allowed')}
+						>
 							<Button
 								disabled={emptyCart}
 								type={'submit'}
 								variant={'mood'}
 								size={`lg`}
-								className={`ml-auto w-fit cursor-pointer disabled:opacity-50 xl:w-full`}
+								className={cn(
+									`ml-auto w-fit cursor-pointer xl:w-full`,
+									(!isFormValid || emptyCart) && 'cursor-not-allowed opacity-50'
+								)}
 							>
 								Przejdź do płatności
 							</Button>
