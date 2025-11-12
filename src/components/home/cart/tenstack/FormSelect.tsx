@@ -11,7 +11,7 @@ export function FormSelect({ children, ...props }: FormControlProps & { children
 		<FormBase {...props}>
 			<Select onValueChange={(e) => field.handleChange(e)} value={field.state.value}>
 				<SelectTrigger aria-invalid={isInvalid} id={field.name} onBlur={field.handleBlur}>
-					<SelectValue />
+					<SelectValue placeholder={props.placeholder} />
 				</SelectTrigger>
 				<SelectContent>{children}</SelectContent>
 			</Select>

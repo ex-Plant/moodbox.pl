@@ -1,4 +1,5 @@
 import { Field, FieldContent, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
+import * as React from 'react';
 import { ReactNode } from 'react';
 import { useFieldContext } from './hooks';
 
@@ -7,6 +8,7 @@ export type FormControlProps = {
 	description?: string;
 	placeholder?: string;
 	showError?: boolean;
+	type?: React.ComponentProps<'input'>['type'];
 };
 
 type FormBaseProps = FormControlProps & {
@@ -27,7 +29,7 @@ export function FormBase({ children, label, description, controlFirst, horizonta
 	const errorElem = showError && isInvalid && <FieldError errors={field.state.meta.errors} />;
 
 	return (
-		<Field data-invalid={isInvalid} orientation={horizontal ? 'horizontal' : undefined}>
+		<Field className={`gap-0`} data-invalid={isInvalid} orientation={horizontal ? 'horizontal' : undefined}>
 			{controlFirst ? (
 				<>
 					{children}
