@@ -1,6 +1,6 @@
 import { Input } from '@/components/ui/input';
 import { FormBase, FormControlProps } from './FormBase';
-import { useFieldContext } from './hooks';
+import { useFieldContext } from '@/lib/hooks/tenStackFormHooks';
 
 export function FormInput(props: FormControlProps) {
 	const field = useFieldContext<string>();

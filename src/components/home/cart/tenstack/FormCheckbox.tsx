@@ -1,6 +1,6 @@
 import { Checkbox } from '@/components/ui/checkbox';
+import { useFieldContext } from '@/lib/hooks/tenStackFormHooks';
 import { FormBase, FormControlProps } from './FormBase';
-import { useFieldContext } from './hooks';
 
 export function FormCheckbox(props: FormControlProps) {
 	const field = useFieldContext<boolean>();

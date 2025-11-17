@@ -27,7 +27,7 @@ export default function Hero() {
 						className={`xPaddings absolute inset-0 mx-auto flex max-w-[1440px] grid-cols-12 flex-col pt-[180px] xl:grid`}
 					>
 						<div className={`col-span-11 flex flex-col items-end text-white`}>
-							<div className={`lead ing-tight text-[2.5rem] text-[#EEEBE3] xl:text-[3.75rem]`}>
+							<div className={`text-[2.5rem] leading-tight text-[#EEEBE3] xl:text-[3.75rem]`}>
 								<h1>
 									<span className={`block`}>{'Twoje materiały w '}</span>
 									<span className={`block text-[2.5rem] text-[#EEEBE3] xl:text-[3.75rem]`}>

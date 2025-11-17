@@ -1,7 +1,7 @@
 import { Field, FieldContent, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
+import { useFieldContext } from '@/lib/hooks/tenStackFormHooks';
 import * as React from 'react';
 import { ReactNode } from 'react';
-import { useFieldContext } from './hooks';
 
 export type FormControlProps = {
 	label?: string;

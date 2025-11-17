@@ -2,13 +2,18 @@ import Footer from '@/components/footer/Footer';
 import Nav from '@/components/nav/Nav';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
-import { Inclusive_Sans } from 'next/font/google';
+import { Geist, Inclusive_Sans } from 'next/font/google';
 import { ReactNode } from 'react';
 import { ToastContainer } from 'react-toastify';
 import './globals.css';
 
 const inclusive_Sans = Inclusive_Sans({
-	variable: '--font-inclusive-sans',
+	variable: '--font-inclusive',
+	subsets: ['latin'],
+});
+
+const geist = Geist({
+	variable: '--font-geist',
 	subsets: ['latin'],
 });
 
@@ -23,11 +28,14 @@ export default function RootLayout({
 	children: ReactNode;
 }>) {
 	return (
-		<html lang='pl' className='scroll-smooth'>
+		<html lang='pl' className={cn('scroll-smooth')}>
 			<body
 				className={cn(
-					` ${inclusive_Sans.variable} flex min-h-screen flex-col antialiased`,
-					`bg-background relative`
+					`flex min-h-screen flex-col antialiased`,
+					`bg-background relative`,
+					geist.variable,
+					inclusive_Sans.variable,
+					'font-inclusive'
 					// `[&_*]:outline [&_*]:outline-[1px] [&_*]:outline-pink-400`
 				)}
 			>
